@@ -1,4 +1,5 @@
 Pipfile.lock
+package-lock.json
 # node 
 node_modules
 
