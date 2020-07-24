@@ -11,3 +11,4 @@ $ pipenv shell
 $ pipenv install
 $ python manage.py runserver 
 ```
+Hello Hi Khana Khakey Jaana Haa!
