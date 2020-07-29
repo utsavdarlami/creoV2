@@ -12,9 +12,9 @@ class App extends React.Component{
         return(
             <BrowserRouter>
                 <Navbar />
-                <Route exact path="/" components={Home} />
-                <Route path="/signup" components={SignUp}/>
-                <Route path="/login" components={Login} />
+                <Route exact path="/" component={Home} />
+                <Route path="/signup" component={SignUp}/>
+                <Route path="/login" component={Login} />
             </BrowserRouter>
 
         )
