@@ -36,10 +36,19 @@ class SignUpForm extends Component{
                 axios.post("/api/auth/register", body, config)
                 .then ((res) => {
                     console.log(res)
+                    const { token } = res.data;
+                    localStorage.setItem('token',token);
                 })
                 .catch((err) =>{
                     console.log(err)
                 })
+                this.setState({
+                    username: "",
+                    email: "",
+                    password: "",
+                    confirmpassword: ""
+                })
+                alert("Form submitted");
         }
     }
     
