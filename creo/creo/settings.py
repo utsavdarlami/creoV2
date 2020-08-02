@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'frontend',
     'user',
     'knox',
+    'posts',
 ]
 
 # REST_FRAMEWORK Config
