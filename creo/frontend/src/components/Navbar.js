@@ -1,14 +1,16 @@
 import React from "react"
-import {Link, NavLink} from "react-router-dom"
+import {Link, NavLink, withRouter} from "react-router-dom"
 
 function Navbar(){
     return(
-        <nav>
-            <ul>
-                <li><NavLink to="/">Home</NavLink></li>
-                <li><NavLink to="/signup">Sign Up!</NavLink></li>
-                <li><NavLink to="/login">Log In</NavLink></li>
-                <li><NavLink to="/profile">Profile</NavLink></li>
+        <nav className="navbar">
+            <ul className="nav-bar-home">
+                <li className="nav-item"><NavLink to="/" style={{ textDecoration: "none"}}><span>Home</span></NavLink></li>
+            </ul>
+            <ul className="nav-links">    
+                <li className="nav-item"><NavLink to="/profile" style={{ textDecoration: "none"}}><span>Profile</span></NavLink></li>
+                <li className="nav-item"><NavLink to="/login" style={{ textDecoration: "none"}}><span>Sign in</span></NavLink></li>
+                <li className="nav-item"><NavLink to="/signup" style={{ textDecoration: "none"}}><span>Sign up</span></NavLink></li>
             </ul>
         </nav>
     );

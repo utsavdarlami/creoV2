@@ -55,51 +55,62 @@ class SignUpForm extends Component{
     render(){
         return(
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    
-                    <label>Username:
-                        <input 
+                <form onSubmit={this.handleSubmit} className="form-component">
+                    <h1>Sign up!</h1>
+
+                    <div className="form-input">
+                        <label className="label-material">Username:
+                            <input 
                             type="text" 
                             value={this.state.username}
-                            placeholder="Username"
+                            placeholder=""
                             name="username"
-                            onChange={this.handleChange} required />
+                            onChange={this.handleChange} required  className="input-field-material"/>
                     </label>
+                    </div>
 
-                    <label>Email:
+                    <div className="form-input">
+                    <label className="label-material">Email:
                         <input 
                             type="email"
                             value={this.state.email}
-                            placeholder="Email"
+                            placeholder=""
                             name="email"
-                            onChange={this.handleChange} required />
+                            onChange={this.handleChange} required  className="input-field-material"/>
                     </label>
+                    </div>
 
-                    <label>Password:
+
+                    <div className="form-input">
+                    <label className="label-material">Password:
                         <input
                             type="password"
                             value={this.state.password}
-                            placeholder="Password"
+                            placeholder=""
                             name="password"
-                            onChange={this.handleChange} required />
+                            onChange={this.handleChange} required className="input-field-material" />
                     </label>
+                    </div>
 
-                    <label>Confirm Password:
+                    <div className="form-input">
+                    <label className="label-material">Confirm Password:
                         <input 
                             type="password"
                             value={this.state.confirmpassword}
-                            placeholder="Confrim Password"
+                            placeholder=""
                             name="confirmpassword"
-                            onChange={this.handleChange} required />
+                            onChange={this.handleChange} required className="input-field-material" />
                     </label>
+                    </div>
 
-                    <button>Submit</button>
+
+                    <button className="submit-button">Submit</button>
             </form>
 
-        <h1>Username: {this.state.username}</h1>
+        {/* <h1>Username: {this.state.username}</h1>
         <h1>Email: {this.state.email}</h1>
         <h1>Password: {this.state.password}</h1>
-        <h1>Confirm Password: {this.state.confirmpassword}</h1>
+        <h1>Confirm Password: {this.state.confirmpassword}</h1> */}
         
         </div>
         );

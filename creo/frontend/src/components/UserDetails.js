@@ -40,9 +40,9 @@ class UserDetails extends Component{
 
     render(){
         return(
-            <div>
-                <h1>Username: {this.state.username}</h1>
-                <h1>Email: {this.state.email}</h1>
+            <div  className="details-body">
+                <p>Username: {this.state.username}</p>
+                <p>Email: {this.state.email}</p>
             </div>
         );
     }

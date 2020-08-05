@@ -1,1 +1,114 @@
+*{
+    margin: 0;
+    padding: 0;
+}
 
+/* navbar styling */
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5% 0;
+    /* background-color: #f1f1f1; */
+    box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
+}
+
+.navbar ul{
+    list-style: none;
+}
+
+.nav-links{
+    display: flex;
+}
+
+.nav-item{
+    margin: 0 10px;
+}
+
+.nav-item span{
+    font-size: 160%;
+    color: #2e2b2b;
+    padding: 5px;
+}
+
+
+
+/* signup-sign in styling */
+.form-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    flex-direction: column;
+}
+
+.form-component{
+    /* margin: 2%; */
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    padding: 50px 40px;
+    color: white;
+    background-color: rgba(0,0,0,0.8);
+    box-shadow: 0 0.4px 0.4px rgba(128, 128, 128, 0.109),
+    0 1px 1px rgba(128, 128, 128, 0.155),
+    0 2.1px 2.1px rgba(128, 128, 128, 0.195),
+    0 4.4px 4.4px rgba(128, 128, 128, 0.241),
+    0 12px 12px rgba(128, 128, 128, 0.35);
+    border-radius: 2%;
+    width: 200px;
+}
+
+.form-input{
+    margin: 12px 0;
+}
+
+.label-material{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1%;
+}
+
+.input-field-material{
+    background-color: transparent;
+    padding: 4%;
+    color: white;
+    border: none;
+    border-bottom: 1px solid white; 
+    border-radius: 2px;
+}
+
+.input-field-material:hover{
+    border: 0.5px solid white;
+}
+
+.submit-button{
+    width: 80%;
+    margin: 18px 0 9px 0;
+    padding: 4%;
+	border: none;
+	font-size: 100%;
+	color: white;
+	background-color: #ea4c89;
+	border-radius: 50px;
+}
+
+.submit-button:hover{
+	cursor: pointer;
+	animation-name: but-animation;
+	animation-duration: 0.5s;
+	animation-fill-mode: forwards;
+	animation-timing-function: ease-out;
+}
+
+@keyframes but-animation{
+	from {background-color: #3f8f87}
+	to {background-color: #1db6e0;}
+}
+
+.details-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

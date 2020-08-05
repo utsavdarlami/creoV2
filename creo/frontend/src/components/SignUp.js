@@ -3,7 +3,7 @@ import SignUpForm from "./SignUpForm"
 
 function SignUp(){
     return(
-        <div>
+        <div  className="form-body">
             <SignUpForm />
         </div>
     );
