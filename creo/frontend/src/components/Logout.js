@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import axios from "axios";
+import { withRouter} from "react-router-dom"
 
 class Logout extends Component{
     constructor(){
@@ -25,6 +26,8 @@ class Logout extends Component{
         .then(res=>{
             console.log("Log out successful");
             localStorage.removeItem('token');
+            this.props.history.push("/");
+
         })
         .catch((err) =>{
             console.log(err);
@@ -39,4 +42,4 @@ class Logout extends Component{
     }
 }
 
-export default Logout;
+export default withRouter(Logout);

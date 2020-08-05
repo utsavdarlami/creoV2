@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import axios from "axios";
+import { withRouter } from "react-router-dom";
 
 class SignUpForm extends Component{
     constructor(){
@@ -38,6 +39,7 @@ class SignUpForm extends Component{
                     console.log(res)
                     const { token } = res.data;
                     localStorage.setItem('token',token);
+                    this.props.history.push("/");
                 })
                 .catch((err) =>{
                     console.log(err)
@@ -48,7 +50,6 @@ class SignUpForm extends Component{
                     password: "",
                     confirmpassword: ""
                 })
-                alert("Form submitted");
         }
     }
     
@@ -117,4 +118,4 @@ class SignUpForm extends Component{
     }
 }
 
-export default SignUpForm;
+export default withRouter(SignUpForm);

@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import axios from "axios";
+import { withRouter } from "react-router-dom"
 
 class LoginForm extends Component {
     constructor(){
@@ -32,6 +33,7 @@ class LoginForm extends Component {
             console.log(res);
             const { token } = res.data;
             localStorage.setItem('token',token);
+            this.props.history.push("/");
         })
         .catch((err) =>{
             console.log(err)
@@ -78,4 +80,4 @@ class LoginForm extends Component {
     }
 }
 
-export default LoginForm
+export default withRouter(LoginForm);
