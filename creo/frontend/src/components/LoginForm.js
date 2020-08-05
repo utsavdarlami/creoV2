@@ -48,7 +48,7 @@ class LoginForm extends Component {
         return(
             <div>
                 <form onSubmit={this.handleSubmit} className="form-component">
-                    <h1>Login</h1> 
+                    <h1>Sign in</h1> 
                     <div className="form-input">
                     <label className="label-material">Username:
                         <input
