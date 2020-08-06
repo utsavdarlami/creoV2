@@ -4,7 +4,7 @@ from .serializers import PostSerializer
 
 from django.core.exceptions import PermissionDenied
 
-# Lead ViewSet
+#Post ViewSet
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Posts.objects.all()
     permissions_classes = [
@@ -22,3 +22,4 @@ class PostViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(publisher=self.request.user)
+
