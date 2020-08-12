@@ -1,7 +1,9 @@
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, viewsets
 from rest_framework.response import Response
 from knox.models import AuthToken
-from .serializers import UserSerializer,RegisterSerializer,LoginSerializer
+from .serializers import UserSerializer,RegisterSerializer,LoginSerializer,UserProfileInfoSerializer
+
+from .models import UserProfileInfo
 
 from django.core.exceptions import PermissionDenied
 
@@ -53,4 +55,24 @@ class UserAPI(generics.RetrieveAPIView):
         if not self.request.user.is_authenticated:
             raise PermissionDenied()
         return self.request.user
+
+# UserProfileInfo Serializer
+class UserProfileInfoViewSet(viewsets.ModelViewSet):
+    queryset = UserProfileInfo.objects.all()
+    permissions_classes = [
+       # permissions.AllowAny
+        permissions.IsAuthenticated,
+    ]
+
+    serializer_class = UserProfileInfoSerializer
+
+    def get_queryset(self):
+        if not self.request.user.is_authenticated:
+            raise PermissionDenied()
+        # return self.request.user.publisher.all()
+        return UserProfileInfo.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
 
