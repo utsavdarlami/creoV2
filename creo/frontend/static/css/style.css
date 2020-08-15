@@ -115,3 +115,22 @@ body{
     align-items: center;
     flex-direction: column;
 }
+
+.logout-button{
+    font-size: 140%;
+    padding: 2%;
+	border-radius: 10px;
+}
+
+/* post-content styling */
+
+.postContainer{
+    border: 1px solid black;
+    margin: 20px;
+    padding: 4%;
+    width: 80%;
+}
+
+.post-image{
+    max-width: 50%;
+}

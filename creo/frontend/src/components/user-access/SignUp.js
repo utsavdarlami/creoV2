@@ -2,7 +2,7 @@ import React, {Component} from "react"
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 
-class SignUpForm extends Component{
+class SignUp extends Component{
     constructor(){
         super();
         this.state = {
@@ -55,7 +55,7 @@ class SignUpForm extends Component{
     
     render(){
         return(
-            <div>
+            <div className="form-body">
                 <form onSubmit={this.handleSubmit} className="form-component">
                     <h1>Sign up</h1>
 
@@ -107,15 +107,9 @@ class SignUpForm extends Component{
 
                     <button className="submit-button">Submit</button>
             </form>
-
-        {/* <h1>Username: {this.state.username}</h1>
-        <h1>Email: {this.state.email}</h1>
-        <h1>Password: {this.state.password}</h1>
-        <h1>Confirm Password: {this.state.confirmpassword}</h1> */}
-        
         </div>
         );
     }
 }
 
-export default withRouter(SignUpForm);
+export default withRouter(SignUp);

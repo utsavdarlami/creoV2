@@ -1,8 +1,10 @@
-import React, {Component} from "react"
-import axios from "axios";
-import { withRouter } from "react-router-dom"
+import React, {Component} from "react";
+import { Link , Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { login } from "../../actions/auth";
 
-class LoginForm extends Component {
+class Login extends Component {
     constructor(){
         super();
         this.state = {
@@ -13,6 +15,11 @@ class LoginForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    static propTypes = {
+        login: PropTypes.func.isRequired,
+        isAuthenticated: PropTypes.bool
+    }
+
     handleChange(event){
         this.setState({
             [event.target.name]: event.target.value
@@ -21,34 +28,16 @@ class LoginForm extends Component {
     
     handleSubmit(){
         event.preventDefault();
-        const {username, password} = this.state;
-        const config = {
-            headers: {
-                "Content-Type": "application/json"
-            },
-        };
-        const body = JSON.stringify({username, password});
-        axios.post("/api/auth/login", body, config)
-        .then ((res) => {
-            console.log(res);
-            const { token } = res.data;
-            localStorage.setItem('token',token);
-            this.props.history.push("/");
-        })
-        .catch((err) =>{
-            console.log(err)
-        })
-        this.setState({
-            username: "",
-            password: ""
-        })
-        console.log("login");
-}
+        this.props.login(this.state.username, this.state.password);
+    }
      
     
     render(){
+        if(this.props.isAuthenticated) {
+            return <Redirect to="/" />
+        }
         return(
-            <div>
+            <div className="form-body">
                 <form onSubmit={this.handleSubmit} className="form-component">
                     <h1>Sign in</h1> 
                     <div className="form-input">
@@ -80,4 +69,8 @@ class LoginForm extends Component {
     }
 }
 
-export default withRouter(LoginForm);
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+})
+
+export default connect(mapStateToProps, { login })(Login);
