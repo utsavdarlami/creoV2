@@ -1,6 +1,9 @@
-import React, {Component} from "react"
-import axios from "axios";
-import { withRouter } from "react-router-dom";
+import React, {Component} from "react";
+import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { register } from "../../actions/auth";
+
 
 class SignUp extends Component{
     constructor(){
@@ -15,6 +18,10 @@ class SignUp extends Component{
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    static propTypes = {
+        register: PropTypes.func.isRequired,
+        isAuthenticated: PropTypes.bool
+    }
     
     handleChange(event){
         this.setState({
@@ -23,37 +30,25 @@ class SignUp extends Component{
     }
 
     handleSubmit(){
-        event.preventDefault();
-        const {username, email, password, confirmpassword} = this.state;
-        if (password != confirmpassword){
-            alert("Passwords don't match");
-        } else{
-                const config = {
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                };
-                const body = JSON.stringify({username, password, email});
-                axios.post("/api/auth/register", body, config)
-                .then ((res) => {
-                    console.log(res)
-                    const { token } = res.data;
-                    localStorage.setItem('token',token);
-                    this.props.history.push("/");
-                })
-                .catch((err) =>{
-                    console.log(err)
-                })
-                this.setState({
-                    username: "",
-                    email: "",
-                    password: "",
-                    confirmpassword: ""
-                })
+        event.preventDefault(); 
+        const { username, password, email, confirmpassword} = this.state;
+        if (password !== confirmpassword){
+            alert("Passwords do not match")
+        }
+        else {
+            const newUser = {
+                username,
+                password,
+                email
+            }
+            this.props.register(newUser)
         }
     }
     
     render(){
+        if(this.props.isAuthenticated){
+            return <Redirect to ="/" />
+        }
         return(
             <div className="form-body">
                 <form onSubmit={this.handleSubmit} className="form-component">
@@ -103,13 +98,17 @@ class SignUp extends Component{
                             onChange={this.handleChange} required className="input-field-material" />
                     </label>
                     </div>
-
-
                     <button className="submit-button">Submit</button>
+                    <p>Already have an account?
+                        <Link to="/login"><span style={{color:"#1db6e0"}}> Login</span></Link></p>
             </form>
         </div>
         );
     }
 }
 
-export default withRouter(SignUp);
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { register })(SignUp);

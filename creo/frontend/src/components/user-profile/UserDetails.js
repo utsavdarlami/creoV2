@@ -25,8 +25,6 @@ class UserDetails extends Component{
 
         axios.get("/api/auth/user", config)
         .then(res=>{
-            console.log("User details done");
-            console.log(res);
             const {username, email} = res.data;
             this.setState({
                 username: username,

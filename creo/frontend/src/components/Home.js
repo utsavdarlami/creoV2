@@ -17,7 +17,7 @@ class Home extends Component{
         return(
             <Fragment>
                 <h2>Posts</h2>
-                <div>
+                <div className="post-contents"> 
                     { this.props.posts.map(post => (
                         <div className="postContainer" key={post.id}>
                             <p>Id: {post.id}</p>

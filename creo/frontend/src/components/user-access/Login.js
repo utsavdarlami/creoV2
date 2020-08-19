@@ -61,8 +61,10 @@ class Login extends Component {
                             onChange = {this.handleChange} required className="input-field-material"/>
                     </label>
                     </div>
-
                     <button className="submit-button">Log In</button>
+
+                    <p>Don't have an account?
+                        <Link to="/signup"><span style={{color:"#1db6e0"}}> Sign up</span></Link></p>
                 </form>
             </div>
         );
