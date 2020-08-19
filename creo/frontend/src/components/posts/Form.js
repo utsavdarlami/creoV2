@@ -34,12 +34,16 @@ class Form extends Component{
     handleSubmit(event) {
         event.preventDefault();
         const { title, description, content} = this.state;
-        const post = {title, description, content};
+        let form_data = new FormData();
+        form_data.append('content', content);
+        form_data.append('title', title);
+        form_data.append('description', description);
+        const post = form_data;
         this.props.addPost(post);
         this.setState({
             title: "",
             description: "",
-            content: ""
+            content: null
         })
     }
 
