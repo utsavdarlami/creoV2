@@ -18,10 +18,9 @@ class Profile extends Component{
         return(
             <div>
                 <UserDetails />
-                <p>Here you will be able to see posts posted by you</p>
                 <br />
                 <Fragment>
-                 <h2>Posted by you!</h2>
+                 <h3>Content posted by you</h3>
                     <div className="post-contents">
                         { this.props.posts.map(post => (
                             <div className="postContainer" key={post.id}>

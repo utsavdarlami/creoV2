@@ -50,11 +50,11 @@ class Form extends Component{
     render(){
         const { title, description, content} = this.state;
         return(
-            <div>
+            <div className="post-form">
                 <h2>Post Form:</h2>
                 <form onSubmit = {this.handleSubmit}>
                     <label>Title:</label>
-                    <input 
+                    <input className="post-form-components"
                         type="text"
                         value={title}
                         name= "title"
@@ -63,7 +63,7 @@ class Form extends Component{
                      />
                     
                     <label>Description:</label>
-                    <input
+                    <input className="post-form-components"
                         type="text"
                         value={description}
                         name="description"
@@ -72,7 +72,7 @@ class Form extends Component{
                     />
 
                     <label>Content</label>
-                    <input
+                    <input className="post-form-components"
                         type="file"
                         name="content"
                         onChange = {this.handleImageChange}
