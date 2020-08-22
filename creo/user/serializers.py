@@ -37,10 +37,19 @@ class LoginSerializer(serializers.Serializer):
         raise serializers.ValidationError("Incorrect Credentials")
 
 # User Profile Info Serializer
-
 class UserProfileInfoSerializer(serializers.ModelSerializer):
+    
+    user = RegisterSerializer(required=True)
+
     class Meta:
         model = UserProfileInfo
         fields  = '__all__'
 
+    def create(self, validated_data):
+        user_data = validated_data.pop('user')
+        user = RegisterSerializer.create(RegisterSerializer(), validated_data=user_data)
+        # validated_data["user"] = user
+        # print(validated_data)
+        userprofile = UserProfileInfo.objects.create(user=user,**validated_data)
+        return user,userprofile
 

@@ -10,7 +10,7 @@ class UserProfileInfo(models.Model):
      ('O', 'Other')
     )
     gender = models.CharField(choices=GENDER_CHOICES, max_length=12,blank=True,)
-    user = models.OneToOneField(User,on_delete=models.CASCADE,null=True)
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
     portfolio_site = models.URLField(blank=True)
     bio = models.TextField(max_length=500,blank=True)
     resume = models.FileField(upload_to ='resumes',blank=True)

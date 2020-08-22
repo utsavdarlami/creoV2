@@ -11,20 +11,19 @@ from django.core.exceptions import PermissionDenied
 # Register API
 class RegisterAPI(generics.GenericAPIView):
 
-    serializer_class = RegisterSerializer
+    serializer_class = UserProfileInfoSerializer
 
     def post(self,request,*args,**kwargs):
         print(request.data)
         serializer = self.get_serializer(data = request.data)
         serializer.is_valid(raise_exception = True)
-        user = serializer.save()
+        user,userprofile = serializer.save()
         _,token  = AuthToken.objects.create(user)
         return Response({
-            "user" : UserSerializer(user,context=self.get_serializer_context()).data,
-            "token" : token
+            "user"    : UserSerializer(user,context=self.get_serializer_context()).data,
+            "profile" : UserProfileInfoSerializer(userprofile,context=self.get_serializer_context()).data,
+            "token"   : token
         })
-
-
 
 # Login API
 class LoginAPI(generics.GenericAPIView):
