@@ -23,7 +23,7 @@ class UserDetails extends Component{
             config.headers["Authorization"] = `Token ${token}`;
         }
 
-        axios.get("/api/auth/user", config)
+        axios.get("/api/profile", config)
         .then(res=>{
             const {username, email} = res.data;
             this.setState({
