@@ -38,7 +38,7 @@ class LoginSerializer(serializers.Serializer):
 
 # User Profile Info Serializer
 class UserProfileInfoSerializer(serializers.ModelSerializer):
-    
+
     user = RegisterSerializer(required=True)
 
     class Meta:
