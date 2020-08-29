@@ -15,10 +15,12 @@ $ python manage.py runserver
 
 ## BACKEND TODO 
 
-[x] Like Part of The Post 
-[ ] Save the post 
-[ ] Comment on POst 
+- [x] Like Part of The Post 
+
+- [ ] Save the post 
+
+- [ ] Comment on POst 
 
 ## FRONTEDN TODO
 
-[ ]
+- [ ] Make a Plan
