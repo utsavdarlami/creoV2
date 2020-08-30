@@ -5,8 +5,13 @@ class UserDetails extends Component{
     constructor(){
         super();
         this.state = {
-            username:"",
-            email: ""
+            username: "",
+            email: "",
+            gender: "",
+            portfoliosite: "",
+            profilepic: "",
+            resume: "",
+            bio: ""
         }
     }
     
@@ -25,14 +30,16 @@ class UserDetails extends Component{
 
         axios.get("/api/profile", config)
         .then(res=>{
-            const {username, email} = res.data;
+            const {gender, bio, portfoliosite, profilepic, resume} = res.data[0];
+            const {username, email} = res.data[0].user;
             this.setState({
+                gender: gender,
                 username: username,
                 email: email
             })
         })
         .catch((err) =>{
-            // console.log(err);
+            console.log(err);
         })
     }
 
@@ -40,7 +47,7 @@ class UserDetails extends Component{
         return(
             <div  className="details-body">
                 <p>Username: {this.state.username}</p>
-                <p>Email: {this.state.email}</p>
+                <p>Gender: {this.state.gender}</p>
             </div>
         );
     }

@@ -14,13 +14,12 @@ class RegisterAPI(generics.GenericAPIView):
     serializer_class = UserProfileInfoSerializer
 
     def post(self,request,*args,**kwargs):
-        print(request.data)
+        # print(request.data)
         serializer = self.get_serializer(data = request.data)
         serializer.is_valid(raise_exception = True)
         user,userprofile = serializer.save()
         _,token  = AuthToken.objects.create(user)
         return Response({
-            "user"    : UserSerializer(user,context=self.get_serializer_context()).data,
             "profile" : UserProfileInfoSerializer(userprofile,context=self.get_serializer_context()).data,
             "token"   : token
         })
@@ -58,6 +57,7 @@ class UserAPI(generics.RetrieveAPIView):
 # UserProfileInfo Serializer
 class UserProfileInfoViewSet(viewsets.ModelViewSet):
     queryset = UserProfileInfo.objects.all()
+
     permissions_classes = [
        # permissions.AllowAny
         permissions.IsAuthenticated,
@@ -70,8 +70,3 @@ class UserProfileInfoViewSet(viewsets.ModelViewSet):
             raise PermissionDenied()
         # return self.request.user.publisher.all()
         return UserProfileInfo.objects.filter(user=self.request.user)
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
-

@@ -1,6 +1,7 @@
 # Creo Version 2
 
 ### Team
+
 - Babin Joshi
 - Gyanas Luitel 
 - Niraj Tamang
@@ -11,4 +12,15 @@ $ pipenv shell
 $ pipenv install
 $ python manage.py runserver 
 ```
-Hello Hi Khana Khakey Jaana Haa!
+
+## BACKEND TODO 
+
+- [x] Like Part of The Post 
+
+- [ ] Save the post 
+
+- [ ] Comment on POst 
+
+## FRONTEDN TODO
+
+- [ ] Make a Plan

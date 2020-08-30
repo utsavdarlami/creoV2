@@ -12,7 +12,8 @@ class SignUp extends Component{
             username: "",
             email: "",
             password: "",
-            confirmpassword: ""
+            confirmpassword: "",
+            gender: ""
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,7 +32,7 @@ class SignUp extends Component{
 
     handleSubmit(){
         event.preventDefault(); 
-        const { username, password, email, confirmpassword} = this.state;
+        const { username, password, email, confirmpassword, gender} = this.state;
         if (password !== confirmpassword){
             alert("Passwords do not match")
         }
@@ -39,7 +40,8 @@ class SignUp extends Component{
             const newUser = {
                 username,
                 password,
-                email
+                email,
+                gender
             }
             this.props.register(newUser)
         }
@@ -76,7 +78,6 @@ class SignUp extends Component{
                     </label>
                     </div>
 
-
                     <div className="form-input">
                     <label className="label-material">Password:
                         <input
@@ -98,6 +99,41 @@ class SignUp extends Component{
                             onChange={this.handleChange} required className="input-field-material" />
                     </label>
                     </div>
+
+                    <label>Gender:</label>
+                    <div className="form-input">
+                        <label>
+                            <input
+                                type="radio"
+                                name="gender"
+                                value="M"
+                                checked={this.state.gender === "M"}
+                                onChange={this.handleChange} /> Male
+                        </label>
+                    </div>
+
+                    <div className="form-input">
+                        <label>
+                            <input 
+                                type="radio"
+                                name="gender"
+                                value="F"
+                                checked= {this.state.gender === "F"}
+                                onChange={this.handleChange} /> Female
+                        </label>
+                    </div>
+
+                    <div className="form-input">
+                        <label>
+                            <input
+                                type="radio"
+                                name="gender"
+                                value="O"
+                                checked = {this.state.gender === "O"}
+                                onChange={this.handleChange} /> Other
+                        </label>
+                    </div>
+
                     <button className="submit-button">Submit</button>
                     <p>Already have an account?
                         <Link to="/login"><span style={{color:"#1db6e0"}}> Login</span></Link></p>
