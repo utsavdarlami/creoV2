@@ -10,7 +10,8 @@ import {
     POST_UPLOAD_FAIL,
     LIKE_POST,
     UNLIKE_POST,
-    GET_LIKED_CONTENT
+    GET_LIKED_CONTENT,
+    CHECK_LIKED
 } from "./types"
 
 //GET ALL POSTS
@@ -108,3 +109,13 @@ export const unlikePost = (id) => (dispatch, getState) => {
     }).catch(err => console.log(err));
 }
 
+//Check post like
+export const checkLiked = (id) => (dispatch, getState) => {
+    axios.get(`/api/like/${id}`, tokenConfig(getState))
+    .then(res => {
+        dispatch({
+            type: CHECK_LIKED,
+            payload: res.data
+        })
+    }).catch(err => console.log(err))
+}

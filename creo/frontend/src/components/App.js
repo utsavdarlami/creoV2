@@ -36,6 +36,7 @@ class App extends React.Component{
                             <Route exact path="/posts/:post_id" component={SinglePost} />
                             <PrivateRoute exact path="/profile" component={Profile} />
                             <PrivateRoute exact path="/submitpost" component={PostForm} />
+                            <Redirect to="/" />
                         </Switch>
                     </Fragment>
                 </BrowserRouter>

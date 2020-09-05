@@ -6,12 +6,14 @@ import {
     GET_SINGLE_POST,
     LIKE_POST,
     UNLIKE_POST,
-    GET_LIKED_CONTENT
+    GET_LIKED_CONTENT,
+    CHECK_LIKED
 } from "../actions/types.js";
 
 const initialState = {
     posts: [],
-    liked_posts: []
+    liked_posts: [],
+    check_like: []
 }
 
 export default function(state = initialState, action) {
@@ -22,12 +24,16 @@ export default function(state = initialState, action) {
                 ...state,
                 posts: action.payload
             };
-        case GET_LIKED_CONTENT: {
+        case GET_LIKED_CONTENT:
             return {
                 ...state,
                 liked_posts: action.payload
             }
-        }
+        case CHECK_LIKED:
+            return {
+                ...state,
+                check_like: action.payload
+            }
         // case GET_SINGLE_POST:
         //make one here 
         case ADD_POST:
