@@ -5,6 +5,9 @@ export const ADD_POST = "ADD_POST";
 export const GET_ALL_POSTS = "GET_ALL_POSTS";
 export const POST_UPLOAD_FAIL = "POST_UPLOAD_FAIL";
 // export const GET_SINGLE_POST = "GET_SINGLE_POST";
+export const LIKE_POST = "LIKE_POST";
+export const UNLIKE_POST = "UNLIKE_POST";
+export const GET_LIKED_CONTENT = "GET_LIKED_CONTENT"
 
 //auth
 export const USER_LOADING = "USER_LOADING";

@@ -1,44 +1,20 @@
 import React, {Component, Fragment} from "react"
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { getaPost} from "../../actions/posts"
 import UserDetails from "./UserDetails"
+import PostedContent from "./PostedContent";
+import LikedContent from "./LikedContent"
 
-class Profile extends Component{
-    static propTypes = {
-        posts: PropTypes.array.isRequired,
-        getaPost: PropTypes.func.isRequired
-    }
-
-    componentDidMount(){
-        this.props.getaPost();
-    }
-    
+class Profile extends Component{    
     render(){
         return(
-            <div>
-                <UserDetails />
-                <br />
                 <Fragment>
-                 <h3>Content posted by you</h3>
-                    <div className="post-contents">
-                        { this.props.posts.map(post => (
-                            <div className="postContainer" key={post.id}>
-                                <p>Id: {post.id}</p>
-                                <p>Title: {post.title}</p>
-                                <p>Description: {post.description}</p>
-                                <img className="post-image" src = {post.content} />
-                            </div>
-                        )) }
-                    </div>
+                    <UserDetails />
+                    <hr />
+                    <PostedContent />
+                    <hr />
+                    <LikedContent />
                 </Fragment>
-            </div>
         );
     }
 }
 
-const mapStateToProps = state => ({
-posts: state.posts.posts
-});
-
-export default connect(mapStateToProps, {getaPost})(Profile);
+export default Profile;

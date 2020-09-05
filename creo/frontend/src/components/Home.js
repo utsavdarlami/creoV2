@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getPosts} from "../actions/posts"
 import { Link } from "react-router-dom";
+import Post from "./posts/Post"
 
 class Home extends Component{
     static propTypes = {
@@ -18,14 +19,8 @@ class Home extends Component{
         return(
             <Fragment>
                 <div className="post-contents"> 
-                    { this.props.posts.map(post => (
-                        <div className="postContainer" key={post.id}>
-                            <Link to={`/posts/${post.id}`}>
-                                <img className="post-image" src = {post.content} />
-                                <p>Title: {post.title}</p>
-                            </Link>
-                        </div>
-                    )) }
+                    { this.props.posts.map(post => <Post key={post.id} post={post} />
+                    ) }
                 </div>
             </Fragment>
         );

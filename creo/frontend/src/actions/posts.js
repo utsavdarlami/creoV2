@@ -1,7 +1,17 @@
 import axios from "axios";
 import { tokenConfig, tokenConfig2 } from "./auth";
 
-import {GET_POSTS, GET_SINGLE_POST, ADD_POST, DELETE_POST, GET_ALL_POSTS, POST_UPLOAD_FAIL} from "./types"
+import {
+    GET_POSTS, 
+    GET_SINGLE_POST, 
+    ADD_POST,
+    DELETE_POST, 
+    GET_ALL_POSTS, 
+    POST_UPLOAD_FAIL,
+    LIKE_POST,
+    UNLIKE_POST,
+    GET_LIKED_CONTENT
+} from "./types"
 
 //GET ALL POSTS
 export const getPosts = () => dispatch => {
@@ -27,12 +37,23 @@ export const getPosts = () => dispatch => {
 //         err => console.log(err));
 // };
 
-//GET A POST
-export const getaPost = () => (dispatch, getState) => {
+//GET POST UPLOADED BY USER
+export const getUserPost = () => (dispatch, getState) => {
     axios.get("/api/posts/", tokenConfig(getState))
     .then(res => {
         dispatch({
             type: GET_POSTS,
+            payload: res.data
+        });
+    }).catch(err => console.log(err));
+};
+
+//Get post liked by user
+export const getLikedContent = () => (dispatch, getState) =>{
+    axios.get("api/like", tokenConfig(getState))
+    .then(res=>{
+        dispatch({
+            type: GET_LIKED_CONTENT,
             payload: res.data
         });
     }).catch(err => console.log(err));
@@ -63,3 +84,27 @@ export const deletePost = (id) => (dispatch, getState) => {
         });
     }).catch(err => console.log(err));
 };
+
+//LIKE POST
+export const likePost = (post_id) => (dispatch, getState) => {
+    const body = JSON.stringify({post_id})
+    axios.post(`/api/like/`, body, tokenConfig(getState))
+    .then(res => {
+        dispatch({
+            type: LIKE_POST,
+            payload: res.data
+        });
+    }).catch(err => console.log(err));
+}
+
+//UNLIKE POST
+export const unlikePost = (id) => (dispatch, getState) => {
+    axios.delete(`/api/like/${id}/`, tokenConfig(getState))
+    .then(res =>{
+        dispatch({
+            type: UNLIKE_POST,
+            payload: res.data
+        })
+    }).catch(err => console.log(err));
+}
+
