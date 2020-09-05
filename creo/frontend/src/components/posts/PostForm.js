@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { addPost } from '../../actions/posts';
 import PropTypes from "prop-types"
 
-class Form extends Component{
+class PostForm extends Component{
     constructor(){
         super();
         this.state = {
@@ -85,4 +85,4 @@ class Form extends Component{
     }
 }
 
-export default connect(null, { addPost })(Form);
+export default connect(null, { addPost })(PostForm);

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { tokenConfig, tokenConfig2 } from "./auth";
 
-import {GET_POSTS, ADD_POST, DELETE_POST, GET_ALL_POSTS, POST_UPLOAD_FAIL} from "./types"
+import {GET_POSTS, GET_SINGLE_POST, ADD_POST, DELETE_POST, GET_ALL_POSTS, POST_UPLOAD_FAIL} from "./types"
 
 //GET ALL POSTS
 export const getPosts = () => dispatch => {
@@ -14,6 +14,18 @@ export const getPosts = () => dispatch => {
     }).catch(
         err => console.log(err));
 };
+
+// //GET SINGLE POST
+// export const getSinglePost = (id) => dispatch => {
+//     axios.get(`api/allposts/${id}`)
+//     .then (res => {
+//         dispatch({
+//             type: GET_SINGLE_POST,
+//             payload: res.data
+//         });
+//     }).catch(
+//         err => console.log(err));
+// };
 
 //GET A POST
 export const getaPost = () => (dispatch, getState) => {

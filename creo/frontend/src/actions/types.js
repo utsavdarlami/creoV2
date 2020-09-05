@@ -3,7 +3,8 @@ export const GET_POSTS = "GET_POSTS";
 export const DELETE_POST = "DELETE_POST";
 export const ADD_POST = "ADD_POST";
 export const GET_ALL_POSTS = "GET_ALL_POSTS";
-export const POST_UPLOAD_FAIL = "POST_UPLOAD_FAIL"
+export const POST_UPLOAD_FAIL = "POST_UPLOAD_FAIL";
+// export const GET_SINGLE_POST = "GET_SINGLE_POST";
 
 //auth
 export const USER_LOADING = "USER_LOADING";

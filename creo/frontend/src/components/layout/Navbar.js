@@ -16,7 +16,7 @@ class Navbar extends Component{
         const authLinks = (
             <ul className="nav-links">    
             <li className="nav-item"><NavLink to="/profile" style={{ textDecoration: "none"}}><span>Profile</span></NavLink></li>
-            <li className="nav-item"><NavLink to="/posts" style={{ textDecoration: "none"}}><span>Upload</span></NavLink></li>
+            <li className="nav-item"><NavLink to="/submitpost" style={{ textDecoration: "none"}}><span>Upload</span></NavLink></li>
             <li className="nav-item"> <button onClick = {this.props.logout} className="logout-button">Logout</button></li>
         </ul>
         );

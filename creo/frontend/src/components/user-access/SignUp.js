@@ -9,6 +9,8 @@ class SignUp extends Component{
     constructor(){
         super();
         this.state = {
+            first_name: "",
+            last_name: "",
             username: "",
             email: "",
             password: "",
@@ -32,12 +34,14 @@ class SignUp extends Component{
 
     handleSubmit(){
         event.preventDefault(); 
-        const { username, password, email, confirmpassword, gender} = this.state;
+        const { first_name, last_name,username, password, email, confirmpassword, gender} = this.state;
         if (password !== confirmpassword){
             alert("Passwords do not match")
         }
         else {
             const newUser = {
+                first_name,
+                last_name,
                 username,
                 password,
                 email,
@@ -52,56 +56,71 @@ class SignUp extends Component{
             return <Redirect to ="/" />
         }
         return(
-            <div className="form-body">
-                <form onSubmit={this.handleSubmit} className="form-component">
-                    <h1>Sign up</h1>
-
-                    <div className="form-input">
-                        <label className="label-material">Username:
-                            <input 
-                            type="text" 
-                            value={this.state.username}
-                            placeholder=""
-                            name="username"
-                            onChange={this.handleChange} required  className="input-field-material"/>
-                    </label>
+            <div className="access-form-display">
+                <div className="access-lhs">
+                    <div className="access-text-block">
+                        <p>Discover Amazing</p>
+                        <p>Artists</p>
+                        <p>And</p>
+                        <p>Creators</p>
                     </div>
+                </div>
+                <div className="access-rhs" style={{margin: "5% 0"}}>
+                <h1 style={{color: "grey"}}>Sign Up</h1>
+                <form onSubmit={this.handleSubmit} className="access-form">
+                    <input 
+                        type="text" 
+                        value={this.state.first_name}
+                        placeholder="First Name"
+                        name="first_name"
+                        onChange={this.handleChange} required
+                        className="access-form-component2" />
 
-                    <div className="form-input">
-                    <label className="label-material">Email:
-                        <input 
-                            type="email"
-                            value={this.state.email}
-                            placeholder=""
-                            name="email"
-                            onChange={this.handleChange} required  className="input-field-material"/>
-                    </label>
-                    </div>
 
-                    <div className="form-input">
-                    <label className="label-material">Password:
-                        <input
-                            type="password"
-                            value={this.state.password}
-                            placeholder=""
-                            name="password"
-                            onChange={this.handleChange} required className="input-field-material" />
-                    </label>
-                    </div>
+                   <input 
+                        type="text" 
+                        value={this.state.last_name}
+                        placeholder="Last Name"
+                        name="last_name"
+                        onChange={this.handleChange} required
+                        className="access-form-component2" />
 
-                    <div className="form-input">
-                    <label className="label-material">Confirm Password:
-                        <input 
-                            type="password"
-                            value={this.state.confirmpassword}
-                            placeholder=""
-                            name="confirmpassword"
-                            onChange={this.handleChange} required className="input-field-material" />
-                    </label>
-                    </div>
+                    <input 
+                        type="text" 
+                        value={this.state.username}
+                        placeholder="Username"
+                        name="username"
+                        onChange={this.handleChange} required
+                        className="access-form-component" />
+ 
+                    <input 
+                        type="email"
+                        value={this.state.email}
+                        placeholder="Email"
+                        name="email"
+                        onChange={this.handleChange} required
+                        className="access-form-component" />
 
-                    <label>Gender:</label>
-                    <div className="form-input">
+                    <input
+                        type="password"
+                        value={this.state.password}
+                        placeholder="Password"
+                        name="password"
+                        onChange={this.handleChange} required
+                        className="access-form-component2" />
+
+                    <input 
+                        type="password"
+                        value={this.state.confirmpassword}
+                        placeholder="Confirm Password"
+                        name="confirmpassword"
+                        onChange={this.handleChange} required 
+                        className="access-form-component2" />
+
+                    <label style={{width: "98%", 
+                        margin: "3% 1%", 
+                        fontSize: "120%" }}>Gender:</label>
+                    <div className="gender-form">
                         <label>
                             <input
                                 type="radio"
@@ -110,9 +129,8 @@ class SignUp extends Component{
                                 checked={this.state.gender === "M"}
                                 onChange={this.handleChange} /> Male
                         </label>
-                    </div>
 
-                    <div className="form-input">
+
                         <label>
                             <input 
                                 type="radio"
@@ -121,9 +139,7 @@ class SignUp extends Component{
                                 checked= {this.state.gender === "F"}
                                 onChange={this.handleChange} /> Female
                         </label>
-                    </div>
-
-                    <div className="form-input">
+ 
                         <label>
                             <input
                                 type="radio"
@@ -132,12 +148,12 @@ class SignUp extends Component{
                                 checked = {this.state.gender === "O"}
                                 onChange={this.handleChange} /> Other
                         </label>
-                    </div>
-
-                    <button className="submit-button">Submit</button>
+                    </div>    
+                    <button className="access-submit-button">Submit</button>
                     <p>Already have an account?
-                        <Link to="/login"><span style={{color:"#1db6e0"}}> Login</span></Link></p>
+                        <Link to="/login"><span style={{color:"#ea4c89"}} >Login</span></Link></p>
             </form>
+        </div>
         </div>
         );
     }

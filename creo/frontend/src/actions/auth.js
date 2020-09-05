@@ -12,6 +12,7 @@ import {
 } from "./types";
 
 //CHECK TOKEN & LOAD USER
+//CHANGE API LINK from "/api/auth/user" to /api/profile"
 export const loadUser = () => (dispatch, getState) => {
     //USER loading
     dispatch({ type: USER_LOADING});
@@ -54,7 +55,7 @@ export const login = (username,password) => dispatch => {
 }
 
 //REGISTER USER
-export const register = ({username,password, email, gender}) => dispatch => {
+export const register = ({first_name, last_name,username,password, email, gender}) => dispatch => {
     //Headers
     const config = {
         headers: {
@@ -62,7 +63,7 @@ export const register = ({username,password, email, gender}) => dispatch => {
         }
     }
 
-    const body = JSON.stringify({"user":{ username, email, password }, gender});
+    const body = JSON.stringify({"user":{ first_name, last_name,username, email, password }, gender});
 
     axios.post("/api/auth/register", body, config)
     .then(res => {

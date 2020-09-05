@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 /* body{
@@ -34,82 +35,6 @@
     padding: 5px;
 }
 
-
-
-/* signup-sign in styling */
-.form-body{
-    display: flex;
-    margin: 5% 0;
-    /* justify-content: center; */
-    align-items: center;
-    /* min-height: 80vh; */
-    flex-direction: column;
-}
-
-.form-component{
-    /* margin: 2%; */
-    display: flex;
-    flex-direction: column;
-    align-items:center;
-    padding: 50px 40px;
-    color: white;
-    background-color: rgba(0,0,0,0.8);
-    box-shadow: 0 0.4px 0.4px rgba(128, 128, 128, 0.109),
-    0 1px 1px rgba(128, 128, 128, 0.155),
-    0 2.1px 2.1px rgba(128, 128, 128, 0.195),
-    0 4.4px 4.4px rgba(128, 128, 128, 0.241),
-    0 12px 12px rgba(128, 128, 128, 0.35);
-    border-radius: 2%;
-    width: 300px;
-}
-
-.form-input{
-    margin: 12px 0;
-}
-
-.label-material{
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 1%;
-}
-
-.input-field-material{
-    background-color: transparent;
-    padding: 4%;
-    color: white;
-    border: none;
-    border-bottom: 1px solid white; 
-    border-radius: 2px;
-}
-
-.input-field-material:hover{
-    border: 0.5px solid white;
-}
-
-.submit-button{
-    width: 50%;
-    margin: 18px 0 9px 0;
-    padding: 4%;
-	border: none;
-	font-size: 100%;
-	color: white;
-	background-color: #ea4c89;
-	border-radius: 50px;
-}
-
-.submit-button:hover{
-	cursor: pointer;
-	animation-name: but-animation;
-	animation-duration: 0.5s;
-	animation-fill-mode: forwards;
-	animation-timing-function: ease-out;
-}
-
-@keyframes but-animation{
-	from {background-color: #3f8f87}
-	to {background-color: #1db6e0;}
-}
-
 .details-body{
     display: flex;
     justify-content: center;
@@ -132,13 +57,47 @@
 }
 
 .postContainer{
-    border: 1px solid black;
     margin: 2%;
     max-width: 25%;
     height: 80%;
+    position: relative;
+}
+
+.postContainer p{
+    position: fixed;
+    visibility: hidden;
+    background-color: black;
+    color: white;
+}
+
+.postContainer:hover p {
+    visibility: visible;
+    width: 25%;
+    padding: 8px 15px;
 }
 
 .post-image{
+    max-width: 100%;
+    height: auto;
+}
+
+
+.post-contents2{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 100%;
+}
+
+.postContainer2{
+    border: 1px solid black;
+    margin: 2%;
+    max-width: 80%;
+    height: auto%;
+}
+
+.post-image2{
     max-width: 100%;
     height: auto;
 }
@@ -149,7 +108,7 @@
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
-    width: 80%;
+    width: 60%;
     margin: 5% 5%;
 }
 
@@ -161,4 +120,107 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+
+/* access-form-styling */
+.access-form-display{
+    display: grid;
+    height: 90vh;
+    grid-template-columns: 0.5fr 1fr;
+}
+
+.access-lhs{
+    grid-column: 1/2;
+    background-color: burlywood;
+    background: url("../bkgdimg.jpg");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+}
+
+.access-text-block{
+    color: white;
+    margin: 30% 0;
+    font-size: 250%;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.access-rhs{
+    grid-column: 2/3;
+    display: flex;
+    margin: 8% 0;
+    align-items: center;
+    flex-direction: column;
+}
+
+.access-form{
+    border-radius: 5px;
+    padding: 20px;
+    width: 60%;
+    margin: 1% 5%;
+}
+
+.access-form-component{
+    width: 98%;
+    padding: 12px 20px;
+    margin: 3% 1%;
+    display: inline-block;
+    border: 1px solid grey;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.access-form-component2{
+    width: 48%;
+    padding: 12px 20px;
+    margin: 3% 1%;
+    display: inline-block;
+    border: 1px solid grey;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.access-form p {
+    width: 100%;
+    margin: 8px;
+    font-size: 120%;
+}
+
+.access-form input{
+    font-size: 100%;
+}
+
+.gender-form{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.gender-form label{
+    margin: 1% 2%;
+    font-size: 120%;
+}
+
+.access-submit-button{
+    width: 25%;
+    margin: 18px 0 9px 0;
+    padding: 2%;
+	border: none;
+	font-size: 100%;
+	color: white;
+	background-color:grey;
+	border-radius: 50px;
+}
+
+.access-submit-button:hover{
+	cursor: pointer;
+	animation-name: but-animation;
+	animation-duration: 0.5s;
+	animation-fill-mode: forwards;
+	animation-timing-function: ease-out;
+}
+
+@keyframes but-animation{
+	from {background-color: #3f8f87}
+	to {background-color: #1db6e0;}
 }

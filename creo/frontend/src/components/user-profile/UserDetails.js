@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import axios from "axios";
 
+//CHANGE THIS CODE TO MAKE IT LIKE PROFILE
+
 class UserDetails extends Component{
     constructor(){
         super();
