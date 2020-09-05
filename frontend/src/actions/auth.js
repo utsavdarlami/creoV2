@@ -11,14 +11,14 @@ import {
   REGISTER_FAIL,
 } from './types';
 
+const back_api = "http://127.0.0.1:8000"
 // CHECK TOKEN & LOAD USER
 // CHANGE API LINK from "/api/auth/user" to /api/profile"
 export const loadUser = () => (dispatch, getState) => {
   // USER loading
   dispatch({ type: USER_LOADING });
-
   axios
-    .get('/api/auth/user', tokenConfig(getState))
+    .get(`${back_api}/api/auth/user`, tokenConfig(getState))
     .then(res => {
       dispatch({
         type: USER_LOADED,
@@ -44,7 +44,7 @@ export const login = (username, password) => dispatch => {
   const body = JSON.stringify({ username, password });
 
   axios
-    .post('/api/auth/login', body, config)
+    .post(`${back_api}/api/auth/login`, body, config)
     .then(res => {
       dispatch({
         type: LOGIN_SUCCESS,
@@ -80,7 +80,7 @@ export const register = ({
   });
 
   axios
-    .post('/api/auth/register', body, config)
+    .post(`${back_api}/api/auth/register`, body, config)
     .then(res => {
       dispatch({
         type: REGISTER_SUCCESS,
@@ -98,7 +98,7 @@ export const register = ({
 // LOGOUT USER
 export const logout = () => (dispatch, getState) => {
   axios
-    .post('/api/auth/logout', null, tokenConfig(getState))
+    .post(`${back_api}/api/auth/logout`, null, tokenConfig(getState))
     .then(res => {
       dispatch({
         type: LOGOUT_SUCCESS,

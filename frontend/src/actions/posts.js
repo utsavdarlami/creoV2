@@ -13,10 +13,11 @@ import {
   GET_LIKED_CONTENT,
 } from './types';
 
+const back_api = "http://127.0.0.1:8000"
 // GET ALL POSTS
 export const getPosts = () => dispatch => {
   axios
-    .get('api/allposts/')
+    .get(`${back_api}/api/allposts/`)
     .then(res => {
       dispatch({
         type: GET_ALL_POSTS,
@@ -41,7 +42,7 @@ export const getPosts = () => dispatch => {
 // GET POST UPLOADED BY USER
 export const getUserPost = () => (dispatch, getState) => {
   axios
-    .get('/api/posts/', tokenConfig(getState))
+    .get(`${back_api}/api/posts/`, tokenConfig(getState))
     .then(res => {
       dispatch({
         type: GET_POSTS,
@@ -54,7 +55,7 @@ export const getUserPost = () => (dispatch, getState) => {
 // Get post liked by user
 export const getLikedContent = () => (dispatch, getState) => {
   axios
-    .get('api/like', tokenConfig(getState))
+    .get(`${back_api}api/like`, tokenConfig(getState))
     .then(res => {
       dispatch({
         type: GET_LIKED_CONTENT,
@@ -67,7 +68,7 @@ export const getLikedContent = () => (dispatch, getState) => {
 // ADD POST
 export const addPost = post => (dispatch, getState) => {
   axios
-    .post('/api/posts/', post, tokenConfig2(getState))
+    .post(`${back_api}/api/posts/`, post, tokenConfig2(getState))
     .then(res => {
       dispatch({
         type: ADD_POST,
@@ -85,7 +86,7 @@ export const addPost = post => (dispatch, getState) => {
 // DELETE POST
 export const deletePost = id => (dispatch, getState) => {
   axios
-    .delete(`/api/posts/${id}`, tokenConfig(getState))
+    .delete(`${back_api}/api/posts/${id}`, tokenConfig(getState))
     .then(res => {
       dispatch({
         type: DELETE_POST,
@@ -112,7 +113,7 @@ export const likePost = post_id => (dispatch, getState) => {
 // UNLIKE POST
 export const unlikePost = id => (dispatch, getState) => {
   axios
-    .delete(`/api/like/${id}/`, tokenConfig(getState))
+    .delete(`${back_api}/api/like/${id}/`, tokenConfig(getState))
     .then(res => {
       dispatch({
         type: UNLIKE_POST,
