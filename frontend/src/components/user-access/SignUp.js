@@ -31,7 +31,7 @@ class SignUp extends Component {
     });
   }
 
-  handleSubmit() {
+  handleSubmit(event) {
     event.preventDefault();
     const {
       first_name,

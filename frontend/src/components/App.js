@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
@@ -41,5 +40,5 @@ class App extends React.Component {
     );
   }
 }
+export default App;
 
-ReactDOM.render(<App />, document.getElementById('app'));
