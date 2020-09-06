@@ -2,6 +2,35 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class SinglePost extends Component {
+<<<<<<< HEAD
+=======
+    constructor() {
+        super();
+        this.handleLike = this.handleLike.bind(this);
+        this.handleUnlike = this.handleUnlike.bind(this);
+    }
+
+    static propTypes = {
+        isAuthenticated: PropTypes.bool,
+        likePost: PropTypes.func.isRequired,
+        unlikePost: PropTypes.func.isRequired,
+    };
+
+    componentDidMount() {
+        //id =  get from url
+        // this.props.getDetailPost(id)
+        console.log("get Detail Post")
+    }
+    
+    handleLike() {
+        this.props.likePost(this.props.post.id);
+    }
+
+    handleUnlike() {
+        this.props.unlikePost(this.props.post.id);
+    }
+
+>>>>>>> 1a31b8131b94ec86f667b10e647f37b03e20674f
     render() {
         const post = this.props.post ? (
             <div className="post-contents2">
