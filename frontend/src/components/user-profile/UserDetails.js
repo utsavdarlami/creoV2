@@ -29,16 +29,19 @@ class UserDetails extends Component {
       config.headers.Authorization = `Token ${token}`;
     }
 
+    const back_api = "http://127.0.0.1:8000";
+
     axios
-      .get('/api/profile', config)
+      .get(`${back_api}/api/profile`, config)
       .then(res => {
-        const { gender, bio, portfoliosite, profilepic, resume } = res.data[0];
-        const { username, email } = res.data[0].user;
-        this.setState({
-          gender,
-          username,
-          email,
-        });
+        console.log(res);
+        // const { gender, bio, portfoliosite, profilepic, resume } = res.data[0];
+        // const { username, email } = res.data[0].user;
+        // this.setState({
+        //   gender,
+        //   username,
+        //   email,
+        // });
       })
       .catch(err => {
         console.log(err);
@@ -46,18 +49,21 @@ class UserDetails extends Component {
   }
 
   render() {
-    return (
-      <div className="details-body">
-        <p>
-Username:
-          {this.state.username}
-        </p>
-        <p>
-Gender:
-          {this.state.gender}
-        </p>
-      </div>
+    return(
+      <h1>Hello</h1>
     );
+//     return (
+//       <div className="details-body">
+//         <p>
+// Username:
+//           {this.state.username}
+//         </p>
+//         <p>
+// Gender:
+//           {this.state.gender}
+//         </p>
+//       </div>
+//     );
   }
 }
 

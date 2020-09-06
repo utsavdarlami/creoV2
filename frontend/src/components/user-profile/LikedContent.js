@@ -1,7 +1,6 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component} from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { getLikedContent } from '../../actions/posts';
 
 class LikedContent extends Component {
@@ -33,7 +32,7 @@ Title:
 Description:
                 {liked_post.post.description}
               </p>
-              <img className="post-image" src={liked_post.post.content} />
+              <img className="post-image" src={liked_post.post.content} alt="content" />
               <span>{console.log(liked_post.post.title)}</span>
             </div>
           ))}

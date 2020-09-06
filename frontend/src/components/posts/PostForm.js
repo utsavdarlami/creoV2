@@ -49,7 +49,7 @@ class PostForm extends Component {
   }
 
   render() {
-    const { title, description, content } = this.state;
+    const { title, description} = this.state;
     return (
       <div className="post-form">
         <h2>Post Form:</h2>

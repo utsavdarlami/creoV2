@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import UserDetails from './UserDetails';
 import PostedContent from './PostedContent';
 import LikedContent from './LikedContent';
+import { connect } from "react-redux";
 
 class Profile extends Component {
   render() {
@@ -17,4 +18,4 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+export default connect(null)(Profile);

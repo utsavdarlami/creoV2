@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from "react"
 import UserDetails from "./UserDetails"
 import PostedContent from "./PostedContent";
-import LikedContent from "./LikedContent"
+// import LikedContent from "./LikedContent"
 
 class Profile extends Component{    
     render(){
@@ -11,7 +11,7 @@ class Profile extends Component{
                     <hr />
                     <PostedContent />
                     <hr />
-                    <LikedContent />
+                    {/* <LikedContent /> */}
                 </Fragment>
         );
     }

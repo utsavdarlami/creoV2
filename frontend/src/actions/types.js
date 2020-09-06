@@ -8,6 +8,7 @@ export const POST_UPLOAD_FAIL = 'POST_UPLOAD_FAIL';
 export const LIKE_POST = 'LIKE_POST';
 export const UNLIKE_POST = 'UNLIKE_POST';
 export const GET_LIKED_CONTENT = 'GET_LIKED_CONTENT';
+export const GET_USER_POST = "GET_USER_POST";
 
 // auth
 export const USER_LOADING = 'USER_LOADING';

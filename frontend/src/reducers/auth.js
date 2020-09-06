@@ -7,8 +7,8 @@ import {
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
-  LIKE_POST,
-  UNLIKE_POST,
+  // LIKE_POST,
+  // UNLIKE_POST
 } from '../actions/types';
 
 const initialState = {

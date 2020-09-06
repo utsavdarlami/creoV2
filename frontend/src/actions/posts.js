@@ -2,8 +2,7 @@ import axios from 'axios';
 import { tokenConfig, tokenConfig2 } from './auth';
 
 import {
-  GET_POSTS,
-  GET_SINGLE_POST,
+  // GET_SINGLE_POST,
   ADD_POST,
   DELETE_POST,
   GET_ALL_POSTS,
@@ -11,6 +10,7 @@ import {
   LIKE_POST,
   UNLIKE_POST,
   GET_LIKED_CONTENT,
+  GET_USER_POST
 } from './types';
 
 const back_api = "http://127.0.0.1:8000"
@@ -45,7 +45,7 @@ export const getUserPost = () => (dispatch, getState) => {
     .get(`${back_api}/api/posts/`, tokenConfig(getState))
     .then(res => {
       dispatch({
-        type: GET_POSTS,
+        type: GET_USER_POST,
         payload: res.data,
       });
     })
@@ -55,7 +55,7 @@ export const getUserPost = () => (dispatch, getState) => {
 // Get post liked by user
 export const getLikedContent = () => (dispatch, getState) => {
   axios
-    .get(`${back_api}api/like`, tokenConfig(getState))
+    .get(`${back_api}/api/like`, tokenConfig(getState))
     .then(res => {
       dispatch({
         type: GET_LIKED_CONTENT,
@@ -100,7 +100,7 @@ export const deletePost = id => (dispatch, getState) => {
 export const likePost = post_id => (dispatch, getState) => {
   const body = JSON.stringify({ post_id });
   axios
-    .post(`/api/like/`, body, tokenConfig(getState))
+    .post(`${back_api}/api/like/`, body, tokenConfig(getState))
     .then(res => {
       dispatch({
         type: LIKE_POST,

@@ -90,14 +90,14 @@ a{
     flex-flow: row wrap;
     align-items: center;
     justify-content: center;
-    flex: 0 0 100%;
+    flex: 0 0 44%;
 }
 
 .postContainer2{
     border: 1px solid black;
     margin: 2%;
-    max-width: 80%;
-    height: auto;
+    max-width: 25%;
+    height: 80%;
 }
 
 .post-image2{

@@ -3,31 +3,36 @@ import {
   ADD_POST,
   GET_ALL_POSTS,
   POST_UPLOAD_FAIL,
-  GET_SINGLE_POST,
+  // GET_SINGLE_POST,
   LIKE_POST,
   UNLIKE_POST,
-  GET_LIKED_CONTENT,
+  GET_USER_POST,
+  // GET_LIKED_CONTENT
 } from '../actions/types.js';
 
 const initialState = {
   posts: [],
   liked_posts: [],
+  user_posts: []
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_POSTS:
-    case GET_POSTS:
       return {
         ...state,
         posts: action.payload,
       };
-    case GET_LIKED_CONTENT: {
+    case GET_USER_POST:
       return {
         ...state,
-        liked_posts: action.payload,
-      };
-    }
+        user_posts: action.payload
+      }
+    // case GET_LIKED_CONTENT: 
+    //   return {
+    //     ...state,
+    //     liked_posts: action.payload,
+    //   };
     // case GET_SINGLE_POST:
     // make one here
     case ADD_POST:
@@ -37,8 +42,7 @@ export default function(state = initialState, action) {
       };
     case POST_UPLOAD_FAIL:
       console.log('post failed lol');
-    default:
-      return state;
+      break;
     case LIKE_POST:
     case UNLIKE_POST:
       const index = state.posts.findIndex(post => post.id === action.payload.id);
@@ -46,5 +50,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
       };
+    default:
+      return state;
   }
 }
