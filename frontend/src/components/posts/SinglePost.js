@@ -16,6 +16,12 @@ class SinglePost extends Component {
         unlikePost: PropTypes.func.isRequired,
     };
 
+    componentDidMount() {
+        //id =  get from url
+        // this.props.getDetailPost(id)
+        console.log("get Detail Post")
+    }
+    
     handleLike() {
         this.props.likePost(this.props.post.id);
     }
