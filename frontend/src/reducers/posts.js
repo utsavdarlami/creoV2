@@ -7,7 +7,8 @@ import {
   LIKE_POST,
   UNLIKE_POST,
   GET_USER_POST,
-  // GET_LIKED_CONTENT
+  DELETE_POST,
+  GET_LIKED_CONTENT
 } from '../actions/types.js';
 
 const initialState = {
@@ -28,18 +29,24 @@ export default function(state = initialState, action) {
         ...state,
         user_posts: action.payload
       }
-    // case GET_LIKED_CONTENT: 
-    //   return {
-    //     ...state,
-    //     liked_posts: action.payload,
-    //   };
+    case GET_LIKED_CONTENT: 
+      return {
+        ...state,
+        liked_posts: action.payload,
+      };
     // case GET_SINGLE_POST:
     // make one here
     case ADD_POST:
       return {
         ...state,
         posts: [...state.posts, action.payload],
+        user_posts: [...state.user_posts, action.payload]
       };
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post.id !== action.payload)
+      }
     case POST_UPLOAD_FAIL:
       console.log('post failed lol');
       break;

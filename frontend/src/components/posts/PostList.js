@@ -13,13 +13,13 @@ class PostList extends Component {
         return (
             <div className="post-contents2">
                 {this.props.posts.map(post => (
-                    <div className="postContainer2" key={post.id}>
-                        <p>Id: {post.id}</p>
-                        <p>Title: {post.title}</p>
-                <p>Description: {post.description}</p>
-                <Link to={`posts/${post.id}`}>
-                <img className="post-image2" src={post.content} alt="content" />
-                </Link>    
+                <div className="postContainer2" key={post.id}>
+                    <p>Id: {post.id}</p>
+                    <p>Title: {post.title}</p>
+                    <p>Description: {post.description}</p>
+                    <Link to={`posts/${post.id}`}>
+                    <img className="post-image2" src={post.content} alt="content" />
+                    </Link>    
             </div>
                 ))}
             </div>

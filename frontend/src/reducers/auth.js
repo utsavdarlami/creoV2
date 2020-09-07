@@ -16,7 +16,7 @@ const initialState = {
   isAuthenticated: null,
   isLoading: true,
   user: null,
-  likes: [],
+  // likes: [],
 };
 
 export default function(state = initialState, action) {
@@ -31,7 +31,7 @@ export default function(state = initialState, action) {
         ...state,
         isAuthenticated: true,
         isLoading: false,
-        user: action.payload,
+        user: action.payload
       };
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
@@ -60,7 +60,7 @@ export default function(state = initialState, action) {
     //         likes: [
     //             ...state.likes,
     //             {
-    //                 user: state.auth.user,
+    //                 user: state.user,
     //                 id: action.payload.id
     //             }
     //         ]

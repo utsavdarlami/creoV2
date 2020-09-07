@@ -84,10 +84,10 @@ export const addPost = post => (dispatch, getState) => {
 };
 
 // DELETE POST
-export const deletePost = id => (dispatch, getState) => {
+export const deletePost = (id) => (dispatch, getState) => {
   axios
-    .delete(`${back_api}/api/posts/${id}`, tokenConfig(getState))
-    .then(res => {
+    .delete(`${back_api}/api/posts/${id}/`, tokenConfig(getState))
+    .then((res) => {
       dispatch({
         type: DELETE_POST,
         payload: id,
@@ -102,6 +102,7 @@ export const likePost = post_id => (dispatch, getState) => {
   axios
     .post(`${back_api}/api/like/`, body, tokenConfig(getState))
     .then(res => {
+      console.log(res.data);
       dispatch({
         type: LIKE_POST,
         payload: res.data,
@@ -115,6 +116,7 @@ export const unlikePost = id => (dispatch, getState) => {
   axios
     .delete(`${back_api}/api/like/${id}/`, tokenConfig(getState))
     .then(res => {
+      console.log(res.data);
       dispatch({
         type: UNLIKE_POST,
         payload: res.data,

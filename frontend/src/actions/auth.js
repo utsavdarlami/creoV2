@@ -20,6 +20,7 @@ export const loadUser = () => (dispatch, getState) => {
   axios
     .get(`${back_api}/api/auth/user`, tokenConfig(getState))
     .then(res => {
+      console.log(res)
       dispatch({
         type: USER_LOADED,
         payload: res.data,
@@ -31,6 +32,7 @@ export const loadUser = () => (dispatch, getState) => {
       });
     });
 };
+
 
 // LOGIN USER
 export const login = (username, password) => dispatch => {
