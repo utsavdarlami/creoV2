@@ -27,7 +27,7 @@ class CommentPost(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True)
     comment  = models.CharField(max_length=500)
     def __str__(self):
-        return str(self.title)
+        return str(self.comment[:10])
 
 class Likes(models.Model):
     post = models.ForeignKey(Posts,on_delete=models.CASCADE,)

@@ -16,13 +16,11 @@ $ python manage.py runserver
 ## BACKEND TODO 
 
 - [x] Like Part of The Post 
-
-- [*] Save the post 
-
-- [ ] Comment on POst 
- 
+- [x] Save the post 
+- [x] Comment on POst 
 - [ ] Password Change 
-
+- [ ] Add Video/Music
+- [ ] Tags On Content
 - [ ] Follow Artist
 
 ## FRONTEDN TODO

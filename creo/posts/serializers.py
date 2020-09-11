@@ -9,9 +9,39 @@ class PostSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class CommentSerializer(serializers.ModelSerializer):
+    """
+        Comment Create,Retrieve And Delete Serializer
+    """
+    post = PostSerializer(required=False)
+    post_id = serializers.IntegerField()
+
     class Meta:
         model = CommentPost
         fields = '__all__'
+
+    def create(self, validated_data):
+        # print(validated_data)
+        post_validated_data = {}
+        post_data = validated_data.pop('post',None)
+        # print(post_data)
+
+        instance_post = Posts.objects.get(pk=validated_data["post_id"])
+        # print(instance_post.data)
+        instance_serializer = PostSerializer(instance_post)
+
+        post_data = instance_serializer.data
+
+        comment_count = post_data.pop("comment_count")
+
+        post_validated_data["comment_count"] = comment_count + 1
+        # print(like_count)
+        # instance_post.save()
+
+        post = PostSerializer.update(PostSerializer(),instance_post,validated_data=post_validated_data)
+        # validated_data["publisher"] = self.request.user
+        commented = CommentPost.objects.create(post=post,**validated_data)
+
+        return post,commented
 
 
 class LikeUserSerializer(serializers.ModelSerializer):
