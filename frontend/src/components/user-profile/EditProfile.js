@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-// import { editProfile } from "../../actions/auth";
-import { userDetails, updateUserInfo } from "../../actions/auth"
+import { userDetails, updateUserInfo } from "../../actions/auth";
+import { withRouter } from "react-router-dom";
 
 
 class EditProfile extends Component {
@@ -97,6 +97,7 @@ class EditProfile extends Component {
         //     id, new_user_info
         // }
         this.props.updateUserInfo(newUserInfo);
+        this.props.history.push("/profile")
       }
 
     componentDidMount(){
@@ -216,4 +217,5 @@ const mapStateToProps = state => ({
     user_details: state.auth.user_details
 });
 
-export default connect(mapStateToProps, {userDetails, updateUserInfo})(EditProfile);
+export default 
+connect(mapStateToProps, {userDetails, updateUserInfo})(withRouter(EditProfile));
