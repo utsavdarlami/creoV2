@@ -17,9 +17,13 @@ $ python manage.py runserver
 
 - [x] Like Part of The Post 
 
-- [ ] Save the post 
+- [*] Save the post 
 
 - [ ] Comment on POst 
+ 
+- [ ] Password Change 
+
+- [ ] Follow Artist
 
 ## FRONTEDN TODO
 

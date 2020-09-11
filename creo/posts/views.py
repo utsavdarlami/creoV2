@@ -1,6 +1,6 @@
-from posts.models import Posts,Likes
+from posts.models import Posts,Likes,Saves
 from rest_framework import viewsets, permissions
-from .serializers import PostSerializer,LikeSerializer,LikeUserSerializer
+from .serializers import PostSerializer,LikeSerializer,LikeUserSerializer,SaveSerializer
 
 from django.core.exceptions import PermissionDenied
 
@@ -41,6 +41,11 @@ class PostListViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class addLikeViewset(viewsets.ModelViewSet):
+    """ Viewset related to like in a post , liking post and deleting like post
+        Create -> add to db and increase like count
+        Destroy -> delete like object and decrease like count
+        api
+    """
     queryset = Likes.objects.all()
 
     permissions_classes = [
@@ -88,4 +93,46 @@ def who_liked_the_post(request,pk=None):
             likes = Likes.objects.filter(post=pk)
             serializer = LikeUserSerializer(likes,many=True)
             return Response(serializer.data)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+class SavePostViewset(viewsets.ModelViewSet):
+    """ Viewset related to saving a post and deleting saved post
+        Create -> add to db saved post
+        Destroy -> delete save object
+        api
+    """
+
+    queryset = Saves.objects.all()
+
+    permissions_classes = [
+        permissions.IsAuthenticated,
+    ]
+
+    serializer_class = SaveSerializer
+
+    def get_queryset(self):
+        return Saves.objects.filter(savedby=self.request.user)
+
+    def retrieve(self,request,*args,**kwargs):
+        if Saves.objects.filter(post=self.kwargs.get('pk'), savedby=self.request.user).exists():
+            save = Saves.objects.get(post=self.kwargs.get('pk'), savedby=self.request.user)
+            serializer = SaveSerializer(save)
+            return Response(serializer.data)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def create(self,request,*args,**kwargs):
+        data = request.data
+        # print(data)
+        data["savedby"] = self.request.user.id
+        data["saved"] = True
+        serializer = self.get_serializer(data = data)
+        serializer.is_valid(raise_exception = True)
+        post,_= serializer.save()
+        return Response({
+            "post" : PostSerializer(post,context=self.get_serializer_context()).data,
+        })
+
+    def destroy(self, request, *args, **kwargs):
+        instance = Saves.objects.get(post=self.kwargs.get('pk'), savedby=self.request.user)
+        self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)

@@ -72,7 +72,7 @@ class UserProfileInfoSerializer(serializers.ModelSerializer):
         user.email = user_validated_data.get('email',user.email)
         user.first_name = user_validated_data.get('first_name',user.first_name)
         user.last_name = user_validated_data.get('last_name',user.last_name)
-        user.set_password(user_validated_data.get('password',user.password))
+        # user.set_password(user_validated_data.get('password',user.password))
         user.save()
 
         instance.gender = validated_data.get('gender',instance.gender)

@@ -36,3 +36,11 @@ class Likes(models.Model):
     like  = models.BooleanField()
     def __str__(self):
         return str(self.publisher)
+
+class Saves(models.Model):
+    post = models.ForeignKey(Posts,on_delete=models.CASCADE,)
+    savedby = models.ForeignKey(User,on_delete=models.CASCADE,)
+    pub_date = models.DateTimeField(auto_now_add=True)
+    saved = models.BooleanField()
+    def __str__(self):
+        return str(self.publisher)
