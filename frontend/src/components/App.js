@@ -7,11 +7,12 @@ import Home from './Home';
 import SignUp from './user-access/SignUp';
 import Login from './user-access/Login';
 import Profile from './user-profile/Profile';
+import EditProfile from "./user-profile/EditProfile"
 import PostForm from './posts/PostForm';
 import PrivateRoute from './common/PrivateRoute';
 
 import store from '../store';
-import { loadUser } from '../actions/auth';
+import { loadUser} from '../actions/auth';
 import SinglePost from './posts/SinglePost';
 import { getPosts } from '../actions/posts';
 
@@ -34,6 +35,7 @@ class App extends React.Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/posts/:post_id" component={SinglePost} />
               <PrivateRoute exact path="/profile" component={Profile} />
+              <PrivateRoute exact path="/editprofile" component={EditProfile} />
               <PrivateRoute exact path="/submitpost" component={PostForm} />
             </Switch>
           </Fragment>

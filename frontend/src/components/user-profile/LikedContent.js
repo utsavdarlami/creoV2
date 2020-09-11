@@ -33,7 +33,6 @@ Description:
                 {liked_post.post.description}
               </p>
               <img className="post-image" src={liked_post.post.content} alt="content" />
-              <span>{console.log(liked_post.post.title)}</span>
             </div>
           ))}
         </div>

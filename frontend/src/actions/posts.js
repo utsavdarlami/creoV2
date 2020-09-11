@@ -2,7 +2,6 @@ import axios from 'axios';
 import { tokenConfig, tokenConfig2 } from './auth';
 
 import {
-  // GET_SINGLE_POST,
   ADD_POST,
   DELETE_POST,
   GET_ALL_POSTS,
@@ -10,10 +9,16 @@ import {
   LIKE_POST,
   UNLIKE_POST,
   GET_LIKED_CONTENT,
-  GET_USER_POST
+  GET_USER_POST,
+  HAS_USER_LIKED,
+  SAVE_POST,
+  UNSAVE_POST,
+  HAS_USER_SAVED,
+  GET_SAVED_CONTENT
 } from './types';
 
-const back_api = "http://127.0.0.1:8000"
+const back_api = "http://127.0.0.1:8000";
+
 // GET ALL POSTS
 export const getPosts = () => dispatch => {
   axios
@@ -26,18 +31,6 @@ export const getPosts = () => dispatch => {
     })
     .catch(err => console.log(err));
 };
-
-// //GET SINGLE POST
-// export const getSinglePost = (id) => dispatch => {
-//     axios.get(`api/allposts/${id}`)
-//     .then (res => {
-//         dispatch({
-//             type: GET_SINGLE_POST,
-//             payload: res.data
-//         });
-//     }).catch(
-//         err => console.log(err));
-// };
 
 // GET POST UPLOADED BY USER
 export const getUserPost = () => (dispatch, getState) => {
@@ -52,21 +45,9 @@ export const getUserPost = () => (dispatch, getState) => {
     .catch(err => console.log(err));
 };
 
-// Get post liked by user
-export const getLikedContent = () => (dispatch, getState) => {
-  axios
-    .get(`${back_api}/api/like`, tokenConfig(getState))
-    .then(res => {
-      dispatch({
-        type: GET_LIKED_CONTENT,
-        payload: res.data,
-      });
-    })
-    .catch(err => console.log(err));
-};
-
 // ADD POST
 export const addPost = post => (dispatch, getState) => {
+  console.log(post)
   axios
     .post(`${back_api}/api/posts/`, post, tokenConfig2(getState))
     .then(res => {
@@ -74,7 +55,8 @@ export const addPost = post => (dispatch, getState) => {
         type: ADD_POST,
         payload: res.data,
       });
-    })
+      alert("Post submitted")
+      })
     .catch(err => {
       dispatch({
         type: POST_UPLOAD_FAIL,
@@ -102,10 +84,10 @@ export const likePost = post_id => (dispatch, getState) => {
   axios
     .post(`${back_api}/api/like/`, body, tokenConfig(getState))
     .then(res => {
-      console.log(res.data);
+      console.log(res.data.post.like_count)
       dispatch({
         type: LIKE_POST,
-        payload: res.data,
+        payload: res.data.post
       });
     })
     .catch(err => console.log(err));
@@ -116,11 +98,88 @@ export const unlikePost = id => (dispatch, getState) => {
   axios
     .delete(`${back_api}/api/like/${id}/`, tokenConfig(getState))
     .then(res => {
-      console.log(res.data);
       dispatch({
         type: UNLIKE_POST,
+        payload: id
+      });
+    })
+    .catch(err => console.log(err));
+};
+
+//Check whether user has liked post or not
+export const checkLike = id => (dispatch, getState) => {
+  axios.get(`${back_api}/api/like/${id}`, tokenConfig(getState))
+  .then(res => {
+    dispatch({
+      type: HAS_USER_LIKED,
+      payload: res.data
+    });
+  })
+}
+
+// Get post liked by user
+export const getLikedContent = () => (dispatch, getState) => {
+  axios
+    .get(`${back_api}/api/like`, tokenConfig(getState))
+    .then(res => {
+      dispatch({
+        type: GET_LIKED_CONTENT,
         payload: res.data,
       });
     })
     .catch(err => console.log(err));
 };
+
+
+//SAVE POST
+export const savePost = post_id => (dispatch, getState) => {
+  const body = JSON.stringify({ post_id });
+  axios.post(`${back_api}/api/save/`, body, tokenConfig(getState))
+  .then(res =>{
+    console.log(res.data)
+    dispatch({
+      type: SAVE_POST,
+      payload: res.data.post
+    });
+  })
+  .catch(err => console.log(err));
+}
+
+//UNSAVE POST
+export const unsavePost = id => (dispatch, getState) => {
+  axios.delete(`${back_api}/api/save/${id}/`, tokenConfig(getState))
+  .then(res => {
+    dispatch({
+      type: UNSAVE_POST,
+      payload: id
+    });
+  })
+  .catch(err => console.log(err))
+}
+
+//Check whether user has saved post or not
+export const checkSave = id => (dispatch, getState) => {
+  axios.get(`${back_api}/api/save/${id}`, tokenConfig(getState))
+  .then(res => {
+    dispatch({
+      type: HAS_USER_SAVED,
+      payload: res.data
+    })
+  })
+}
+
+//Get post saved by user
+export const getSavedContent = () => (dispatch, getState) => {
+  axios.get(`${back_api}/api/save`, tokenConfig(getState))
+  .then(res => {
+    dispatch({
+      type: GET_SAVED_CONTENT,
+      payload: res.data,
+    });
+  })
+  .catch(err => console.log(err));
+}
+
+
+
+

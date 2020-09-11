@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addPost } from '../../actions/posts';
+import { withRouter } from "react-router-dom"
 
 class PostForm extends Component {
   constructor() {
@@ -46,6 +47,9 @@ class PostForm extends Component {
       description: '',
       content: null,
     });
+    setTimeout(() => {
+      this.props.history.push("/profile");
+    }, 2000);
   }
 
   render() {
@@ -89,4 +93,4 @@ class PostForm extends Component {
   }
 }
 
-export default connect(null, { addPost })(PostForm);
+export default connect(null, { addPost })(withRouter(PostForm));

@@ -9,21 +9,38 @@ import {
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
+  USER_DETAILS,
+  UPDATE_USER_INFO
 } from './types';
 
-const back_api = "http://127.0.0.1:8000"
+const back_api = "http://127.0.0.1:8000";
+
 // CHECK TOKEN & LOAD USER
-// CHANGE API LINK from "/api/auth/user" to /api/profile"
 export const loadUser = () => (dispatch, getState) => {
-  // USER loading
   dispatch({ type: USER_LOADING });
   axios
     .get(`${back_api}/api/auth/user`, tokenConfig(getState))
     .then(res => {
-      console.log(res)
       dispatch({
         type: USER_LOADED,
         payload: res.data,
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: AUTH_ERROR,
+      });
+    });
+};
+
+//get user details
+export const userDetails = () => (dispatch, getState) => {
+  axios
+    .get(`${back_api}/api/profile`, tokenConfig(getState))
+    .then(res => {
+      dispatch({
+        type: USER_DETAILS,
+        payload: res.data[0],
       });
     })
     .catch(err => {
@@ -69,7 +86,7 @@ export const register = ({
   email,
   gender,
 }) => dispatch => {
-  // Headers
+
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -97,6 +114,27 @@ export const register = ({
     });
 };
 
+//UPDATE USER INFO
+export const updateUserInfo = ({ 
+  id, first_name, last_name, email, gender, portfolio_site, bio
+ }) => (dispatch, getState) => {
+
+    const body = JSON.stringify({
+      user: {first_name, last_name, email},
+      gender, portfolio_site, bio
+    });
+
+    // console.log(id)
+  axios.patch(`${back_api}/api/profile/${id}/`, body, tokenConfig(getState))
+  .then(res => {
+    dispatch({
+      type: UPDATE_USER_INFO,
+      payload: res.data
+    })
+  }).catch(err => console.log(err))
+};
+
+
 // LOGOUT USER
 export const logout = () => (dispatch, getState) => {
   axios
@@ -111,6 +149,7 @@ export const logout = () => (dispatch, getState) => {
       console.log(err);
     });
 };
+
 
 // Setup config with token - helper function
 export const tokenConfig = getState => {

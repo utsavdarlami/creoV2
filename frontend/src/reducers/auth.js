@@ -7,6 +7,8 @@ import {
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
+  USER_DETAILS,
+  UPDATE_USER_INFO,
   // LIKE_POST,
   // UNLIKE_POST
 } from '../actions/types';
@@ -16,7 +18,8 @@ const initialState = {
   isAuthenticated: null,
   isLoading: true,
   user: null,
-  // likes: [],
+  user_details: null,
+  likes: []
 };
 
 export default function(state = initialState, action) {
@@ -33,6 +36,17 @@ export default function(state = initialState, action) {
         isLoading: false,
         user: action.payload
       };
+    case USER_DETAILS:
+      return {
+        ...state,
+        user_details: action.payload
+      }
+    case UPDATE_USER_INFO:
+      return {
+        ...state,
+        user: action.payload,
+        user_details: action.payload
+      }
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
       localStorage.setItem('token', action.payload.token);
@@ -53,25 +67,9 @@ export default function(state = initialState, action) {
         user: null,
         isAuthenticated: false,
         isLoading: false,
+        user_details: null,
+        user_posts : []
       };
-    // case LIKE_POST:
-    //     return {
-    //         ...state,
-    //         likes: [
-    //             ...state.likes,
-    //             {
-    //                 user: state.user,
-    //                 id: action.payload.id
-    //             }
-    //         ]
-    //     }
-    // case UNLIKE_POST:
-    //     return {
-    //         ...state,
-    //         likes: state.likes.filter(
-    //             (like) => like.id !== action.payload.id
-    //         )
-    //     }
     default:
       return state;
   }
