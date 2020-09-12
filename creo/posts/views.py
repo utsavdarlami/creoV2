@@ -111,8 +111,11 @@ class CommentViewSet(viewsets.ModelViewSet):
         return CommentPost.objects.filter(publisher=self.request.user)
 
     def retrieve(self,request,*args,**kwargs):
-        if CommentPost.objects.filter(post=self.kwargs.get('pk'), publisher=self.request.user).exists():
-            comments = CommentPost.objects.filter(post=self.kwargs.get('pk'), publisher=self.request.user)
+
+        # if CommentPost.objects.filter(post=self.kwargs.get('pk'), self.request.user).exists():
+        if CommentPost.objects.filter(post=self.kwargs.get('pk')).exists():
+            # comments = CommentPost.objects.filter(post=self.kwargs.get('pk'), publisher=self.request.user)
+            comments = CommentPost.objects.filter(post=self.kwargs.get('pk'))
 
             # comments = CommentPost.objects.get(post=self.kwargs.get('pk'), publisher=self.request.user)
             # print(comments)

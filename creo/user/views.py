@@ -1,7 +1,15 @@
 from rest_framework import generics, permissions, viewsets
 from rest_framework.response import Response
+
+from rest_framework.decorators import api_view
+from rest_framework import status
+from django.shortcuts import get_object_or_404
+
 from knox.models import AuthToken
-from .serializers import UserSerializer,RegisterSerializer,LoginSerializer,UserProfileInfoSerializer
+
+from .serializers import UserSerializer,LoginSerializer,UserProfileInfoSerializer
+
+from django.contrib.auth.models import User
 
 from .models import UserProfileInfo
 
@@ -71,3 +79,21 @@ class UserProfileInfoViewSet(viewsets.ModelViewSet):
             raise PermissionDenied()
         # return self.request.user.publisher.all()
         return UserProfileInfo.objects.filter(user=self.request.user)
+
+# User Detail Based On Username
+@api_view(['GET'])
+def get_user(request,username=None):
+    if User.objects.filter(username = username).exists():
+        user = User.objects.get(username = username)
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
+# UserDetailBasesOnID
+@api_view(['GET'])
+def view_user(request,pk=None):
+    if User.objects.filter(id = pk).exists():
+        user = User.objects.get(id = pk)
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
+    return Response(status=status.HTTP_204_NO_CONTENT)
