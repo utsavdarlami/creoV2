@@ -13,6 +13,10 @@ export const UNSAVE_POST = "UNSAVE_POST";
 export const HAS_USER_SAVED = "HAS_USER_SAVED";
 export const GET_SAVED_CONTENT = "GET_SAVED_CONTENT";
 
+export const ADD_COMMENT = "ADD_COMMENT";
+export const ADD_COMMENT_FAIL = "ADD_COMMENT_FAIL";
+export const GET_COMMENTS = "GET_COMMENTS";
+
 // auth
 export const USER_LOADING = 'USER_LOADING';
 export const USER_LOADED = 'USER_LOADED';

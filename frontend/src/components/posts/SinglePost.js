@@ -8,38 +8,43 @@ import {
     checkLike,
     savePost,
     unsavePost,
-    checkSave} from "../../actions/posts";
+    checkSave,
+    addComment} from "../../actions/posts";
 import {withRouter, Link} from "react-router-dom"
+import PostLike from './PostLike';
+import CommentForm from "./CommentForm";
+import CommentList from './CommentList';
 
 class SinglePost extends Component {
     constructor(){
         super();
-        this.handleLike = this.handleLike.bind(this);
-        this.handleUnlike = this.handleUnlike.bind(this);
+        // this.handleLike = this.handleLike.bind(this);
+        // this.handleUnlike = this.handleUnlike.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
-        this.handlecheckLike = this.handlecheckLike.bind(this);
+        // this.handlecheckLike = this.handlecheckLike.bind(this);
         this.handleSave = this.handleSave.bind(this);
         this.handleUnSave = this.handleUnSave.bind(this); 
         this.handlecheckSave = this.handlecheckSave.bind(this);
     }
 
     static propTypes = {
-        likePost: PropTypes.func.isRequired,
-        unlikePost: PropTypes.func.isRequired,
+        // likePost: PropTypes.func.isRequired,
+        // unlikePost: PropTypes.func.isRequired,
         savePost: PropTypes.func.isRequired,
-        unsavePost: PropTypes.func.isRequired
+        unsavePost: PropTypes.func.isRequired,
+        addComment: PropTypes.func.isRequired
     }
 
-    handlecheckLike(){
-        if (this.props.post) {
-            this.props.checkLike(this.props.post.id)
-            if (this.props.check_liked.like === true) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-    }
+    // handlecheckLike(){
+    //     if (this.props.post) {
+    //         this.props.checkLike(this.props.post.id)
+    //         if (this.props.check_liked.like === true) {
+    //             return true;
+    //         } else {
+    //             return false;
+    //         }
+    //     }
+    // }
 
     handlecheckSave(){
         if (this.props.post) {
@@ -52,13 +57,13 @@ class SinglePost extends Component {
         }
     }
 
-    handleLike(){
-        this.props.likePost(this.props.post.id);
-    }
+    // handleLike(){
+    //     this.props.likePost(this.props.post.id);
+    // }
 
-    handleUnlike(){
-    this.props.unlikePost(this.props.post.id);
-    }   
+    // handleUnlike(){
+    // this.props.unlikePost(this.props.post.id);
+    // }   
 
     handleSave(){
         this.props.savePost(this.props.post.id);
@@ -98,20 +103,15 @@ class SinglePost extends Component {
         const publisher = this.props.post? (this.props.post.publisher) : (null)
         const user_id  = this.props.auth.user ? (this.props.auth.user[0].user.id) : (null);
         const { isAuthenticated } = this.props.auth;
-        
-        // const check_liked = this.props.check_liked ? (this.props.check_liked) : ("");
+        const postId = this.props.post ? (this.props.post.id) : (null)
 
-        // const like_check = check_liked ? 
-        // (<p>The post is liked</p>) : 
-        // (<p>The post is not liked</p>); 
-
-        const likeButton = !isAuthenticated ? (
-            <Link to ="/login">
-                <button>Like</button>
-            </Link>
-        ) : this.handlecheckLike() ? 
-        (<button onClick={this.handleUnlike}>Unlike</button>)
-         : (<button onClick= {this.handleLike}>Like</button>) 
+        // const likeButton = !isAuthenticated ? (
+        //     <Link to ="/login">
+        //         <button>Like</button>
+        //     </Link>
+        // ) : this.handlecheckLike() ? 
+        // (<button onClick={this.handleUnlike}>Unlike</button>)
+        //  : (<button onClick= {this.handleLike}>Like</button>) 
 
         const saveButton = !isAuthenticated ? (
         <Link to="/login">
@@ -123,7 +123,11 @@ class SinglePost extends Component {
         return (
             <div>
                 {post}
-                {likeButton}
+                {/* {likeButton} */}
+                {postId}
+                <PostLike postId = {postId}/>
+                <CommentForm postId = {postId} />
+                <CommentList postId = {postId} />
                 {saveButton}
                 { (publisher === user_id) ? 
                 (<button onClick={this.handleDelete}>Delete</button>):
@@ -151,4 +155,4 @@ export default connect(mapStateToProps,
         checkLike, 
         savePost, 
         unsavePost,
-        checkSave})(withRouter(SinglePost));
+        checkSave, addComment})(withRouter(SinglePost));

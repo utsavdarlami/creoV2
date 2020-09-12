@@ -12,7 +12,7 @@ import {
   SAVE_POST,
   UNSAVE_POST,
   GET_SAVED_CONTENT,
-  HAS_USER_SAVED
+  HAS_USER_SAVED, ADD_COMMENT, GET_COMMENTS
 } from '../actions/types.js';
 
 const initialState = {
@@ -22,7 +22,9 @@ const initialState = {
   check_liked: [],
   saved_posts: [],
   check_saved: [],
-  is_saved: false
+  is_saved: false,
+  liked: false,
+  post_comments: []
 };
 
 export default function(state = initialState, action) {
@@ -55,6 +57,16 @@ export default function(state = initialState, action) {
         posts: [...state.posts, action.payload],
         user_posts: [...state.user_posts, action.payload]
       };
+    case ADD_COMMENT:
+      return {
+        ...state,
+        post_comments: [...state.post_comments, action.payload]
+      }
+    case GET_COMMENTS:
+      return {
+        ...state,
+        post_comments: action.payload
+      }
     case DELETE_POST:
       return {
         ...state,
@@ -68,14 +80,14 @@ export default function(state = initialState, action) {
       state.posts[index] = action.payload;
       return {
         ...state,
-        // liked: !state.liked
+        liked: !state.liked
       };
       case UNLIKE_POST:
         let index2 = state.posts.findIndex(post => post.id === action.payload)
         state.posts[index2].like_count--;
       return {
         ...state,
-        // liked: !state.liked
+        liked: !state.liked
       };
       case HAS_USER_LIKED:
         return {

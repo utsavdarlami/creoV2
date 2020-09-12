@@ -10,7 +10,7 @@ class PostList extends Component {
     }
 
     render() {
-        const likeorderedPosts = this.props.posts.slice().sort((a,b) => a.like_count < b.like_count)
+        // const likeorderedPosts = this.props.posts.slice().sort((a,b) => a.like_count < b.like_count)
         return (
             <div className="post-contents2">
                 {this.props.posts.map(post => (

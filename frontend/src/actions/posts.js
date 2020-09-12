@@ -14,7 +14,7 @@ import {
   SAVE_POST,
   UNSAVE_POST,
   HAS_USER_SAVED,
-  GET_SAVED_CONTENT
+  GET_SAVED_CONTENT, ADD_COMMENT, ADD_COMMENT_FAIL, GET_COMMENTS
 } from './types';
 
 const back_api = "http://127.0.0.1:8000";
@@ -47,7 +47,6 @@ export const getUserPost = () => (dispatch, getState) => {
 
 // ADD POST
 export const addPost = post => (dispatch, getState) => {
-  console.log(post)
   axios
     .post(`${back_api}/api/posts/`, post, tokenConfig2(getState))
     .then(res => {
@@ -63,6 +62,34 @@ export const addPost = post => (dispatch, getState) => {
       });
       console.log(err);
     });
+};
+
+//ADD COMMENT 
+export const addComment = ({ post_id, comment }) => (dispatch, getState) => {
+  const body = JSON.stringify({post_id, comment})
+  axios.post(`${back_api}/api/comment/`, body, tokenConfig(getState))
+  .then(res => {
+    dispatch({
+      type: ADD_COMMENT,
+      payload: res.data,
+    });
+  })
+  .catch(err => {
+    dispatch({
+      type: ADD_COMMENT_FAIL
+    });
+    console.log(err);
+  })
+}
+
+export const getComments = (id) => (dispatch, getState) => {
+  axios.get(`${back_api}/api/comment/${id}/`, tokenConfig(getState))
+  .then(res => {
+    dispatch({
+      type: GET_COMMENTS,
+      payload: res.data
+    })
+  }, console.log(id)).catch(err => console.log(err));
 };
 
 // DELETE POST
