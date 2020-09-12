@@ -75,12 +75,16 @@ class SinglePost extends Component {
     }
     
     render() {
+        const created_at = this.props.post ? this.props.post.created_at : null
+        var now = new Date(created_at);
+        var gmtDate = now.toLocaleString();
         const post = this.props.post ? (
             <div className="post-contents2">
                 <div className="postContainer2">
                     <p>Id:{this.props.post.id} </p>
                     <p>Title:{this.props.post.title}</p>
                     <p>Description:{this.props.post.description}</p>
+                    <p>Created at: {gmtDate} </p>
                     <img className="post-image" src={this.props.post.content} alt="content" />
                     <p>{this.props.post.like_count} likes</p>
                 </div>
@@ -92,7 +96,7 @@ class SinglePost extends Component {
         );
         
         const publisher = this.props.post? (this.props.post.publisher) : (null)
-        const user_id  = this.props.auth.user ? (this.props.auth.user.id) : (null);
+        const user_id  = this.props.auth.user ? (this.props.auth.user[0].user.id) : (null);
         const { isAuthenticated } = this.props.auth;
         
         // const check_liked = this.props.check_liked ? (this.props.check_liked) : ("");

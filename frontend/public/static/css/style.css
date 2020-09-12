@@ -38,13 +38,6 @@ a{
     padding: 5px;
 }
 
-.details-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
 .logout-button{
     font-size: 140%;
     padding: 2%;
@@ -226,4 +219,26 @@ a{
 @keyframes but-animation{
 	from {background-color: #3f8f87}
 	to {background-color: #1db6e0;}
+}
+
+.profile-page{
+    display: grid;
+    grid-template-columns: 0.5fr 1fr;
+
+}
+
+.profile-top{
+    border: 1px solid black;
+    grid-column: 1/2;
+}
+
+.profile-content{
+    grid-column: 2/3;
+}
+
+.details-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }

@@ -4,27 +4,36 @@ import PostedContent from './PostedContent';
 import LikedContent from './LikedContent';
 import { connect } from "react-redux";
 // import EditProfile from './EditProfile';
-import {NavLink} from 'react-router-dom';
+import {NavLink, Route} from 'react-router-dom';
 import SavedContent from './SavedContent';
  
 class Profile extends Component {
   render() {
     return (
       <Fragment>
-        <UserDetails />
-        <hr />
-        <div>
-          <ul>
-            <li>Posted Content</li>
-            <li>Liked Content</li>
-            <li><NavLink to="/editprofile" >Edit Profile</NavLink></li>
-          </ul>
+        <div className="profile-page">
+          <section className="profile-top">
+            <UserDetails />
+          </section>
+          <div className="profile-content">
+            <ul>
+              <li><NavLink to="/profile/posted">Posted Content</NavLink></li>
+              <li><NavLink to="/profile/liked">Liked Content</NavLink></li>
+              <li><NavLink to="/editprofile">Edit Profile</NavLink></li>
+              <li><NavLink to="/profile/saved">Saved Content</NavLink></li>
+            </ul>
+          </div>
         </div>
-        <PostedContent />
+
+
+        <div>
+
+        </div>
+        {/* <PostedContent />
         <hr />
         <LikedContent />
         <hr />
-        <SavedContent />
+        <SavedContent /> */}
       </Fragment>
     );
   }
