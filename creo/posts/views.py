@@ -133,6 +133,17 @@ def who_liked_the_post(request, pk=None):
             return Response(serializer.data)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+@api_view(['GET'])
+def users_post(request, pk=None):
+    if not request.user.is_authenticated:
+        raise PermissionDenied()
+    else:
+        if Posts.objects.filter(publisher=pk).exists():
+            posts = Posts.objects.filter(publisher=pk)
+            serializer = PostSerializer(posts, many=True)
+            return Response(serializer.data)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 class CommentViewSet(viewsets.ModelViewSet):
     """ Viewset related to like in a post , liking post and deleting like post
