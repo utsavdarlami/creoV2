@@ -11,6 +11,7 @@ from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from django.db.models import F
 
+POST_CHOICE_DIC = {'A': 'audio', 'V': 'video', 'I': 'image'}
 # Post ViewSet
 
 
@@ -30,8 +31,40 @@ class PostViewSet(viewsets.ModelViewSet):
         return Posts.objects.filter(publisher=self.request.user)
     # return Posts.objects.all()
 
+    def create(self, request, *args, **kwargs):
+        # need a logic to check if the uploaded file is as mentioned as the post_type
+        # print(self.request.data)
+        data = request.data
+        serializer = self.get_serializer(data=data)
+        serializer.is_valid(raise_exception=True)
+
+        content = data.get('content', None)
+        user_assigned_type = data.get('post_type', None)
+
+        if content == None:
+            return Response({
+                "Content": [
+                    "This field is required."
+                ]
+            })
+        else:
+            content_type = content.content_type
+            # print(content.content_type)
+            type_is = content_type.split("/")[0]
+            if type_is == POST_CHOICE_DIC[user_assigned_type]:
+                self.perform_create(serializer)
+                headers = self.get_success_headers(serializer.data)
+                return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+            else:
+                return Response({
+                    "Content_Type": [
+                        "Content Type And Your Post Choice Did Not Match."
+                    ]
+                })
+
     def perform_create(self, serializer):
         serializer.save(publisher=self.request.user)
+        # print(serializer)
 
 
 class PostListViewSet(viewsets.ReadOnlyModelViewSet):

@@ -38,13 +38,13 @@ class PostLike extends Component {
     }  
 
     render() {
+        const isliked = this.handlecheckLike;
         const { isAuthenticated } = this.props.auth;
-
         const likeButton = !isAuthenticated ? (
             <Link to ="/login">
                 <button>Like</button>
             </Link>
-        ) : this.handlecheckLike() ? 
+        ) : isliked() ? 
         (<button onClick={this.handleUnlike}>Unlike</button>)
          : (<button onClick= {this.handleLike}>Like</button>) 
         return (

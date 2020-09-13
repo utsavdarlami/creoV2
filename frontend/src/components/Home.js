@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import PostList from "./posts/PostList";
-import { connect } from "react-redux";
 
 class Home extends Component {
   render() {
@@ -12,4 +11,4 @@ class Home extends Component {
   }
 }
 
-export default connect()(Home);
+export default Home;

@@ -80,6 +80,13 @@ class UserProfileInfoViewSet(viewsets.ModelViewSet):
         # return self.request.user.publisher.all()
         return UserProfileInfo.objects.filter(user=self.request.user)
 
+    def retrieve(self,request,*args,**kwargs):
+        if UserProfileInfo.objects.filter(user = self.kwargs.get('pk')).exists():
+            user = UserProfileInfo.objects.get(user = self.kwargs.get('pk'))
+            serializer = self.get_serializer(user)
+            return Response(serializer.data)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 # User Detail Based On Username
 @api_view(['GET'])
 def get_user(request,username=None):

@@ -10,7 +10,7 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   USER_DETAILS,
-  UPDATE_USER_INFO
+  UPDATE_USER_INFO, GET_POST_AUTHOR
 } from './types';
 
 const back_api = "http://127.0.0.1:8000";
@@ -19,7 +19,7 @@ const back_api = "http://127.0.0.1:8000";
 export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
   axios
-    .get(`${back_api}/api/profile`, tokenConfig(getState))
+    .get(`${back_api}/api/auth/user`, tokenConfig(getState))
     .then(res => {
       dispatch({
         type: USER_LOADED,
@@ -150,6 +150,18 @@ export const logout = () => (dispatch, getState) => {
     });
 };
 
+//GET AUTHOR
+export const getPostAuthor = id => (dispatch) => {
+  axios.get(`${back_api}/api/view_user/${id}/`)
+  .then(res => {
+    dispatch({
+      type: GET_POST_AUTHOR,
+      payload: res.data
+    })
+  }).catch(err => {
+    console.log(err);
+  });
+};
 
 // Setup config with token - helper function
 export const tokenConfig = getState => {
@@ -189,3 +201,5 @@ export const tokenConfig2 = getState => {
 
   return config;
 };
+
+

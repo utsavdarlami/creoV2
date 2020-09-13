@@ -28,3 +28,6 @@ export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
 export const USER_DETAILS = "USER_DETAILS";
 export const UPDATE_USER_INFO = "UPDATE_USER_INFO";
+
+//post author
+export const GET_POST_AUTHOR = "GET_POST_AUTHOR";

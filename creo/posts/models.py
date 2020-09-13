@@ -6,9 +6,15 @@ from django.utils import timezone
 # Create your models here.
 
 class Posts(models.Model):
+    POST_CHOICES =  (
+        ('I','Image'),
+        ('V','Video'),
+        ('A','Audio')
+     )
     title = models.CharField(max_length=255)
     description = models.TextField()
-    content = models.ImageField(blank=True,upload_to="posts")
+    content = models.FileField(blank=True,upload_to="posts")
+    post_type = models.CharField(choices=POST_CHOICES,max_length=2,blank=False)
     publisher = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     like_count = models.IntegerField(default=0)

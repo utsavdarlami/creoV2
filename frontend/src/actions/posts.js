@@ -89,7 +89,7 @@ export const getComments = (id) => (dispatch, getState) => {
       type: GET_COMMENTS,
       payload: res.data
     })
-  }, console.log(id)).catch(err => console.log(err));
+  }).catch(err => console.log(err));
 };
 
 // DELETE POST
