@@ -16,14 +16,15 @@ class UserDetails extends Component {
     const user = this.props.user_details ? 
     (
       <div className="details-body">
+        <img src={this.props.user_details.profile_pic}
+         alt="Profile display" style={{width: "300px", height: "auto", borderRadius: "50%"}} />
         <p>Name: {this.props.user_details.user.first_name} {this.props.user_details.user.last_name}</p>
         <p>Username: {this.props.user_details.user.username}</p>
         <p>Email: {this.props.user_details.user.email}</p>
         <p>Gender: {this.props.user_details.gender}</p>
         <p>Bio:{this.props.user_details.bio}</p>
         <p>Portfolio site: {this.props.user_details.portfolio_site}</p>
-        <p>Resume: {this.props.user_details.resume}</p>
-        <img src={this.props.user_details.profile_pic} alt="Profile display" />
+        <p>Resume: {this.props.user_details.resume}</p> 
     </div>
     ) : (null)
     

@@ -15,6 +15,9 @@ import store from '../store';
 import { loadUser} from '../actions/auth';
 import SinglePost from './posts/SinglePost';
 import { getPosts } from '../actions/posts';
+import PostedContent from './user-profile/PostedContent';
+import LikedContent from './user-profile/LikedContent';
+import SavedContent from './user-profile/SavedContent';
 
 class App extends React.Component {
   /* do this after completing */
@@ -36,6 +39,9 @@ class App extends React.Component {
               <Route exact path="/posts/:post_id" component={SinglePost} />
               <PrivateRoute exact path="/profile" component={Profile} />
               <PrivateRoute exact path="/editprofile" component={EditProfile} />
+              <Route path="/profile/posted" component={PostedContent} />
+              <Route path="/profile/liked" component={LikedContent} />
+              <Route path="/profile/saved" component={SavedContent} />
               <PrivateRoute exact path="/submitpost" component={PostForm} />
             </Switch>
           </Fragment>
