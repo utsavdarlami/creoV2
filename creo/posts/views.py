@@ -124,7 +124,7 @@ class CommentViewSet(viewsets.ModelViewSet):
 
             return Response(serializer.data)
             # return filter_comm
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response([])
 
 
     def create(self,request,*args,**kwargs):
@@ -134,9 +134,9 @@ class CommentViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(data = data)
         serializer.is_valid(raise_exception = True)
         _,comment = serializer.save()
-        return Response({
-            "comment" : CommentSerializer(comment,context=self.get_serializer_context()).data
-        })
+        return Response(
+            CommentSerializer(comment,context=self.get_serializer_context()).data
+        )
 
     def destroy(self, request, *args, **kwargs):
         # print(request.data)
