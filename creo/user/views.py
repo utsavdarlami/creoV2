@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404
 
 from knox.models import AuthToken
 
-from .serializers import UserSerializer,LoginSerializer,UserProfileInfoSerializer
+from .serializers import UserSerializer,LoginSerializer,UserProfileInfoSerializer,PasswordChangeSerializer
 
 from django.contrib.auth.models import User
 
@@ -86,6 +86,42 @@ class UserProfileInfoViewSet(viewsets.ModelViewSet):
             serializer = self.get_serializer(user)
             return Response(serializer.data)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class ChangePassword(generics.UpdateAPIView):
+    serializer_class = PasswordChangeSerializer
+    model = User
+    permissions_classes = [
+       # permissions.AllowAny
+        permissions.IsAuthenticated,
+    ]
+
+    def get_object(self,queryset=None):
+        obj = self.request.user
+        return obj
+
+    def update(self,request,*args,**kwargs):
+        self.object = self.get_object()
+        serializer = self.get_serializer(data= request.data)
+        serializer.is_valid(raise_exception = True)
+
+        if not self.object.check_password(serializer.data.get("old_password")):
+            return Response(
+                {"old_password" : ["Wrong Old Password"]},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        self.object.set_password(serializer.data.get("new_password"))
+        self.object.save()
+
+        response = {
+            'status' : 'success',
+            'code'   : status.HTTP_200_OK,
+            'message': 'Password Updated Successfully',
+            'token'  : 'token maybe needed'
+        }
+        return Response(response)
+
+
 
 # User Detail Based On Username
 @api_view(['GET'])

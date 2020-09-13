@@ -85,4 +85,12 @@ class UserProfileInfoSerializer(serializers.ModelSerializer):
 
         return instance
 
+class PasswordChangeSerializer(serializers.Serializer):
+
+    model = User
+
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+
+
 
