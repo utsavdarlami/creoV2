@@ -46,7 +46,7 @@ class PostViewSet(viewsets.ModelViewSet):
                 "Content": [
                     "This field is required."
                 ]
-            })
+            }, status=status.HTTP_400_BAD_REQUEST)
         else:
             content_type = content.content_type
             # print(content.content_type)
@@ -60,7 +60,7 @@ class PostViewSet(viewsets.ModelViewSet):
                     "Content_Type": [
                         "Content Type And Your Post Choice Did Not Match."
                     ]
-                })
+                }, status=status.HTTP_400_BAD_REQUEST)
 
     def perform_create(self, serializer):
         serializer.save(publisher=self.request.user)
