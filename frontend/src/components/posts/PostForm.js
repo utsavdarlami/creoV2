@@ -11,6 +11,7 @@ class PostForm extends Component {
       title: '',
       description: '',
       content: null,
+      post_type: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleImageChange = this.handleImageChange.bind(this);
@@ -35,17 +36,19 @@ class PostForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { title, description, content } = this.state;
+    const { title, description, content, post_type } = this.state;
     const form_data = new FormData();
     form_data.append('content', content);
     form_data.append('title', title);
     form_data.append('description', description);
+    form_data.append('post_type', post_type);
     const post = form_data;
     this.props.addPost(post);
     this.setState({
       title: '',
       description: '',
       content: null,
+      post_type: ''
     });
     setTimeout(() => {
       this.props.history.push("/profile");
@@ -53,7 +56,7 @@ class PostForm extends Component {
   }
 
   render() {
-    const { title, description} = this.state;
+    const { title, description, post_type} = this.state;
     return (
       <div className="post-form">
         <h2>Post Form:</h2>
@@ -86,6 +89,44 @@ class PostForm extends Component {
             onChange={this.handleImageChange}
             placeholder="Select a file"
           />
+
+          <label>Post Type:</label>
+          <div>
+            <label>
+              <input 
+                type="radio"
+                name="post_type"
+                value="I"
+                checked={post_type === "I"}
+                onChange= {this.handleChange} />
+                {' '}
+                Image
+            </label>
+
+            <label>
+              <input 
+                type="radio"
+                name="post_type"
+                value="V"
+                checked={post_type === "V"}
+                onChange={this.handleChange} 
+                />
+                {' '} 
+                Video
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="post_type"
+                value="A"
+                checked={post_type === "A"}
+                onChange = {this.handleChange}
+               />
+               {' '}
+               Audio
+            </label>
+          </div>
           <button>Submit</button>
         </form>
       </div>

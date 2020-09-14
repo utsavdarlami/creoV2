@@ -30,7 +30,6 @@ class EditProfile extends Component {
     }
 
     mapUserDetailsToState = user_details => {
-        console.log(user_details);
         this.setState({
             first_name: user_details.user.first_name ? user_details.user.first_name : "",
             last_name: user_details.user.last_name ? user_details.user.last_name: "",
@@ -105,7 +104,7 @@ class EditProfile extends Component {
         setTimeout(() => {
             const user_details  = this.props.user_details
             this.mapUserDetailsToState(user_details);
-        }, 900);
+        }, 400);
         
     }
 

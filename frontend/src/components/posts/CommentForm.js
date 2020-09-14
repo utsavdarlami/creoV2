@@ -34,7 +34,10 @@ class CommentForm extends Component {
             comment
         }
 
-        this.props.addComment(newComment)
+        this.props.addComment(newComment);
+        this.setState({
+            comment : ""
+        })
     }
 
     render() {

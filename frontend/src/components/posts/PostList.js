@@ -10,21 +10,54 @@ class PostList extends Component {
     }
 
     render() {
+        // const photos =  (<div className="post-contents2">
+        // {this.props.posts.map(post => (
+        //     post.post_type === "I" ? 
+        //     (
+        //     <div className="postContainer2" key={post.id}>
+        //         <p>Id: {post.id}</p>
+        //         <p>Title: {post.title}</p>
+        //         <p>Description: {post.description}</p>
+        //         <Link to={`posts/${post.id}`}>
+        //             <img className="post-image2" src={post.content} alt="content" />
+        //         </Link>    
+        //     </div>) : (null)
+        // ))}
+        // </div>)
+
+        // const videos =  (<div className="post-contents2">
+        // {this.props.posts.map(post => (
+        //     post.post_type === "V" ? 
+        //     (
+        //     <div className="postContainer2" key={post.id}>
+        //         <p>Id: {post.id}</p>
+        //         <p>Title: {post.title}</p>
+        //         <p>Description: {post.description}</p>
+        //         <video width="320" height="240" controls>
+        //             <source src={post.content} />
+        //         </video>
+        //     </div>) : (null)
+        // ))}
+        // </div>)
+
+
         // const likeorderedPosts = this.props.posts.slice().sort((a,b) => a.like_count < b.like_count)
         return (
             <div className="post-contents2">
-                {this.props.posts.map(post => (
-                <div className="postContainer2" key={post.id}>
-                    <p>Id: {post.id}</p>
-                    <p>Title: {post.title}</p>
-                    <p>Description: {post.description}</p>
-                    <Link to={`posts/${post.id}`}>
+        {this.props.posts.map(post => (
+            post.post_type === "I" ? 
+            (
+            <div className="postContainer2" key={post.id}>
+                <p>Id: {post.id}</p>
+                <p>Title: {post.title}</p>
+                <p>Description: {post.description}</p>
+                <Link to={`posts/${post.id}`}>
                     <img className="post-image2" src={post.content} alt="content" />
-                    </Link>    
-            </div>
-                ))}
-            </div>
-        )
+                </Link>    
+            </div>) : (null)
+        ))}
+        </div>)
+        
     }
 }
 

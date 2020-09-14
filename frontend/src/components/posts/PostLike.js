@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import { likePost, unlikePost, checkLike} from "../../actions/posts"
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
 
 class PostLike extends Component {
     constructor(){
@@ -50,11 +50,11 @@ class PostLike extends Component {
         return (
             <div>
                 {likeButton}
+                {this.props.liked}
             </div>
         )
     }
 }
-
 
 const mapStateToProps = state => ({
         check_liked: state.posts.check_liked,

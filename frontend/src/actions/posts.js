@@ -111,7 +111,6 @@ export const likePost = post_id => (dispatch, getState) => {
   axios
     .post(`${back_api}/api/like/`, body, tokenConfig(getState))
     .then(res => {
-      console.log(res.data.post.like_count)
       dispatch({
         type: LIKE_POST,
         payload: res.data.post
@@ -163,7 +162,6 @@ export const savePost = post_id => (dispatch, getState) => {
   const body = JSON.stringify({ post_id });
   axios.post(`${back_api}/api/save/`, body, tokenConfig(getState))
   .then(res =>{
-    console.log(res.data)
     dispatch({
       type: SAVE_POST,
       payload: res.data.post

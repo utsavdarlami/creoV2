@@ -73,8 +73,9 @@ export default function(state = initialState, action) {
         posts: state.posts.filter((post) => post.id !== action.payload)
       }
     case POST_UPLOAD_FAIL:
-      console.log('post failed lol');
-      break;
+      return {
+        ...state,
+      }
     case LIKE_POST:
       let index = state.posts.findIndex(post => post.id === action.payload.id);
       state.posts[index] = action.payload;

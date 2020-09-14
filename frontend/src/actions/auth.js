@@ -10,7 +10,7 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   USER_DETAILS,
-  UPDATE_USER_INFO, GET_POST_AUTHOR
+  UPDATE_USER_INFO, GET_POST_AUTHOR, GET_AUTHOR_DETAILS, GET_COMMENT_AUTHOR
 } from './types';
 
 const back_api = "http://127.0.0.1:8000";
@@ -48,6 +48,23 @@ export const userDetails = () => (dispatch, getState) => {
         type: AUTH_ERROR,
       });
     });
+};
+
+//GET AUTHOR DETAILS
+export const getAuthorDetails = id => (dispatch, getState) => {
+  axios.get(`${back_api}/api/profile/${id}`, tokenConfig(getState))
+  .then(res => {
+    console.log(res.data)
+    dispatch({
+      type: GET_AUTHOR_DETAILS,
+      payload: res.data
+    });
+  })
+  .catch(err => {
+    dispatch({
+      type: AUTH_ERROR
+    });
+  });
 };
 
 
@@ -150,7 +167,7 @@ export const logout = () => (dispatch, getState) => {
     });
 };
 
-//GET AUTHOR
+//GET POST AUTHOR
 export const getPostAuthor = id => (dispatch) => {
   axios.get(`${back_api}/api/view_user/${id}/`)
   .then(res => {
@@ -162,6 +179,20 @@ export const getPostAuthor = id => (dispatch) => {
     console.log(err);
   });
 };
+
+//GET COMMENT AUTHOR
+export const getCommentAuthor = id => (dispatch) => {
+  axios.get(`${back_api}/api/view_user/${id}/`)
+  .then(res => {
+    dispatch({
+      type: GET_COMMENT_AUTHOR,
+      payload: res.data
+    })
+  }).catch(err => {
+    console.log(err);
+  });
+};
+
 
 // Setup config with token - helper function
 export const tokenConfig = getState => {

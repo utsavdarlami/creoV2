@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from "prop-types";
-import {deletePost, addComment} from "../../actions/posts";
+import {deletePost} from "../../actions/posts";
 import {withRouter} from "react-router-dom"
 import PostLike from './PostLike';
 import CommentForm from "./CommentForm";
@@ -15,9 +14,6 @@ class SinglePost extends Component {
         this.handleDelete = this.handleDelete.bind(this);
     }
 
-    static propTypes = {
-        addComment: PropTypes.func.isRequired
-    }
 
     handleDelete(){
         this.props.deletePost(this.props.post.id)
@@ -70,8 +66,10 @@ const mapStateToProps = (state, ownProps) => {
     return {
         post: state.posts.posts.find(post => post.id === parseInt(id)),
         auth: state.auth,
+        check_liked: state.posts.check_liked,
+        check_saved: state.posts.check_saved
     };
 };
 
 export default connect(mapStateToProps, 
-    { deletePost, addComment})(withRouter(SinglePost));
+    { deletePost})(withRouter(SinglePost));
