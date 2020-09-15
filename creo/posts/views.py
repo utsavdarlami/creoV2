@@ -1,5 +1,5 @@
 from posts.models import Posts, Likes, Saves, CommentPost
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, generics
 from .serializers import PostSerializer, LikeSerializer, LikeUserSerializer, SaveSerializer, CommentSerializer
 
 from django.core.exceptions import PermissionDenied
@@ -74,10 +74,26 @@ class PostListViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Posts.objects.all()
     serializer_class = PostSerializer
 
+class UsersPostView(viewsets.ReadOnlyModelViewSet):
+
+    queryset = Posts.objects.all()
+    permissions_classes = [
+        permissions.IsAuthenticated,
+    ]
+
+    serializer_class = PostSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        if Posts.objects.filter(publisher=self.kwargs.get('pk')).exists():
+            posts = Posts.objects.filter(publisher=self.kwargs.get('pk'))
+            serializer = PostSerializer(posts, many=True)
+            return Response(serializer.data)
+        return Response([])
+
 
 class addLikeViewset(viewsets.ModelViewSet):
     """ Viewset related to like in a post , liking post and deleting like post
-        Create -> add to db and increase like count
+    Create -> add to db and increase like count
         Destroy -> delete like object and decrease like count
         api
     """
@@ -133,21 +149,10 @@ def who_liked_the_post(request, pk=None):
             return Response(serializer.data)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-@api_view(['GET'])
-def users_post(request, pk=None):
-    if not request.user.is_authenticated:
-        raise PermissionDenied()
-    else:
-        if Posts.objects.filter(publisher=pk).exists():
-            posts = Posts.objects.filter(publisher=pk)
-            serializer = PostSerializer(posts, many=True)
-            return Response(serializer.data)
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
 
 class CommentViewSet(viewsets.ModelViewSet):
     """ Viewset related to like in a post , liking post and deleting like post
-        Create -> add to db and increase like count
+    Create -> add to db and increase like count
         Destroy -> delete like object and decrease like count
         api
     """
@@ -175,7 +180,7 @@ class CommentViewSet(viewsets.ModelViewSet):
             serializer = self.get_serializer(comments, many=True)
 
             return Response(serializer.data)
-            # return filter_comm
+        # return filter_comm
         return Response([])
 
     def create(self, request, *args, **kwargs):
@@ -206,7 +211,7 @@ class CommentViewSet(viewsets.ModelViewSet):
 
 class SavePostViewset(viewsets.ModelViewSet):
     """ Viewset related to saving a post and deleting saved post
-        Create -> add to db saved post
+    Create -> add to db saved post
         Destroy -> delete save object
         api
     """
