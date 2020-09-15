@@ -14,7 +14,11 @@ import {
   SAVE_POST,
   UNSAVE_POST,
   HAS_USER_SAVED,
-  GET_SAVED_CONTENT, ADD_COMMENT, ADD_COMMENT_FAIL, GET_COMMENTS
+  GET_SAVED_CONTENT, 
+  ADD_COMMENT, 
+  ADD_COMMENT_FAIL, 
+  GET_COMMENTS,
+  GET_AUTHOR_POST
 } from './types';
 
 const back_api = "http://127.0.0.1:8000";
@@ -37,12 +41,26 @@ export const getUserPost = () => (dispatch, getState) => {
   axios
     .get(`${back_api}/api/posts/`, tokenConfig(getState))
     .then(res => {
+      console.log(res.data)
       dispatch({
         type: GET_USER_POST,
         payload: res.data,
       });
     })
     .catch(err => console.log(err));
+};
+
+//GET POST UPLOADED BY AUTHOR
+export const getAuthorPost = (id) => (dispatch, getState) => {
+  axios.get(`${back_api}/api/users_post/${id}`, tokenConfig(getState))
+  .then(res => {
+    console.log(res.data)
+    dispatch({
+      type: GET_AUTHOR_POST,
+      payload: res.data,
+    });
+  })
+  .catch(err => console.log(err));
 };
 
 // ADD POST

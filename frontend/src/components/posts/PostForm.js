@@ -58,40 +58,49 @@ class PostForm extends Component {
   render() {
     const { title, description, post_type} = this.state;
     return (
-      <div className="post-form">
-        <h2>Post Form:</h2>
-        <form onSubmit={this.handleSubmit}>
-          <label>Title:</label>
-          <input
-            className="post-form-components"
-            type="text"
-            value={title}
-            name="title"
-            placeholder="Enter the title here"
-            onChange={this.handleChange}
-          />
+      <div className="post-submission-component">
+        <h3>Publish Your Work</h3>
+        <form onSubmit={this.handleSubmit} className="post-form">
+          <div className="post-form-component">
+            <label>Title:</label>
+            <br />
+            <input
+              type="text"
+              value={title}
+              name="title"
+              placeholder="Enter the title here"
+              onChange={this.handleChange}
+            />
+          </div>
 
-          <label>Description:</label>
+        <div className="post-form-component">
+        <label>Description:</label>
+        <br />
           <input
-            className="post-form-components"
             type="text"
             value={description}
             name="description"
             onChange={this.handleChange}
             placeholder="Enter the description"
           />
+        </div>
 
-          <label>Content</label>
+      <div className="post-form-component" >
+      <label>Content</label>
+      <br />
           <input
-            className="post-form-components"
             type="file"
             name="content"
             onChange={this.handleImageChange}
             placeholder="Select a file"
+            style={{border: "none"}}
           />
+      </div>
 
-          <label>Post Type:</label>
-          <div>
+        <div className="post-form-component">
+        <label>Post Type:</label>
+        <br />
+          <div className="post-form-radio">
             <label>
               <input 
                 type="radio"
@@ -127,7 +136,9 @@ class PostForm extends Component {
                Audio
             </label>
           </div>
-          <button>Submit</button>
+        </div>
+          
+          <button className="post-submit-button">Submit</button>
         </form>
       </div>
     );

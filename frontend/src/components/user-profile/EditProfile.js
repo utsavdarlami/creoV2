@@ -105,7 +105,6 @@ class EditProfile extends Component {
             const user_details  = this.props.user_details
             this.mapUserDetailsToState(user_details);
         }, 400);
-        
     }
 
     render() {

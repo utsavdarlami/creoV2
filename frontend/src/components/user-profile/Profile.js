@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import UserDetails from './UserDetails';
-// import PostedContent from './PostedContent';
 // import LikedContent from './LikedContent';
 import { connect } from "react-redux";
 // import EditProfile from './EditProfile';
@@ -12,28 +11,17 @@ class Profile extends Component {
     return (
       <Fragment>
         <div className="profile-page">
-          <section className="profile-top">
+          <section className="profile-detail">
             <UserDetails />
           </section>
           <div className="profile-content">
-            <ul>
+            <ul className="profile-content-list">
               <li><NavLink to="/profile/posted">Posted Content</NavLink></li>
               <li><NavLink to="/profile/liked">Liked Content</NavLink></li>
-              <li><NavLink to="/editprofile">Edit Profile</NavLink></li>
               <li><NavLink to="/profile/saved">Saved Content</NavLink></li>
             </ul>
           </div>
         </div>
-
-
-        <div>
-
-        </div>
-        {/* <PostedContent />
-        <hr />
-        <LikedContent />
-        <hr />
-        <SavedContent /> */}
       </Fragment>
     );
   }

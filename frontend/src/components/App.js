@@ -19,6 +19,9 @@ import PostedContent from './user-profile/PostedContent';
 import LikedContent from './user-profile/LikedContent';
 import SavedContent from './user-profile/SavedContent';
 import AuthorDetails from "./author/AuthorDetails";
+import Photos from './posts/PostList/Photos';
+import Videos from "./posts/PostList/Videos"
+import Audios from "./posts/PostList/Audios"
 
 class App extends React.Component {
   /* do this after completing */
@@ -37,13 +40,16 @@ class App extends React.Component {
               <Route exact path="/" component={Home} />
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/photos" component={Photos} />
+              <Route exact path="/videos" component={Videos} />
+              <Route exact path="/audios" component={Audios} />
               <Route exact path="/posts/:post_id" component={SinglePost} />
               <PrivateRoute exact path="/users/:author_id" component={AuthorDetails} />
               <PrivateRoute exact path="/profile" component={Profile} />
               <PrivateRoute exact path="/editprofile" component={EditProfile} />
-              <Route path="/profile/posted" component={PostedContent} />
-              <Route path="/profile/liked" component={LikedContent} />
-              <Route path="/profile/saved" component={SavedContent} />
+              <PrivateRoute path="/profile/posted" component={PostedContent} />
+              <PrivateRoute path="/profile/liked" component={LikedContent} />
+              <PrivateRoute path="/profile/saved" component={SavedContent} />
               <PrivateRoute exact path="/submitpost" component={PostForm} />
             </Switch>
           </Fragment>

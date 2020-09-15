@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import PostList from "./posts/PostList";
+import PostList from "./posts/PostList/PostList";
 
 class Home extends Component {
   render() {

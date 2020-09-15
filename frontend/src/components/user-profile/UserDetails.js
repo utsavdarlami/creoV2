@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types"
 import { connect } from "react-redux";
-import { userDetails } from "../../actions/auth"
+import { userDetails } from "../../actions/auth";
+import {NavLink} from 'react-router-dom';
 
 class UserDetails extends Component { 
   static propTypes = {
@@ -17,14 +18,31 @@ class UserDetails extends Component {
     (
       <div className="details-body">
         <img src={this.props.user_details.profile_pic}
-         alt="Profile display" style={{width: "300px", height: "auto", borderRadius: "50%"}} />
-        <p>Name: {this.props.user_details.user.first_name} {this.props.user_details.user.last_name}</p>
-        <p>Username: {this.props.user_details.user.username}</p>
-        <p>Email: {this.props.user_details.user.email}</p>
-        <p>Gender: {this.props.user_details.gender}</p>
-        <p>Bio:{this.props.user_details.bio}</p>
-        <p>Portfolio site: {this.props.user_details.portfolio_site}</p>
-        <p>Resume: {this.props.user_details.resume}</p> 
+         alt="Profile display" className="profile-picture"/>
+        <div className="user-details">
+          <p>{this.props.user_details.user.first_name} {this.props.user_details.user.last_name}</p>
+          <p>{this.props.user_details.bio}</p>
+
+          <span>About</span>
+          <div className="user-details-about">
+            <section>
+              <p>Username</p>
+              <p>Name</p>
+              <p>Email</p>
+              <p>Profession</p>
+              <p>Portfolio/Online Presence</p>
+            </section>
+
+            <section>
+              <p>{this.props.user_details.user.username}</p>
+              <p>{this.props.user_details.user.first_name} {this.props.user_details.user.last_name}</p>
+              <p>{this.props.user_details.user.email}</p>
+              <p>{this.props.user_details.bio}</p>
+              <p>{this.props.user_details.portfolio_site}</p>
+            </section>
+          </div>
+        </div>
+        <div><NavLink to="/editprofile">Edit Profile</NavLink></div>
     </div>
     ) : (null)
     

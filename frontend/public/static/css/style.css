@@ -18,7 +18,9 @@ a{
     justify-content: space-between;
     align-items: center;
     padding: 1.5% 0;
-    /* background-color: #f1f1f1; */
+    height: 10vh;
+    /* background-color: #e8ed82; */
+    /* border-bottom: 2px solid #f45702; */
     box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
 }
 
@@ -89,7 +91,7 @@ a{
 }
 
 .postContainer2{
-    border: 1px solid black;
+    border: 1px solid red;
     margin: 2%;
     max-width: 25%;
     height: 80%;
@@ -100,30 +102,13 @@ a{
     height: auto;
 }
 
-/* post-form */
-.post-form{
-    border: 1px solid black;
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-    width: 60%;
-    margin: 5% 5%;
-}
 
-.post-form-components{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
 
 /* access-form-styling */
+/* LOG IN  -  SIGN UP PAGE STYLING */
 .access-form-display{
     display: grid;
-    height: 90vh;
+    /* height: 90vh; */
     grid-template-columns: 0.5fr 1fr;
 }
 
@@ -131,6 +116,7 @@ a{
     grid-column: 1/2;
     background-color: burlywood;
     background: url("../bkgdimg.jpg");
+    height: 90vh;
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -223,26 +209,169 @@ a{
 	to {background-color: #1db6e0;}
 }
 
-.profile-page{
-    display: grid;
-    grid-template-columns: 0.5fr 1fr;
 
+/* POST SUBMISSION FORM */ 
+.post-submission-component{
+    /* background: #f2f4f8; */
+    background: url("../submit-bkgdimg.jpg") center center no-repeat;
+    background-size: cover;
+    height: 100vh;
 }
 
-.profile-top{
+.post-submission-component h3{
+    color: #f45702;
+    font-size: 200%;
+    font-style: italic;
+    font-weight: bold;
+    padding-top: 2%;
+    text-align: center;
+}
+
+.post-form{
+    background-color: #f8f4e5;
     border: 1px solid black;
-    grid-column: 1/2;
+    border-top: 10px solid #f45702;
+    margin: 5% 20%;
+    max-width: 70%;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.post-form-component{
+    margin: 2% 0;
+    width: 98%;
+    padding: 0 2%;
+    display: inline-block;
+}
+
+.post-form-component label{
+    font-size: 120%;
+}
+
+.post-form-component input {
+    box-sizing: border-box;
+    width: inherit;
+    padding: 12px 20px;
+    border: 1px solid grey;
+    border-radius: 4px;
+    font-size: 100%;
+}
+
+.post-form-radio {
+    display: flex;
+    flex-flow: column wrap;
+    margin: 0 2%;
+}
+
+.post-form-radio label {
+    margin: 0.5% 0;
+}
+
+.post-submit-button{
+    width: 15%;
+    margin-bottom: 2%;
+    padding: 1%;
+    border: none;
+    font-size: 100%;
+    background-color: #f45702;
+    color: white;
+    border-radius: 50px;
+}
+
+.post-submit-button:hover{
+    cursor: pointer;
+    animation-name: submit-animation;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+}
+
+@keyframes submit-animation{
+    from {background-color: #3f8f87}
+	to {background-color: #1db6e0;}
+}
+
+
+
+/* PROFILE PAGE */
+.profile-page{
+    border: 2px solid black;
+}
+
+.profile-detail{
+    border: 1px solid black;
+    margin: 1%;
 }
 
 .profile-content{
-    grid-column: 2/3;
+    border: 1px solid black;
+    margin: 1%;
+}
+
+.profile-content-list{
+    display: flex;
+    flex-flow: row wrap;
+    list-style: none;
+    border: 1px solid black;
+    margin: 1% 2%;
+    justify-content: space-around;
+}
+
+.profile-content-list li{
+    margin: 0 2% 0 0;
 }
 
 .details-body{
+    border: 2px solid yellow;
+    margin: 2%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    flex-direction: row wrap;
+    justify-content: flex-start;
+    align-items: stretch;
 }
 
-s
+.profile-picture{
+    margin: 0 0 0 2%;
+    max-width: 20%;
+    max-height: 250px;
+    /* border-radius: 50%; */
+    border: 2px solid black;
+}
+
+.user-details{
+    margin: 0 0 0 2%;
+    border: 2px solid black;
+    width: 70%;
+}
+
+.user-details-about{
+    width: 60%;
+    border: 1px solid black;
+    margin: 1% 2%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+
+/* POST-LIST NAVBAR */
+.postlist-navbar{
+    padding: 1%;
+    margin: 0 25%;
+}
+
+.postlist-navbar ul {
+    list-style: none;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding: 2%;
+}
+
+.postlist-navbar ul > li {
+    margin: 0 2%;
+    font-size: 120%;
+    color: black;
+}

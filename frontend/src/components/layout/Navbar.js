@@ -16,12 +16,12 @@ class Navbar extends Component {
     const authLinks = (
       <ul className="nav-links">
         <li className="nav-item">
-          <NavLink to="/profile" style={{ textDecoration: 'none' }}>
+          <NavLink to="/profile" activeStyle={{fontWeight: "bold"}}>
             <span>Profile</span>
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink to="/submitpost" style={{ textDecoration: 'none' }}>
+          <NavLink to="/submitpost" activeStyle={{fontWeight: "bold"}}>
             <span>Upload</span>
           </NavLink>
         </li>
@@ -37,12 +37,12 @@ class Navbar extends Component {
     const guestLinks = (
       <ul className="nav-links">
         <li className="nav-item">
-          <NavLink to="/login" style={{ textDecoration: 'none' }}>
+          <NavLink to="/login" activeStyle={{fontWeight: "bold"}}>
             <span>Sign in</span>
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink to="/signup" style={{ textDecoration: 'none' }}>
+          <NavLink to="/signup"activeStyle={{fontWeight: "bold"}}>
             <span>Sign up</span>
           </NavLink>
         </li>
@@ -50,12 +50,22 @@ class Navbar extends Component {
     );
     return (
       <nav className="navbar">
-        <ul className="nav-bar-home">
+        <ul className="nav-bar-home nav-links">
           <li className="nav-item">
             <NavLink to="/" style={{ textDecoration: 'none' }}>
               <span>Home</span>
             </NavLink>
           </li>
+          <li className="nav-item">
+              <NavLink to="/photos" 
+              activeStyle={{fontWeight: "bold"}}><span>Photos</span></NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink to="/videos" activeStyle={{fontWeight: "bold"}}><span>Videos</span></NavLink>
+            </li>
+          <li className="nav-item">
+            <NavLink to="/audios" activeStyle={{fontWeight: "bold"}}><span>Audios</span></NavLink>
+            </li>
         </ul>
         {isAuthenticated ? authLinks : guestLinks}
       </nav>

@@ -12,7 +12,8 @@ import {
   SAVE_POST,
   UNSAVE_POST,
   GET_SAVED_CONTENT,
-  HAS_USER_SAVED, ADD_COMMENT, GET_COMMENTS
+  HAS_USER_SAVED, ADD_COMMENT, GET_COMMENTS,
+  GET_AUTHOR_POST
 } from '../actions/types.js';
 
 const initialState = {
@@ -24,7 +25,8 @@ const initialState = {
   check_saved: [],
   is_saved: false,
   liked: false,
-  post_comments: []
+  post_comments: [],
+  author_posts: []
 };
 
 export default function(state = initialState, action) {
@@ -49,6 +51,11 @@ export default function(state = initialState, action) {
         ...state,
         saved_posts: action.payload,
       }
+      case GET_AUTHOR_POST:
+        return{
+          ...state,
+          author_posts: action.payload
+        }
     // case GET_SINGLE_POST:
     // make one here
     case ADD_POST:
