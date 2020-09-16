@@ -22,7 +22,7 @@ const initialState = {
   likes: [],
   post_author: null,
   author_details: null,
-  comment_author: []
+  comment_author: null
 };
 
 export default function(state = initialState, action) {
@@ -47,7 +47,7 @@ export default function(state = initialState, action) {
     case GET_COMMENT_AUTHOR: 
     return {
       ...state,
-      comment_author : [...state.comment_author, action.payload]
+      comment_author : action.payload
     }
     case USER_DETAILS:
       return {

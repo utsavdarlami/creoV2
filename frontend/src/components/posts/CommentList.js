@@ -19,6 +19,7 @@ class CommentList extends Component {
     render() {
         return (
             <div>
+                <p>Responses: </p>
                 {((this.props.post_comments).length !== 0) ? 
                 (                
                 <div>            
@@ -30,7 +31,6 @@ class CommentList extends Component {
                 ))}
             </div>)
      : (null)}
-                <p>Post comments: </p>
             </div>
         )
     }

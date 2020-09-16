@@ -19,9 +19,7 @@ class Photos extends Component {
                             post.post_type === "I" ? 
                             (
                             <div className="postContainer2" key={post.id}>
-                                <p>Id: {post.id}</p>
                                 <p>Title: {post.title}</p>
-                                <p>Description: {post.description}</p>
                                 <Link to={`posts/${post.id}`}>
                                     <img className="post-image2" src={post.content} alt="content" />
                                 </Link>    

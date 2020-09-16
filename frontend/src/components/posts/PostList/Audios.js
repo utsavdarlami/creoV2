@@ -18,9 +18,7 @@ class Audios extends Component {
                         post.post_type === "A" ? 
                         (
                         <div className="postContainer2" key={post.id}>
-                            <p>Id: {post.id}</p>
                             <p>Title: {post.title}</p>
-                            <p>Description: {post.description}</p>
                             <audio controls>
                                 <source src={post.content} />
                             </audio>

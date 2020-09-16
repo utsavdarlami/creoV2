@@ -18,14 +18,25 @@ class LikedContent extends Component {
   render() {
     const saved_content = 
     (
-      <div className="post-contents">
+      <div className="post-contents2">
       {this.props.saved_posts.map(saved_post => (
-        <div className="postContainer" key={saved_post.post.id}>
+        <div className="postContainer2" key={saved_post.post.id}>
+          
           <p>Id:{saved_post.post.id}</p>
           <p>Title:{saved_post.post.title}</p>
           <p>Description:{saved_post.post.description}</p>
-          <img className="post-image" src={saved_post.post.content} alt="content" />
-        </div>
+          {(() => {
+                switch (saved_post.post.post_type){
+                  case "I":
+                    return <img className="post-image2" src={saved_post.post.content} alt="content" />;
+                  case "V": 
+                    return  <video width="100%" height="240" controls><source src={saved_post.post.content} /></video>;
+                  case "A": 
+                    return  <audio controls><source src={saved_post.post.content} /></audio>
+                  default: return ""
+                  }  
+                })()}      
+                  </div>
       ))}
     </div>
     )
@@ -39,7 +50,7 @@ class LikedContent extends Component {
             <ul className="profile-content-list">
               <li><NavLink to="/profile/posted">Posted Content</NavLink></li>
               <li><NavLink to="/profile/liked">Liked Content</NavLink></li>
-              <li><NavLink to="/profile/saved">Saved Content</NavLink></li>
+              <li><NavLink to="/profile/saved" activeStyle={{fontWeight: "bold"}}>Saved Content</NavLink></li>
             </ul>
             {saved_content}
           </div>

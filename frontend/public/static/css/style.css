@@ -93,13 +93,13 @@ a{
 .postContainer2{
     border: 1px solid red;
     margin: 2%;
-    max-width: 25%;
-    height: 80%;
+    max-width: 33%;
+    height: 50%;
 }
 
 .post-image2{
     max-width: 100%;
-    height: auto;
+    height: 300px;
 }
 
 
@@ -296,12 +296,11 @@ a{
 
 
 /* PROFILE PAGE */
-.profile-page{
+/* .profile-page{
     border: 2px solid black;
-}
+} */
 
 .profile-detail{
-    border: 1px solid black;
     margin: 1%;
 }
 
@@ -314,7 +313,7 @@ a{
     display: flex;
     flex-flow: row wrap;
     list-style: none;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     margin: 1% 2%;
     justify-content: space-around;
 }
@@ -324,7 +323,7 @@ a{
 }
 
 .details-body{
-    border: 2px solid yellow;
+    /* border: 2px solid yellow; */
     margin: 2%;
     display: flex;
     flex-direction: row wrap;
@@ -342,7 +341,7 @@ a{
 
 .user-details{
     margin: 0 0 0 2%;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     width: 70%;
 }
 

@@ -25,13 +25,22 @@ class SinglePost extends Component {
         var now = new Date(created_at);
         var gmtDate = now.toLocaleString();
         const post = this.props.post ? (
-            <div className="post-contents2">
-                <div className="postContainer2">
-                    <p>Id:{this.props.post.id} </p>
+            <div>
+                <div >
                     <p>Title:{this.props.post.title}</p>
                     <p>Description:{this.props.post.description}</p>
                     <p>Created at: {gmtDate} </p>
-                    <img className="post-image" src={this.props.post.content} alt="content" />
+                    {(() => {
+                        switch (this.props.post.post_type){
+                            case "I":
+                                 return <img className="post-image" src={this.props.post.content} alt="content" />;
+                            case "V": 
+                            return  <video width="100%" height="240" controls><source src={this.props.post.content} /></video>;
+                            case "A": 
+                            return  <audio controls><source src={this.props.post.content} /></audio>
+                            default: return ""
+                        }
+                    })()}
                     <p>{this.props.post.like_count} likes</p>
                 </div>
             </div>
@@ -46,16 +55,23 @@ class SinglePost extends Component {
         const postId = this.props.post ? (this.props.post.id) : (null)
 
         return (
-            <div>
+            <div className="post-contents2">
+                <div className="postContainer2">
                 {post}
+                <hr />
                 <PostAuthor publisher = {publisher} />
-                <PostLike postId = {postId}/>
-                <PostSave postId = {postId} />
+                <div style={{display: "flex", flexFlow: "row wrap", justifyContent: "flex-end", margin: "1% 0"}}>
+                    <PostLike postId = {postId}/>
+                    <PostSave postId = {postId} />
+                    { (publisher === user_id) ? 
+                    (<button onClick={this.handleDelete}>Delete</button>):
+                    (null)}
+                </div>
+
                 <CommentForm postId = {postId} />
                 <CommentList postId = {postId} />
-                { (publisher === user_id) ? 
-                (<button onClick={this.handleDelete}>Delete</button>):
-                (null)}
+                
+                </div>
             </div>
         );
     }

@@ -24,35 +24,53 @@ class AuthorDetails extends Component {
         (
             <div className="details-body">
                 <img src={this.props.author_details.profile_pic}
-                alt="Profile display" style={{width: "300px", height: "auto", borderRadius: "50%"}} />
+                alt="Profile display" className="profile-picture" />
+                <div className="user-details">
                 <p>Name: {this.props.author_details.user.first_name} {this.props.author_details.user.last_name}</p>
-                <p>Username: {this.props.author_details.user.username}</p>
-                <p>Email: {this.props.author_details.user.email}</p>
-                <p>Gender: {this.props.author_details.gender}</p>
                 <p>Bio:{this.props.author_details.bio}</p>
-                <p>Portfolio site: {this.props.author_details.portfolio_site}</p>
-                <p>Resume: {this.props.author_details.resume}</p>   
+
+          <span>About</span>
+          <div className="user-details-about">
+            <section>
+              <p>Username</p>
+              <p>Name</p>
+              <p>Email</p>
+              <p>Profession</p>
+              <p>Portfolio/Online Presence</p>
+            </section>
+
+            <section>
+              <p>Username: {this.props.author_details.user.username}</p>
+              <p>Email: {this.props.author_details.user.email}</p>
+              <p>Gender: {this.props.author_details.gender}</p>
+              <p>Portfolio site: {this.props.author_details.portfolio_site}</p>
+              <p>Resume: {this.props.author_details.resume}</p>   
+            </section>
+          </div>
+            </div>
             </div>
         ) : 
         (null)
 
-        const author_content = <div className="post-contents2">
-        {this.props.author_posts.map(post => (
-          <div className="postContainer2" key={post.id}>
-            <Link to={`/posts/${post.id}`}>
-              <p>Id:{post.id}</p>
-              <p>Title:{post.title}</p>
-              <p>Description:{post.description}</p>
-              <img className="post-image2" src={post.content} alt="content" />
-            </Link>
-          </div>
-        ))}
-      </div>
+      //   const author_content = <div className="post-contents2">
+      //   {this.props.author_posts.map(post => (
+      //     <div className="postContainer2" key={post.id}>
+      //       <Link to={`/posts/${post.id}`}>
+      //         <p>Id:{post.id}</p>
+      //         <p>Title:{post.title}</p>
+      //         <p>Description:{post.description}</p>
+      //         <img className="post-image2" src={post.content} alt="content" />
+      //       </Link>
+      //     </div>
+      //   ))}
+      // </div>
 
         return (
-            <div>
+            <div className="profile-page">
+              <section className="profile-detail">
                 {author}
-                {author_content}
+              </section>
+                {/* {author_content} */}
             </div>
         )
 }

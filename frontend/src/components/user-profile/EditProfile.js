@@ -109,21 +109,28 @@ class EditProfile extends Component {
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
+            <div className="post-submission-component">
+                <form onSubmit={this.handleSubmit} className="post-form">
+                <div className="post-form-component">
+
                     <label>First Name:</label>
                     <input 
                         type = "text"
                         value={this.state.first_name}
                         name="first_name"
                         onChange = {this.handleChange} />
-                            
+                            </div>
+
+                            <div className="post-form-component">
+
                     <label>Last Name:</label>
                     <input 
                         type = "text"
                         value={this.state.last_name}
                         name="last_name"
                         onChange = {this.handleChange} />
+</div>
+<div className="post-form-component">
 
                     <label>Email:</label>
                     <input 
@@ -131,7 +138,9 @@ class EditProfile extends Component {
                         value={this.state.email}
                         name="email"
                         onChange = {this.handleChange} />
-            
+            </div>
+            <div className="post-form-component">
+
                     <label>Gender: </label>
                     <div>
                         <label>
@@ -170,6 +179,8 @@ class EditProfile extends Component {
                             Other
                         </label>
                         </div>
+</div>
+<div className="post-form-component">
 
                         <label>Portfolio site:</label>
                         <input 
@@ -178,6 +189,8 @@ class EditProfile extends Component {
                             value={this.state.portfolio_site}
                             onChange={this.handleChange}
                             />
+</div>
+<div className="post-form-component">
 
                         <label>Bio:</label>
                         <input 
@@ -186,7 +199,7 @@ class EditProfile extends Component {
                             value={this.state.bio}
                             onChange = {this.handleChange}
                             />
-
+</div>
                         {/* <label>Resume:</label> 
                         <input 
                             type = "file"
