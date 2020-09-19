@@ -135,22 +135,15 @@ export const register = ({
 };
 
 //UPDATE USER INFO
-export const updateUserInfo = ({ 
-  id, first_name, last_name, email, gender, portfolio_site, bio
- }) => (dispatch, getState) => {
+export const updateUserInfo = (id,form_data) => (dispatch, getState) => {
 
-    const body = JSON.stringify({
-      user: {first_name, last_name, email},
-      gender, portfolio_site, bio
-    });
-
-    // console.log(id)
-  axios.patch(`${back_api}/api/profile/${id}/`, body, tokenConfig(getState))
+  axios.patch(`${back_api}/api/profile/${id}/`,form_data, tokenConfig2(getState))
   .then(res => {
     dispatch({
       type: UPDATE_USER_INFO,
       payload: res.data
     })
+    alert("Post submitted")
   }).catch(err => console.log(err))
 };
 

@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
+from django.core.exceptions import ValidationError
 from .models import UserProfileInfo
 
 
@@ -43,7 +44,12 @@ class LoginSerializer(serializers.Serializer):
 # User Profile Info Serializer
 class UserProfileInfoSerializer(serializers.ModelSerializer):
 
-    user = RegisterSerializer(required=True)
+    user = RegisterSerializer(required=False)
+    # user_id = serializers.IntegerField(required=False)
+    first_name = serializers.CharField(max_length=150,required=False)
+    last_name= serializers.CharField(max_length=150,required=False)
+    email = serializers.EmailField(required=False)
+
 
     class Meta:
         model = UserProfileInfo
@@ -51,7 +57,10 @@ class UserProfileInfoSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         # print(validated_data)
-        user_data = validated_data.pop('user')
+        user_data = validated_data.pop('user',None)
+        if user_data == None:
+            raise serializers.ValidationError({"user": "It must not be None when creating"})
+
         user = RegisterSerializer.create(RegisterSerializer(), validated_data=user_data)
         # validated_data["user"] = user
         userprofile = UserProfileInfo.objects.create(user=user,**validated_data)
@@ -59,19 +68,28 @@ class UserProfileInfoSerializer(serializers.ModelSerializer):
 
     def update(self,instance,validated_data):
         """ Reference
-            # https://django.cowhite.com/blog/create-and-update-django-rest-framework-nested-serializers/
+        # https://django.cowhite.com/blog/create-and-update-django-rest-framework-nested-serializers/
             # https://medium.com/analytics-vidhya/django-rest-framework-nested-serializer-6bebb5f9289e
         """
         # print(instance)
         # print("This is lame debugger ====================")
         # print(validated_data)
 
-        user_validated_data = validated_data.pop('user',None)
+        # user_validated_data = validated_data.pop('user',None)
+        # user_id = validated_data.pop('user_id',None)
+        # if user_id == None:
+        # raise serializers.ValidationError({"user_id": "It must not be None when Updating"})
 
-        user  = instance.user
-        user.email = user_validated_data.get('email',user.email)
-        user.first_name = user_validated_data.get('first_name',user.first_name)
-        user.last_name = user_validated_data.get('last_name',user.last_name)
+        # instance_user = User.objects.get(pk=user_id)
+        # print(instance_post.data)
+        # instance_serializer = UserSerializer(instance_user)
+
+        # user_validated_data = instance_serializer.data
+
+        user = instance.user
+        user.email = validated_data.get('email',user.email)
+        user.first_name = validated_data.get('first_name',user.first_name)
+        user.last_name = validated_data.get('last_name',user.last_name)
         # user.set_password(user_validated_data.get('password',user.password))
         user.save()
 
