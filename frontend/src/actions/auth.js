@@ -13,7 +13,7 @@ import {
   UPDATE_USER_INFO, 
   GET_POST_AUTHOR, 
   GET_AUTHOR_DETAILS,
-  GET_COMMENT_AUTHOR
+  // GET_COMMENT_AUTHOR
 } from './types';
 
 const back_api = "http://127.0.0.1:8000";
@@ -177,17 +177,17 @@ export const getPostAuthor = id => (dispatch) => {
 };
 
 //GET COMMENT AUTHOR
-export const getCommentAuthor = id => (dispatch) => {
-  axios.get(`${back_api}/api/view_user/${id}/`)
-  .then(res => {
-    dispatch({
-      type: GET_COMMENT_AUTHOR,
-      payload: res.data
-    })
-  }).catch(err => {
-    console.log(err);
-  });
-};
+// export const getCommentAuthor = id => (dispatch) => {
+//   axios.get(`${back_api}/api/view_user/${id}/`)
+//   .then(res => {
+//     dispatch({
+//       type: GET_COMMENT_AUTHOR,
+//       payload: res.data
+//     })
+//   }).catch(err => {
+//     console.log(err);
+//   });
+// };
 
 
 // Setup config with token - helper function

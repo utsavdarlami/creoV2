@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import { getComments } from "../../actions/posts"
 import {withRouter} from "react-router-dom"
-import CommentAuthor from './CommentAuthor';
+// import CommentAuthor from './CommentAuthor';
 
 class CommentList extends Component {
 

@@ -114,3 +114,24 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(mapStateToProps, 
     {likePost, unlikePost, deletePost, checkLike})(withRouter(SinglePost));
+
+handlecheckLike(){
+        if(this.props.liked_posts && this.props.liked_posts.find( liked_post => 
+            liked_post.post_id == this.props.postId)) 
+            return true; 
+            else return false;
+}
+
+
+    // componentDidMount(){
+    //     const id = this.props.postId;
+    //     console.log(id);        
+    // }
+
+    // componentDidMount(){
+    //     this.props.getLikedContent();
+    // }
+
+    // componentDidUpdate(){
+    //     this.props.getLikedContent();
+    // }
