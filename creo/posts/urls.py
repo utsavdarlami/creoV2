@@ -1,6 +1,6 @@
 from django.urls import path
 from rest_framework import routers
-from .views import PostViewSet,PostListViewSet,addLikeViewset,who_liked_the_post,SavePostViewset,CommentViewSet,UsersPostView
+from .views import PostViewSet,PostListViewSet,addLikeViewset,who_liked_the_post,SavePostViewset,CommentViewSet,UsersPostView,UsernameCommentViewSet
 
 router = routers.DefaultRouter()
 
@@ -10,6 +10,7 @@ router.register('api/like',addLikeViewset,'likepost')
 router.register('api/save',SavePostViewset,'savepost')
 router.register('api/comment',CommentViewSet,'commentpost')
 router.register('api/users_post',UsersPostView,"users_post")
+router.register('api/comments_on_post',UsernameCommentViewSet,"username_comments")
 
 
 urlpatterns = [

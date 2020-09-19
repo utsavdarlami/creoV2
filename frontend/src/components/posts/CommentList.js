@@ -25,7 +25,9 @@ class CommentList extends Component {
                 <div>            
                     {this.props.post_comments.map(post_comment => (
                     <div key={post_comment.id} style={{border: "1px solid black"}}>
-                        <CommentAuthor publisher = {post_comment.publisher}/>
+                        <div>
+                            {post_comment.publisher.username}
+                        </div>
                      <p>Comment: {post_comment.comment}</p>
                      </div>
                 ))}

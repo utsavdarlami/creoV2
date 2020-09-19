@@ -91,6 +91,7 @@ export const addComment = ({ post_id, comment }) => (dispatch, getState) => {
       type: ADD_COMMENT,
       payload: res.data,
     });
+    dispatch(getComments(post_id));
   })
   .catch(err => {
     dispatch({
@@ -101,7 +102,7 @@ export const addComment = ({ post_id, comment }) => (dispatch, getState) => {
 }
 
 export const getComments = (id) => (dispatch, getState) => {
-  axios.get(`${back_api}/api/comment/${id}/`, tokenConfig(getState))
+  axios.get(`${back_api}/api/comments_on_post/${id}/`, tokenConfig(getState))
   .then(res => {
     dispatch({
       type: GET_COMMENTS,

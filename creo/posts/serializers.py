@@ -43,6 +43,16 @@ class CommentSerializer(serializers.ModelSerializer):
 
         return post,commented
 
+class CommentUserSerializer(serializers.ModelSerializer):
+    """
+        Comment Create,Retrieve And Delete Serializer
+    """
+    publisher = UserSerializer(required=False)
+    publisher_id = serializers.IntegerField()
+
+    class Meta:
+        model = CommentPost
+        fields = '__all__'
 
 class LikeUserSerializer(serializers.ModelSerializer):
     publisher = UserSerializer(required=True)

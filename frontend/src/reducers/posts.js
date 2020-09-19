@@ -67,7 +67,7 @@ export default function(state = initialState, action) {
     case ADD_COMMENT:
       return {
         ...state,
-        post_comments: [...state.post_comments, action.payload]
+        //post_comments: [...state.post_comments, action.payload]
       }
     case GET_COMMENTS:
       return {
