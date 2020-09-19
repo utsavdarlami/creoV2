@@ -17,6 +17,9 @@ export const ADD_COMMENT = "ADD_COMMENT";
 export const ADD_COMMENT_FAIL = "ADD_COMMENT_FAIL";
 export const GET_COMMENTS = "GET_COMMENTS";
 
+
+export const GET_SINGLE_POST = "GET_SINGLE_POST";
+
 // auth
 export const USER_LOADING = 'USER_LOADING';
 export const USER_LOADED = 'USER_LOADED';

@@ -18,7 +18,8 @@ import {
   ADD_COMMENT, 
   ADD_COMMENT_FAIL, 
   GET_COMMENTS,
-  GET_AUTHOR_POST
+  GET_AUTHOR_POST,
+  GET_SINGLE_POST
 } from './types';
 
 const back_api = "http://127.0.0.1:8000";
@@ -36,12 +37,23 @@ export const getPosts = () => dispatch => {
     .catch(err => console.log(err));
 };
 
+//GET SINGLE POST
+export const getSinglePost = (id) => dispatch => {
+  axios.get(`${back_api}/api/allposts/${id}`)
+  .then(res => {
+    dispatch({
+      type: GET_SINGLE_POST,
+      payload: res.data,
+    });
+  })
+  .catch(err => console.log(err));
+};
+
 // GET POST UPLOADED BY USER
 export const getUserPost = () => (dispatch, getState) => {
   axios
     .get(`${back_api}/api/posts/`, tokenConfig(getState))
     .then(res => {
-      console.log(res.data)
       dispatch({
         type: GET_USER_POST,
         payload: res.data,

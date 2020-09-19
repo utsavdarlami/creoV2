@@ -67,7 +67,7 @@ class EditProfile extends Component {
         const id = this.props.user_details.id;
         //   console.log(id);
         const { first_name, last_name, email} = this.state; 
-        const {gender, portfolio_site, bio, resume, profile_pic} = this.state;
+        const {gender, portfolio_site, bio} = this.state;
 
         const user = {
             first_name,
@@ -254,7 +254,7 @@ class EditProfile extends Component {
                             name="profile_pic"
                             onChange={this.handleImageChange}
                         />
-                        <img src={this.state.profile_pic}/>
+                        <img src={this.state.profile_pic} alt="profile" />
                     </div>
 
                     <button>Update Profile Picture</button>

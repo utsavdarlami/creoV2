@@ -13,20 +13,21 @@ a{
 
 
 /* navbar styling */
-.navbar{
+
+/* .navbar{
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.5% 0;
     height: 10vh;
-    /* background-color: #e8ed82; */
-    /* border-bottom: 2px solid #f45702; */
+    background-color: #e8ed82;
+    border-bottom: 2px solid #f45702;
     box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
-}
+} */
 
-.navbar ul{
+/* .navbar ul{
     list-style: none;
-}
+} */
 
 .nav-links{
     display: flex;
@@ -36,11 +37,11 @@ a{
     margin: 0 10px;
 }
 
-.nav-item span{
+/* .nav-item span{
     font-size: 160%;
     color: #2e2b2b;
     padding: 5px;
-}
+} */
 
 .logout-button{
     font-size: 140%;

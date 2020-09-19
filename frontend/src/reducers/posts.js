@@ -13,7 +13,7 @@ import {
   UNSAVE_POST,
   GET_SAVED_CONTENT,
   HAS_USER_SAVED, ADD_COMMENT, GET_COMMENTS,
-  GET_AUTHOR_POST
+  GET_AUTHOR_POST, GET_SINGLE_POST
 } from '../actions/types.js';
 
 const initialState = {
@@ -22,11 +22,12 @@ const initialState = {
   liked_posts: [],
   check_liked: [],
   saved_posts: [],
-  check_saved: [],
+  check_saved: null,
   is_saved: false,
   liked: null,
   post_comments: [],
   author_posts: [],
+  single_post : null
 };
 
 export default function(state = initialState, action) {
@@ -36,6 +37,11 @@ export default function(state = initialState, action) {
         ...state,
         posts: action.payload,
       };
+    case GET_SINGLE_POST:
+      return {
+        ...state,
+        single_post: action.payload
+      }
     case GET_USER_POST:
       return {
         ...state,
@@ -67,7 +73,7 @@ export default function(state = initialState, action) {
     case ADD_COMMENT:
       return {
         ...state,
-        //post_comments: [...state.post_comments, action.payload]
+        post_comments: [...state.post_comments, action.payload]
       }
     case GET_COMMENTS:
       return {
@@ -84,15 +90,15 @@ export default function(state = initialState, action) {
         ...state,
       }
     case LIKE_POST:
-      let index = state.posts.findIndex(post => post.id === action.payload.id);
-      state.posts[index] = action.payload;
+      // let index = state.posts.findIndex(post => post.id === action.payload.id);
+      // state.posts[index] = action.payload;
       return {
         ...state,
+        single_post : action.payload,
         liked: true
       };
       case UNLIKE_POST:
-        let index2 = state.posts.findIndex(post => post.id === action.payload)
-        state.posts[index2].like_count--;
+        state.single_post.like_count--;
       return {
         ...state,
         liked: false

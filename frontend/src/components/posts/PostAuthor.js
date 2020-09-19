@@ -12,24 +12,17 @@ class PostAuthor extends Component {
     }
 
     componentDidMount(){
-        setTimeout(() => {
             const publisher = this.props.publisher;
             this.props.getPostAuthor(publisher)
-        }, 300);
     }
 
     render() {
         const username = this.props.post_author ? (this.props.post_author.username) : (null)
         const author_id = this.props.post_author ? (this.props.post_author.id) : (null)
         return (
-            <div>
-                <p>Post author: 
-                    {(this.props.check_liked.like === true) ? (                    <Link to={`/users/${author_id}`}>
+                  <Link to={`/users/${author_id}`}>
                         {username}
-                    </Link>) : (null)}
-
-                </p>
-            </div>
+                    </Link>
         )
     }
 }
