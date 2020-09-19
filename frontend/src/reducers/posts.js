@@ -24,9 +24,9 @@ const initialState = {
   saved_posts: [],
   check_saved: [],
   is_saved: false,
-  liked: false,
+  liked: null,
   post_comments: [],
-  author_posts: []
+  author_posts: [],
 };
 
 export default function(state = initialState, action) {
@@ -88,14 +88,14 @@ export default function(state = initialState, action) {
       state.posts[index] = action.payload;
       return {
         ...state,
-        liked: !state.liked
+        liked: true
       };
       case UNLIKE_POST:
         let index2 = state.posts.findIndex(post => post.id === action.payload)
         state.posts[index2].like_count--;
       return {
         ...state,
-        liked: !state.liked
+        liked: false
       };
       case HAS_USER_LIKED:
         return {

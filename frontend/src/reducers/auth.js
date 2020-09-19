@@ -8,7 +8,7 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   USER_DETAILS,
-  UPDATE_USER_INFO, GET_POST_AUTHOR, GET_AUTHOR_DETAILS, GET_COMMENT_AUTHOR,
+  UPDATE_USER_INFO, GET_POST_AUTHOR, GET_AUTHOR_DETAILS
   // LIKE_POST,
   // UNLIKE_POST
 } from '../actions/types';
@@ -22,7 +22,6 @@ const initialState = {
   likes: [],
   post_author: null,
   author_details: null,
-  comment_author: null
 };
 
 export default function(state = initialState, action) {
@@ -44,11 +43,11 @@ export default function(state = initialState, action) {
         ...state,
         post_author : action.payload
       }
-    case GET_COMMENT_AUTHOR: 
-    return {
-      ...state,
-      comment_author : action.payload
-    }
+    // case GET_COMMENT_AUTHOR: 
+    // return {
+    //   ...state,
+    //   comment_author : action.payload
+    // }
     case USER_DETAILS:
       return {
         ...state,

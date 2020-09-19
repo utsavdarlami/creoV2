@@ -66,8 +66,8 @@ class SinglePost extends Component {
                     { (publisher === user_id) ? 
                     (<button onClick={this.handleDelete}>Delete</button>):
                     (null)}
+                    {this.props.liked}
                 </div>
-
                 <CommentForm postId = {postId} />
                 <CommentList postId = {postId} />
                 
@@ -83,7 +83,8 @@ const mapStateToProps = (state, ownProps) => {
         post: state.posts.posts.find(post => post.id === parseInt(id)),
         auth: state.auth,
         check_liked: state.posts.check_liked,
-        check_saved: state.posts.check_saved
+        check_saved: state.posts.check_saved,
+        liked: state.posts.liked,
     };
 };
 

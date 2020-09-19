@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import { getAuthorDetails } from "../../actions/auth";
-import {withRouter, Link} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import { getAuthorPost } from '../../actions/posts';
 
 class AuthorDetails extends Component {
