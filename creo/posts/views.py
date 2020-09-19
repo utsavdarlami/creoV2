@@ -238,7 +238,6 @@ class CommentViewSet(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class UsernameCommentViewSet(viewsets.ReadOnlyModelViewSet):
-
     queryset = CommentPost.objects.all()
     permissions_classes = [
         permissions.IsAuthenticated,
@@ -253,3 +252,10 @@ class UsernameCommentViewSet(viewsets.ReadOnlyModelViewSet):
 
             return Response(serializer.data)
         return Response([])
+
+@api_view(['GET'])
+def add_viewcount_post(request, pk=None):
+    current_post = get_object_or_404(Posts, pk=pk)
+    current_post.view_count= F('view_count') + 1
+    current_post.save()
+    return Response({"Success":"view count increased"},status = status.HTTP_200_OK)

@@ -104,25 +104,9 @@ class SaveSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def create(self, validated_data):
-        # print(validated_data)
-        # post_validated_data = {}
         post = validated_data.pop('post',None)
-        # print(post_data)
 
         post = Posts.objects.get(pk=validated_data["post_id"])
-        # print(instance_post.data)
-        # instance_serializer = PostSerializer(instance_post)
-
-        # post = instance_serializer.data
-
-        # like_count = post_data.pop("like_count")
-
-        # post_validated_data["like_count"] = like_count + 1
-        # print(like_count)
-        # instance_post.save()
-
-        # post = PostSerializer.update(PostSerializer(),instance_post,validated_data=post_validated_data)
-        # validated_data["publisher"] = self.request.user
         save = Saves.objects.create(post=post,**validated_data)
 
         return post,save
