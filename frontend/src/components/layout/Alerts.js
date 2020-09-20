@@ -16,11 +16,8 @@ export class Alerts extends Component{
         const {error,alert,message} = this.props;
         if(error !== prevProps.error){
             //alert.error("There is an error");
-            if(error.msg.name){
-                alert.error(`Name : ${error.msg.name.join()}`);
-            }
-            if(error.msg.email){
-                alert.error(`Email: ${error.msg.email.join()}`);
+            if(error.msg.password){
+                alert.error(`Name : ${error.msg.password.join()}`);
             }
             if(error.msg.message){
                 alert.error(`message: ${error.msg.message.join()}`);
@@ -28,8 +25,13 @@ export class Alerts extends Component{
             if(error.msg.non_field_errors){
                 alert.error(`message: ${error.msg.non_field_errors.join()}`);
             }
-            if(error.msg.username){
-                alert.error(`message: ${error.msg.username.join()}`);
+            if(error.msg.user){
+                if(error.msg.user.email){
+                    alert.error(`Email: ${error.msg.user.email.join()}`);
+                }
+                if(error.msg.user.username){
+                    alert.error(`Email: ${error.msg.user.username.join()}`);
+                }
             }
             if(error.msg.profile_pic){ 
                 alert.error(`message: ${error.msg.profile_pic.join()}`);

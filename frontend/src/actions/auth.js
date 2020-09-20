@@ -110,6 +110,7 @@ export const register = ({
     last_name,
     username,
     password,
+    confirm_password,
     email,
     gender,
 }) => dispatch => {
@@ -121,7 +122,8 @@ export const register = ({
     };
 
     const body = JSON.stringify({
-        user: { first_name, last_name, username, email, password },
+        user: { first_name, last_name, username, email, password},
+        confirm_password,
         gender,
     });
 

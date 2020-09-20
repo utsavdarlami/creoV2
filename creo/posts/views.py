@@ -78,7 +78,7 @@ class PostListViewSet(viewsets.ReadOnlyModelViewSet):
 
 class UsersPostView(viewsets.ReadOnlyModelViewSet):
 
-    queryset = Posts.objects.all()
+    queryset = Posts.objects.all().order_by('-created_at')
     permissions_classes = [
         permissions.IsAuthenticated,
     ]
@@ -86,8 +86,9 @@ class UsersPostView(viewsets.ReadOnlyModelViewSet):
     serializer_class = PostSerializer
 
     def retrieve(self, request, *args, **kwargs):
-        if Posts.objects.filter(publisher=self.kwargs.get('pk')).exists():
-            posts = Posts.objects.filter(publisher=self.kwargs.get('pk'))
+        if self.queryset.filter(publisher=self.kwargs.get('pk')).exists():
+            # print("done""")
+            posts = self.queryset.filter(publisher=self.kwargs.get('pk'))
             serializer = PostSerializer(posts, many=True)
             return Response(serializer.data)
         return Response([])
