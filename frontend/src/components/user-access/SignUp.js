@@ -42,19 +42,22 @@ class SignUp extends Component {
       confirmpassword,
       gender,
     } = this.state;
-    if (password !== confirmpassword) {
-      alert('Passwords do not match');
-    } else {
+    //if (password !== confirmpassword) {
+      //alert('Passwords do not match');
+    //}
+    //else {
+      const confirm_password = confirmpassword;
       const newUser = {
         first_name,
         last_name,
         username,
         password,
+        confirm_password,
         email,
         gender,
       };
       this.props.register(newUser);
-    }
+    //}
   }
 
   render() {

@@ -13,6 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 # Register Serializer
 class RegisterSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = User
         fields = ('id','first_name','last_name','username','email','password')
@@ -30,6 +31,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
 
 
+
 # Login Serializer
 class LoginSerializer(serializers.Serializer):
     username  = serializers.CharField()
@@ -45,6 +47,7 @@ class LoginSerializer(serializers.Serializer):
 class UserProfileInfoSerializer(serializers.ModelSerializer):
 
     user = RegisterSerializer(required=False)
+    confirm_password = serializers.CharField(required=False)
     # user_id = serializers.IntegerField(required=False)
     first_name = serializers.CharField(max_length=150,required=False)
     last_name= serializers.CharField(max_length=150,required=False)
@@ -58,8 +61,16 @@ class UserProfileInfoSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         # print(validated_data)
         user_data = validated_data.pop('user',None)
+        confirm_password = validated_data.pop('confirm_password',None)
+
         if user_data == None:
-            raise serializers.ValidationError({"user": "It must not be None when creating"})
+            raise serializers.ValidationError({"user": ["It must not be None when creating"]})
+
+        if confirm_password == None:
+            raise serializers.ValidationError({"password":["Confirm Password Not Provided Match"]})
+
+        if user_data["password"]!=confirm_password:
+            raise serializers.ValidationError({"password":["Passwords Does Not Match"]})
 
         user = RegisterSerializer.create(RegisterSerializer(), validated_data=user_data)
         # validated_data["user"] = user
