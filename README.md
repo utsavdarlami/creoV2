@@ -6,11 +6,22 @@
 - Gyanas Luitel 
 - Niraj Tamang
 - Utsav Darlami
- 
+
+## For Django Server
+
 ```
 $ pipenv shell 
 $ pipenv install
+$ cd creo
 $ python manage.py runserver 
+```
+
+## For React frontend
+
+```
+$ cd frontend
+$ npm install
+$ npm start
 ```
 
 ## BACKEND TODO 
@@ -18,11 +29,11 @@ $ python manage.py runserver
 - [x] Like Part of The Post 
 - [x] Save the post 
 - [x] Comment on POst 
-- [ ] Password Change 
-- [ ] Add Video/Music
-- [ ] Tags On Content
+- [x] Password Change 
+- [x] Add Video/Music
+- [x] Tags On Content
 - [ ] Follow Artist
 
-## FRONTEDN TODO
+## FRONTEND TODO
 
 - [ ] Make a Plan
