@@ -74,9 +74,7 @@ class EditProfile extends Component {
             last_name,
             email,
         }
-
-        //console.log(user)
-
+        
         const form_data = new FormData();
 
         // general form 
