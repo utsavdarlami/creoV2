@@ -8,7 +8,8 @@ import {
     savePost,
     unsavePost,
     checkSave,
-    deletePost
+    deletePost,
+    increase_viewcount
 } from "../../actions/posts";
 import PropTypes from "prop-types";
 import {Link, withRouter} from "react-router-dom";
@@ -37,12 +38,14 @@ class SinglePost extends Component {
         unlikePost: PropTypes.func.isRequired,
         savePost: PropTypes.func.isRequired,
         unsavePost: PropTypes.func.isRequired,
-        deletePost: PropTypes.func.isRequired
+        deletePost: PropTypes.func.isRequired,
+        increase_viewcount: PropTypes.func.isRequired
     }
 
     componentDidMount(){
         const id = this.props.match.params.post_id;
         this.props.getSinglePost(id);
+        this.props.increase_viewcount(id);
         this.props.checkLike(id);
         this.props.checkSave(id);
         setTimeout(() => {
@@ -133,17 +136,35 @@ class SinglePost extends Component {
         var gmtDate = now.toLocaleString();
         const like_count = this.props.post? this.props.post.like_count : null;
         const post = this.props.post ? (
-            <div className="post-contents2">
-                <div className="postContainer2">
-                    <p>Id:{this.props.post.id} </p>
-                    <p>Title:{this.props.post.title}</p>
-                    <p>Description:{this.props.post.description}</p>
-                    <p>Created at: {gmtDate} </p>
-                    {this.props.liked}
-                    <img className="post-image" src={this.props.post.content} alt="content" />
-                    <p>{this.props.post.like_count} likes</p>
+                <div> 
+                        <div className="post-metadata">
+                            <p className="post-title">Title:{this.props.post.title}</p>
+                            <p className="post-createdat text-muted">Created at: {gmtDate} </p>
+                        </div>
+
+                        <div className="post-content">
+                            {(() => {
+                                switch(this.props.post.post_type) {
+                                    case "I":
+                                        return <img src={this.props.post.content} alt="content" />
+                                    case "V":
+                                        return  <video width="100%" height="100%" controls><source src={this.props.post.content} /></video>;
+                                    case "A":
+                                        return  <audio controls><source src={this.props.post.content} /></audio>
+                                    default:
+                                        return ""
+                                }
+                            })()}
+                            
+                        </div>
+
+                        <div className="post-content">
+                        <p>Description:{this.props.post.description}</p>
+                        {/* <p>{this.props.post.like_count} likes</p>
+                        <p>{this.props.post.view_count}</p> */}
+                        </div>
+                        <hr />
                 </div>
-            </div>
         ) : (
             <div>
                 <p>Loading post...</p>
@@ -155,22 +176,32 @@ class SinglePost extends Component {
         const postId = this.props.post ? (this.props.post.id) : (null)
 
         return (
-            <div>
-                <h1>Hello</h1>
-                {console.log(this.props.liked)}
+            <div className="detail-wrapper">
+                <div className="post card">
                     {post}
-                    {likeButton}
-                    {saveButton}
+                    <div className="post-content">
+                        <span>
+                            <p>Post Author: {(this.state.is_liked_by_user) ? 
+                        (<PostAuthor publisher = {publisher} />
+                        ) : (null)}</p>
+                        </span>
+                        <span className="post-like">
+                            {likeButton} {like_count}
+                        </span>
+                        <span className="post-save">
+                            {saveButton}
+                        </span>
+                    </div>
                     { (publisher === user_id) ? 
                     (<button onClick={this.handleDelete}>Delete</button>):
                     (null)}
                     <hr />
-                    <p>Post Author: {(this.state.is_liked_by_user) ? 
-                    (<PostAuthor publisher = {publisher} />
-                    ) : (null)}</p>
                     <CommentForm postId = {postId} />
                     <CommentList postId = {postId} />
                     {this.props.liked}
+                    </div>
+
+                    
             </div>
         )
     }
@@ -194,4 +225,5 @@ export default connect(mapStateToProps,
         savePost, 
         unsavePost, 
         checkSave,
-    deletePost})(withRouter(SinglePost));
+        deletePost, 
+        increase_viewcount})(withRouter(SinglePost));

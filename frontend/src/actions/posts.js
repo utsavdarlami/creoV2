@@ -19,7 +19,7 @@ import {
   ADD_COMMENT_FAIL, 
   GET_COMMENTS,
   GET_AUTHOR_POST,
-  GET_SINGLE_POST
+  GET_SINGLE_POST, VIEW_COUNT
 } from './types';
 
 const back_api = "http://127.0.0.1:8000";
@@ -236,6 +236,18 @@ export const getSavedContent = () => (dispatch, getState) => {
   .catch(err => console.log(err));
 }
 
+export const increase_viewcount = id => (dispatch, getState) => {
+  axios.get(`${back_api}/api/add_viewcount_post/${id}`)
+  .then(res => {
+    dispatch({
+      type: VIEW_COUNT,
+      payload: id,
+    });
+  })
+  .catch(err => {
+    console.log(err);
+  });
+};
 
 
 

@@ -4,17 +4,35 @@
     box-sizing: border-box;
 }
 
+body, button, input, textarea{
+    color: black;
+    font-family: 'Asap', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+body{
+    background-color: #EDEDED;
+    font-family: 'Asap', sans-serif;
+}
+
+img{
+    display: block;
+    width: 100%;
+}
+
+section{
+    margin: 10px;
+}
+
 a{
     text-decoration: none;
 }
-/* body{
-    background-color: #eceffc;
-} */
 
 
 /* navbar styling */
-
-/* .navbar{
+/* 
+.navbar{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -29,9 +47,9 @@ a{
     list-style: none;
 } */
 
-.nav-links{
+/* .nav-links{
     display: flex;
-}
+} */
 
 .nav-item{
     margin: 0 10px;
@@ -41,71 +59,16 @@ a{
     font-size: 160%;
     color: #2e2b2b;
     padding: 5px;
-} */
+}
 
 .logout-button{
     font-size: 140%;
     padding: 2%;
 	border-radius: 10px;
-}
-
-/* post-content styling */
-
-.post-contents{
-    display: flex;
-    flex-flow: row wrap;
-    flex: 0 0 44%;
-}
-
-.postContainer{
-    margin: 2%;
-    max-width: 25%;
-    height: 80%;
-    position: relative;
-}
-
-.postContainer p{
-    position: fixed;
-    visibility: hidden;
-    background-color: black;
-    color: white;
-}
-
-.postContainer:hover p {
-    visibility: visible;
-    width: 25%;
-    padding: 8px 15px;
-}
-
-.post-image{
-    max-width: 100%;
-    height: auto;
-}
-
-
-.post-contents2{
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 44%;
-}
-
-.postContainer2{
-    border: 1px solid red;
-    margin: 2%;
-    max-width: 33%;
-    height: 50%;
-}
-
-.post-image2{
-    max-width: 100%;
-    height: 300px;
-}
-
-
+} */
 
 /* access-form-styling */
+
 /* LOG IN  -  SIGN UP PAGE STYLING */
 .access-form-display{
     display: grid;
@@ -375,3 +338,351 @@ a{
     font-size: 120%;
     color: black;
 }
+
+/*--------------------------------------------------------------
+	START THE POSTS STYLES
+--------------------------------------------------------------*/
+
+
+.main-content-area {
+	padding: 2em;
+}
+
+
+.post {
+	background-color: white;
+	margin-bottom: 1em;
+	/*border: 2px solid red;*/
+	border-radius: 15px;
+}
+
+.post div>img{
+	border-radius: 15px;
+}
+
+.post div>video{
+    border-radius: 2%;
+}
+
+.post a {
+	color: black;
+	text-decoration: none;
+}
+
+.post-content {
+	padding: 5px;
+	/*border: 2px solid blue;*/
+	display: flex;
+	flex-wrap: row wrap;
+	align-items: center;
+	/*justify-content: space-between;*/
+}
+
+.account-img {
+  height: 35px;
+  width: 35px;
+  /*margin-right: 20px;*/
+  /*margin-bottom: 16px;*/
+}
+
+
+.post-username{
+	margin-left: 10px;
+}
+
+.post-like{
+	margin-left: auto;
+	padding: 0 20px 0 10px;
+	/*height: 50px;*/
+}
+
+.post-save{
+	margin-right: 10px;
+
+}
+
+.text-muted{
+	color: grey;
+}
+    
+    
+/*--------------------------------------------------------------
+	END THE POSTS STYLES
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+	START THE POST DETAIL VIEW STYLES
+--------------------------------------------------------------*/
+
+.detail-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*border: 2px solid red;*/
+    margin: 100px auto 0 auto;
+    padding: 10px;
+  }
+
+  .card{
+    padding: 5px;
+    display: flex;
+  }
+  
+  .post-title{
+    color: black;
+    font-size: 25px;
+    font-style: bold;
+    padding: 0px;
+    margin-bottom:10px;
+  }
+  
+  .postdata{
+    flex-basis: auto;
+  /*  height: 100%;
+    width: 100%;*/
+    margin-bottom: 10px;
+    /*border: 2px solid green;*/
+  }
+  
+  .postdata img{
+    width: 850px;
+    height: auto;
+    object-fit: contain;
+  }
+  
+  
+  .post div>img{
+    border-radius: 15px;
+  }
+  
+  .post-content {
+    padding: 5px;
+    /*border: 2px solid blue;*/
+    display: flex;
+    flex-wrap: row wrap;
+    align-items: center;
+    /*justify-content: space-between;*/
+  }
+  
+  .account-img {
+    height: 35px;
+    width: 35px;
+    /*margin-right: 20px;*/
+    /*margin-bottom: 16px;*/
+  }
+  
+  
+  .post-username{
+    margin-left: 10px;
+  }
+  
+  .post-like{
+    margin-left: auto;
+    padding: 0 20px 0 10px;
+    /*height: 50px;*/
+  }
+  
+  .post-save{
+    margin-right: 10px;
+  
+  }
+  
+  .textarea{
+    width: 90%;
+    border-radius: 5px;
+  }
+
+
+  /*--------------------------------------------------------------
+	END THE POST DETAIL VIEW STYLES
+--------------------------------------------------------------*/
+
+
+  /*--------------------------------------------------------------
+	EDIT PROFILE START
+--------------------------------------------------------------*/
+.container{
+    position: relative;
+  }
+  
+  .avatar {
+    vertical-align: middle;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    margin: auto;
+  }
+  
+  .avatar>img{
+    display: block;
+  }
+  
+  .overlay {
+    position: absolute; 
+    bottom: 0; 
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5); /* Black see-through */
+    color: #f1f1f1; 
+    width: 100%;
+    transition: .5s ease;
+    opacity:0;
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .container:hover .overlay {
+    opacity: 1;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2% -16px;
+    margin-bottom: 20px;
+  }
+  
+  .col-25 {
+    flex: 25%;
+  }
+  
+  .col-50 {
+    flex: 50%;
+  }
+  
+  .col-75 {
+    flex: 75%;
+  }
+  
+  .col-25,
+  .col-50,
+  .col-75 {
+    padding: 0 16px;
+  }
+  
+  .container {
+    background-color: #f2f2f2;
+    padding: 5px 20px 15px 20px;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+  }
+  
+  
+  .editprofile-text, .editprofile-url, .editprofile-file, .editprofile-email {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  .editprofile-radio{
+      padding: 0px;
+      margin: 0px;
+    }
+  
+  label {
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .icon-container {
+    margin-bottom: 20px;
+    padding: 7px 0;
+    font-size: 24px;
+  }
+  
+  .btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    width: 100%;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 17px;
+  }
+  
+  .btn:hover {
+    background-color: #45a049;
+  }
+  
+  a {
+    color: #2196F3;
+  }
+  
+  hr {
+    border: 1px solid lightgrey;
+  }
+  
+  span.price {
+    float: right;
+    color: grey;
+  }
+  
+  /* Responsive layout - when the screen is less than 800px wide,
+   make the two columns stack on top of each other instead of next to 
+   each other (also change the direction - make the "cart" column go on top)
+    */
+  @media (max-width: 800px) {
+    .row {
+      flex-direction: column-reverse;
+    }
+    .col-25 {
+      margin-bottom: 20px;
+    }
+  }
+  
+  
+  h3{
+    text-align: center;
+  }
+  
+  .content{
+    padding-top: 10px;
+    margin-bottom: 0px;
+  }
+  
+  input[type=file] {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    /*border: 1px solid #ccc;*/
+    border-radius: 3px;
+  }
+
+  @media screen and (min-width: 810px) {
+
+	.posts {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+
+	.post {
+		flex-basis: 49%;
+	}
+}
+
+	.post-one-third a>div:first-child{
+		height: 350px;
+		/*flex-basis: 50%*/
+	}
+
+	.post-one-third a>div:first-child>img{
+		height: 100%;
+		object-fit: cover;
+	}
+
+
+@media screen and (min-width: 1120px) {
+
+	.post-one-third {
+		flex-basis: 32%;
+    }
+
+    /*--------------------------------------------------------------
+	EDIT PROFILE START
+--------------------------------------------------------------*/
