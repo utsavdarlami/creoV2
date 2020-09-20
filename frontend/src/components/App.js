@@ -38,6 +38,8 @@ class App extends React.Component {
   componentDidMount() {
     store.dispatch(loadUser());
     store.dispatch(getPosts());
+    //store.dispatch(getPosts("-view_count"));
+    //store.dispatch(getPosts("-like_count"));
   }
 
   render() {
