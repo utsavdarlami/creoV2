@@ -13,8 +13,7 @@ import {
   UNSAVE_POST,
   GET_SAVED_CONTENT,
   HAS_USER_SAVED, ADD_COMMENT, GET_COMMENTS,
-  GET_AUTHOR_POST, GET_SINGLE_POST,
-  LIKE_FAIL
+  GET_AUTHOR_POST, GET_SINGLE_POST, VIEW_COUNT, LIKE_FAIL
 } from '../actions/types.js';
 
 const initialState = {
@@ -92,11 +91,11 @@ export default function(state = initialState, action) {
         ...state,
       }
     case LIKE_POST:
-      // let index = state.posts.findIndex(post => post.id === action.payload.id);
-      // state.posts[index] = action.payload;
+      let index = state.posts.findIndex(post => post.id === action.payload.id);
+      state.posts[index] = action.payload;
+      state.single_post = action.payload;
       return {
         ...state,
-        single_post : action.payload,
         liked: true
       };
       case UNLIKE_POST:
@@ -105,6 +104,11 @@ export default function(state = initialState, action) {
         ...state,
         liked: false
       };
+      case VIEW_COUNT:
+        state.single_post.view_count++;
+        return{
+          ...state,
+        }
       case HAS_USER_LIKED:
         return {
           ...state,

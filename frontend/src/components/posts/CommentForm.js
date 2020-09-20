@@ -44,14 +44,15 @@ class CommentForm extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <label>Comment: </label>
-                    <input 
+                    <textarea 
                         type="text"
                         value={this.state.comment}
                         name="comment"
-                        onChange = {this.handleChange} />
-
-                    <button>Submit</button>
+                        onChange = {this.handleChange}
+                        className="textarea"
+                        placeholder="Add a comment"
+                         />
+                    <button style={{marginLeft: "2%"}}>Submit</button>
                 </form>
             </div>
         )

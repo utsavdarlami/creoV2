@@ -19,27 +19,35 @@ class PostedContent extends Component {
 
   render() {
     const posted_content =  
-    <div className="post-contents2">
-      {this.props.user_posts.map(post => (
-          <div className="postContainer2" key={post.id}>
-            <Link to={`/posts/${post.id}`}>
-              <p>Id: {post.id}</p>
-              <p>Title: {post.title}</p>
-              <p>Description: {post.description}</p>
-              {(() => {
-                switch (post.post_type){
-                  case "I":
-                    return <img className="post-image2" src={post.content} alt="content" />;
-                  case "V": 
-                    return  <video width="100%" height="240" controls><source src={post.content} /></video>;
-                  case "A": 
-                    return  <audio controls><source src={post.content} /></audio>
-                  default: return ""
-                  }
-              })()}
-            </Link>    
-            </div>
+    <div className="content-area">
+      <main className="main-content-area">
+        <section className="posts">
+          {this.props.user_posts.map(post => (
+            <article className="post post-one-third" key={post.id}>
+              <Link to={`/posts/${post.id}`}>
+                <div>
+                  {(() => {
+                    switch (post.post_type){
+                      case "I":
+                        return <img src={post.content} alt="content" />;
+                      case "V": 
+                        return  <video width="100%" height="100%" controls><source src={post.content} /></video>;
+                      case "A": 
+                        return  <audio controls><source src={post.content} /></audio>
+                      default: return ""
+                      }
+                  })()}
+                </div>
+                <div className="post-content">
+                  <span>
+                    {post.title}
+                  </span>
+                </div>
+              </Link>    
+              </article>
     ))}
+        </section>
+      </main>
     </div>
 
     return (

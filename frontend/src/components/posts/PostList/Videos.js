@@ -13,24 +13,34 @@ class Videos extends Component {
     
     render() {
             return (
-                <div>
-                    <PostListNavbar />
-                    <div className="post-contents2">
-                        {this.props.posts.map(post => (
-                            post.post_type === "V" ? 
-                            (
-                            <div className="postContainer2" key={post.id}>
-                                <Link to={`posts/${post.id}`}>
-                                <p>Title: {post.title}</p>
-                                <video width="100%" height="240" controls>
-                                    <source src={post.content} />
-                                </video>
-                                </Link>
-
-                            </div>) :
-                            (null)
-                        ))}
-                    </div>
+                <div className="content-area">
+                    {/* <PostListNavbar /> */}
+                    <main className="main-content-area">
+                        <section className="posts">
+                            {this.props.posts.map(post => (
+                                post.post_type === "V" ? 
+                                (
+                                <article className="post post-one-third" key={post.id}>
+                                    <Link to={`posts/${post.id}`}>
+                                        <div style={{border: "1px solid black",
+                                            borderRadius: "2%",
+                                            backgroundColor: "gray"}} >
+                                            <video 
+                                            width="100%" height="100%" controls>
+                                                <source src={post.content} />
+                                            </video>
+                                        </div>
+                                        <div className="post-content">
+                                            <span>
+                                                {post.title}
+                                            </span>
+                                        </div>
+                                    </Link>
+                                </article>) :
+                                (null)
+                            ))}
+                        </section>
+                    </main>
                 </div>
             )
     }

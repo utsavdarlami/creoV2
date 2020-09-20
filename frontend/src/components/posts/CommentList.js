@@ -24,11 +24,12 @@ class CommentList extends Component {
                 (                
                 <div>            
                     {this.props.post_comments.map(post_comment => (
-                    <div key={post_comment.id} style={{border: "1px solid black"}}>
+                    <div key={post_comment.id}>
                         <div>
                             {post_comment.publisher.username}
                         </div>
-                     <p>Comment: {post_comment.comment}</p>
+                     <p>{post_comment.comment}</p>
+                     <hr />
                      </div>
                 ))}
             </div>)

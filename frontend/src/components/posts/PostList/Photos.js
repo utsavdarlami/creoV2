@@ -12,20 +12,29 @@ class Photos extends Component {
     
     render() {
             return (
-                <div>
-                    <PostListNavbar />
-                    <div className="post-contents2">
-                        {this.props.posts.map(post => (
-                            post.post_type === "I" ? 
-                            (
-                            <div className="postContainer2" key={post.id}>
-                                <p>Title: {post.title}</p>
+                <div className="content-area">
+                    {/* <PostListNavbar /> */}
+                    <main className="main-content-area">
+                        <section className="posts">
+                            {this.props.posts.map(post => (
+                                post.post_type === "I" ? 
+                                (
+                                <article className="post post-one-third" key={post.id}>
                                 <Link to={`posts/${post.id}`}>
-                                    <img className="post-image2" src={post.content} alt="content" />
-                                </Link>    
-                            </div>) : (null)
-                        ))}
-                    </div>
+                                    <div>
+                                        <img className="post-image2" src={post.content} alt="content" />
+                                    </div>
+                                    
+                                    <div className="post-content">
+                                        <span>
+                                            {post.title}
+                                        </span>
+                                    </div>
+                                    </Link>    
+                                </article>) : (null)
+                            ))}
+                        </section>
+                    </main>
                 </div>
             )
     }
