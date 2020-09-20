@@ -7,8 +7,9 @@ from user.serializers import UserSerializer
 from django.core.exceptions import PermissionDenied
 
 from rest_framework.decorators import api_view
-from rest_framework import status
+from rest_framework import status,filters
 from rest_framework.response import Response
+
 
 from django.shortcuts import get_object_or_404
 from django.db.models import F
@@ -73,8 +74,11 @@ class PostListViewSet(viewsets.ReadOnlyModelViewSet):
     """
     This viewset automatically provides `list` and `detail` actions.
     """
-    queryset = Posts.objects.all()
+    # queryset = Posts.objects.all().order_by()
+    queryset = Posts.objects.all().order_by('-created_at')
     serializer_class = PostSerializer
+    filter_backends = [filters.OrderingFilter]
+    ordering_fields = ['like_count', 'view_count']
 
 class UsersPostView(viewsets.ReadOnlyModelViewSet):
 

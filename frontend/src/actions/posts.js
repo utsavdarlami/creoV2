@@ -26,9 +26,9 @@ import {
 const back_api = "http://127.0.0.1:8000";
 
 // GET ALL POSTS
-export const getPosts = () => dispatch => {
+export const getPosts = (based_on="") => dispatch => {
     axios
-        .get(`${back_api}/api/allposts/`)
+        .get(`${back_api}/api/allposts/?ordering=${based_on}`)
         .then(res => {
             dispatch({
                 type: GET_ALL_POSTS,
