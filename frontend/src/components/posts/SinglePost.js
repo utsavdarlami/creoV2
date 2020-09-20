@@ -42,34 +42,37 @@ class SinglePost extends Component {
 
     componentDidMount(){
         const id = this.props.match.params.post_id;
+        const { isAuthenticated } = this.props.auth;
         this.props.getSinglePost(id);
-        this.props.checkLike(id);
-        this.props.checkSave(id);
-        setTimeout(() => {
-            if (this.props.check_liked.like === true) {
-                console.log("check true");
-                this.setState({
-                    is_liked_by_user : true
-                })
-            } else {
-                console.log("check false");
-                this.setState({
-                    is_liked_by_user : false
-                })
-            }
+        if(isAuthenticated){
+            this.props.checkLike(id);
+            this.props.checkSave(id);
+            setTimeout(() => {
+                if (this.props.check_liked.like === true) {
+                    //console.log("check true");
+                    this.setState({
+                        is_liked_by_user : true
+                    })
+                } else {
+                    //console.log("check false");
+                    this.setState({
+                        is_liked_by_user : false
+                    })
+                }
 
-            if (this.props.check_saved) {
-                console.log(" saved true");
-                this.setState({
-                    is_saved_by_user : true
-                })
-            } else {
-                console.log("saved false");
-                this.setState({
-                    is_saved_by_user : false
-                })
-            }
-        }, 1000);
+                if (this.props.check_saved) {
+                    //console.log(" saved true");
+                    this.setState({
+                        is_saved_by_user : true
+                    })
+                } else {
+                    //console.log("saved false");
+                    this.setState({
+                        is_saved_by_user : false
+                    })
+                }
+            }, 1000);
+        }
     }
 
     handleLike(){
@@ -157,7 +160,6 @@ class SinglePost extends Component {
         return (
             <div>
                 <h1>Hello</h1>
-                {console.log(this.props.liked)}
                     {post}
                     {likeButton}
                     {saveButton}
@@ -182,7 +184,7 @@ const mapStateToProps = state => ({
     liked: state.posts.liked,
     auth: state.auth,
     check_saved: state.posts.check_saved,
-    is_saved: state.posts.is_saved
+    is_saved: state.posts.is_saved,
 })
 
 export default connect(mapStateToProps,

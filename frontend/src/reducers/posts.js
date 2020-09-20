@@ -13,7 +13,8 @@ import {
   UNSAVE_POST,
   GET_SAVED_CONTENT,
   HAS_USER_SAVED, ADD_COMMENT, GET_COMMENTS,
-  GET_AUTHOR_POST, GET_SINGLE_POST
+  GET_AUTHOR_POST, GET_SINGLE_POST,
+  LIKE_FAIL
 } from '../actions/types.js';
 
 const initialState = {
@@ -35,6 +36,7 @@ export default function(state = initialState, action) {
     case GET_ALL_POSTS:
       return {
         ...state,
+
         posts: action.payload,
       };
     case GET_SINGLE_POST:
@@ -125,6 +127,10 @@ export default function(state = initialState, action) {
           ...state,
           check_saved: action.payload
         }
+       case LIKE_FAIL:
+          return {
+              ...state,
+          }
     default:
       return state;
   }

@@ -50,9 +50,9 @@ class PostForm extends Component {
       content: null,
       post_type: ''
     });
-    setTimeout(() => {
-      this.props.history.push("/profile");
-    }, 2000);
+    //setTimeout(() => {
+      //this.props.history.push("/profile");
+    //}, 2000);
   }
 
   render() {
@@ -70,6 +70,7 @@ class PostForm extends Component {
               name="title"
               placeholder="Enter the title here"
               onChange={this.handleChange}
+              required
             />
           </div>
 
@@ -82,6 +83,7 @@ class PostForm extends Component {
             name="description"
             onChange={this.handleChange}
             placeholder="Enter the description"
+            required
           />
         </div>
 

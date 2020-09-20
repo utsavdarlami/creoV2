@@ -37,3 +37,8 @@ export const GET_POST_AUTHOR = "GET_POST_AUTHOR";
 export const GET_AUTHOR_DETAILS = "GET_AUTHOR_DETAILS";
 export const GET_COMMENT_AUTHOR = "GET_COMMENT_AUTHOR";
 export const GET_AUTHOR_POST = "GET_AUTHOR_POST";
+
+// messages
+export const CREATE_MESSAGE = "CREATE_MESSAGE";
+export const GET_ERRORS = "GET_ERRORS";
+export const LIKE_FAIL = "LIKE_FAIL";

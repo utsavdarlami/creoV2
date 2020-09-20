@@ -23,6 +23,16 @@ import Photos from './posts/PostList/Photos';
 import Videos from "./posts/PostList/Videos"
 import Audios from "./posts/PostList/Audios"
 
+// Alert 
+import {Provider as AlertProvider} from 'react-alert';
+import AlertTemplate from 'react-alert-template-basic';
+import Alerts from './layout/Alerts';
+//ALERT OPTIONS
+const alertOptions = {
+    timeout : 3000,
+    position : 'top center'
+}
+
 class App extends React.Component {
   /* do this after completing */
   componentDidMount() {
@@ -32,29 +42,32 @@ class App extends React.Component {
 
   render() {
     return (
-      <Provider store={store}>
-        <BrowserRouter>
-          <Fragment>
-            <Navbar />
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/signup" component={SignUp} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/photos" component={Photos} />
-              <Route exact path="/videos" component={Videos} />
-              <Route exact path="/audios" component={Audios} />
-              <Route exact path="/posts/:post_id" component={SinglePost} />
-              <PrivateRoute exact path="/users/:author_id" component={AuthorDetails} />
-              <PrivateRoute exact path="/profile" component={Profile} />
-              <PrivateRoute exact path="/editprofile" component={EditProfile} />
-              <PrivateRoute path="/profile/posted" component={PostedContent} />
-              <PrivateRoute path="/profile/liked" component={LikedContent} />
-              <PrivateRoute path="/profile/saved" component={SavedContent} />
-              <PrivateRoute exact path="/submitpost" component={PostForm} />
-            </Switch>
-          </Fragment>
-        </BrowserRouter>
-      </Provider>
+        <Provider store={store}>
+            <AlertProvider template={AlertTemplate} {...alertOptions}>
+                <BrowserRouter>
+                    <Fragment>
+                        <Navbar />
+                        <Alerts />
+                        <Switch>
+                            <Route exact path="/" component={Home} />
+                            <Route exact path="/signup" component={SignUp} />
+                            <Route exact path="/login" component={Login} />
+                            <Route exact path="/photos" component={Photos} />
+                            <Route exact path="/videos" component={Videos} />
+                            <Route exact path="/audios" component={Audios} />
+                            <Route exact path="/posts/:post_id" component={SinglePost} />
+                            <PrivateRoute exact path="/users/:author_id" component={AuthorDetails} />
+                            <PrivateRoute exact path="/profile" component={Profile} />
+                            <PrivateRoute exact path="/editprofile" component={EditProfile} />
+                            <PrivateRoute path="/profile/posted" component={PostedContent} />
+                            <PrivateRoute path="/profile/liked" component={LikedContent} />
+                            <PrivateRoute path="/profile/saved" component={SavedContent} />
+                            <PrivateRoute exact path="/submitpost" component={PostForm} />
+                        </Switch>
+                    </Fragment>
+                </BrowserRouter>
+            </AlertProvider>
+        </Provider>
     );
   }
 }
