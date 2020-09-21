@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import { connect } from "react-redux";
 import { userDetails } from "../../actions/auth";
 import {NavLink} from 'react-router-dom';
+import { Button } from "react-bootstrap";
 
 class UserDetails extends Component { 
   static propTypes = {
@@ -27,7 +28,7 @@ class UserDetails extends Component {
           <div className="profile-row">
             <div className="profile-col-75">
               <div className="profile-user-data">
-                <p className="profile-user-label">Username:{this.props.user_details.user.username}</p>
+                <p className="profile-user-label">@ {this.props.user_details.user.username}</p>
                 <p className="profile-user-label"> Name: {this.props.user_details.user.first_name} {this.props.user_details.user.last_name}</p>
                 <p className="profile-user-label">Email: {this.props.user_details.user.email}</p>
                 <p className="profile-user-label">Profession: {this.props.user_details.bio}</p>
@@ -35,7 +36,7 @@ class UserDetails extends Component {
             </div>
             </div>
             <div className="profile-col-25">
-            <NavLink to="/editprofile"><button className="profile-edit-button">Edit Profile</button></NavLink>
+            <NavLink to="/editprofile"><Button variant="primary" style={{width: "50%"}}> Edit Profile</Button></NavLink>
               {/* <div style={{ marginLeft: "1%", border: "1px solid black"}}><NavLink to="/editprofile">Edit Profile</NavLink></div> */}
             </div>
           </div>

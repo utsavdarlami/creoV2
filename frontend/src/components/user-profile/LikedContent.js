@@ -62,14 +62,15 @@ class LikedContent extends Component {
 
     return (
       <Fragment>
-        <div className="profile-wrapper">
+        <div className="profile-wrapper" style={{ marginTop: "2%"}}>
             <UserDetails />
+            <hr />
           <div className="profile-row">
             <div className="profile-col-100">
               <div className="profile-container" id="profile-container">
-                <div className="profile-item"><NavLink to="/profile/posted">Posted Content</NavLink></div>
-                <div className="profile-item"><NavLink to="/profile/liked" activeStyle={{backgroundColor: "yellow"}}>Liked Content</NavLink></div>
-                <div className="profile-item"><NavLink to="/profile/saved">Saved Content</NavLink></div>
+                <div className="profile-item"><NavLink to="/profile/posted" style={{textDecoration: "none"}}><span>Posted</span></NavLink></div>
+                <div className="profile-item"><NavLink to="/profile/liked" style={{textDecoration: "none"}} activeStyle={{borderBottom: "2px solid black"}}><span>Liked</span></NavLink></div>
+                <div className="profile-item"><NavLink to="/profile/saved" style={{textDecoration: "none"}}><span>Saved</span></NavLink></div>
               </div>
               <hr />
             </div>

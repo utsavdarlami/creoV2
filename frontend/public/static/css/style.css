@@ -70,6 +70,7 @@ a{
 
 /* LOG IN  -  SIGN UP PAGE STYLING */
 .access-form-display{
+    height: 95vh;
     display: grid;
     /* height: 90vh; */
     grid-template-columns: 0.5fr 1fr;
@@ -79,7 +80,6 @@ a{
     grid-column: 1/2;
     background-color: burlywood;
     background: url("../bkgdimg.jpg");
-    height: 90vh;
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -614,8 +614,8 @@ a{
   
   .profile-avatar {
     vertical-align: middle;
-    width: 300px;
-    height: 300px;
+    width: 320px;
+    height: 320px;
     border-radius: 50%;
     margin: auto;
   }
@@ -669,13 +669,20 @@ a{
     padding: 5px;
     margin-left:50px;
     margin-right:50px;
+    width: 80px;
   }
   
-  .profile-item a{
-    text-decoration: none;
-    color: black;
-  }
+.profile-item span{
+  font-size: 1.2em;
+  color: black;
+  padding: 7px;
+}
 
+.profile-item span:hover{
+  font-size: 1.2em;
+  color: white;
+  background-color: rgba(120,120,120,3);
+}
 
 /*--------------------------------------------------------------
 	OWN USER PROFILE END

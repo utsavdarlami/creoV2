@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
+import { Button } from "react-bootstrap"
 
 class Login extends Component {
   constructor() {
@@ -45,7 +46,7 @@ class Login extends Component {
         </div>
         <div className="access-rhs">
           <h1 style={{ color: 'grey' }}>Sign In</h1>
-          <form onSubmit={this.handleSubmit} className="access-form">
+          <form className="access-form">
             <input
               type="text"
               name="username"
@@ -66,7 +67,8 @@ class Login extends Component {
               className="access-form-component"
             />
 
-            <button className="access-submit-button">Sign In</button>
+          <Button variant="info" onClick={this.handleSubmit} style={{width: "25%", margin: "1%"}}>Login</Button>
+            {/* <button className="access-submit-button">Sign In</button> */}
 
             <p>
               Don't have an account?

@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { register } from '../../actions/auth';
+import { Button } from "react-bootstrap"
 
 class SignUp extends Component {
   constructor() {
@@ -76,7 +77,7 @@ class SignUp extends Component {
         </div>
         <div className="access-rhs" style={{ margin: '5% 0' }}>
           <h1 style={{ color: 'grey' }}>Sign Up</h1>
-          <form onSubmit={this.handleSubmit} className="access-form">
+          <form className="access-form">
             <input
               type="text"
               value={this.state.first_name}
@@ -137,7 +138,7 @@ class SignUp extends Component {
               className="access-form-component2"
             />
 
-            <label style={{ width: '98%', margin: '3% 1%', fontSize: '120%' }}>
+            <label style={{ width: '98%', margin: '2% 1% 1% 1%', fontSize: '120%' }}>
               Gender:
             </label>
             <div className="gender-form">
@@ -177,7 +178,8 @@ class SignUp extends Component {
                 Other
               </label>
             </div>
-            <button className="access-submit-button">Submit</button>
+            <Button variant="info" onClick={this.handleSubmit} style={{width: "25%", margin: "2% 1%"}}>Submit</Button>
+            {/* <button className="access-submit-button">Submit</button> */}
             <p>
               Already have an account?
               <Link to="/login">

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import { getAuthorDetails } from "../../actions/auth";
-import {withRouter} from "react-router-dom";
+import {withRouter, Link} from "react-router-dom";
 import { getAuthorPost } from '../../actions/posts';
 
 class AuthorDetails extends Component {
@@ -20,6 +20,7 @@ class AuthorDetails extends Component {
     }
 
     render() {
+        const back_api =  "http://127.0.0.1:8000";
         const author = this.props.author_details ? 
         (
           <div className="oprofile-row">
@@ -61,23 +62,23 @@ class AuthorDetails extends Component {
         ) : 
         (null)
 
-      //   const author_content = <div className="post-contents2">
-      //   {this.props.author_posts.map(post => (
-      //     <div className="postContainer2" key={post.id}>
-      //       <Link to={`/posts/${post.id}`}>
-      //         <p>Id:{post.id}</p>
-      //         <p>Title:{post.title}</p>
-      //         <p>Description:{post.description}</p>
-      //         <img className="post-image2" src={post.content} alt="content" />
-      //       </Link>
-      //     </div>
-      //   ))}
-      // </div>
+        const author_content = <div className="post-contents2">
+        {this.props.author_posts.map(post => (
+          <div className="postContainer2" key={post.id}>
+            <Link to={`/posts/${post.id}`}>
+              <p>Id:{post.id}</p>
+              <p>Title:{post.title}</p>
+              <p>Description:{post.description}</p>
+              <img className="post-image2" src={`${back_api}${post.content}`} alt="content" />
+            </Link>
+          </div>
+        ))}
+      </div>
 
         return (
             <div className="oprofile-wrapper">
                 {author}
-                {/* {author_content} */}
+                {author_content}
             </div>
         )
 }
