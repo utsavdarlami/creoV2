@@ -20,7 +20,8 @@ import {
   ADD_COMMENT_FAIL, 
   GET_COMMENTS,
   GET_AUTHOR_POST,
-  GET_SINGLE_POST, VIEW_COUNT
+  GET_SINGLE_POST, VIEW_COUNT,
+  DELETE_COMMENT
 } from './types';
 
 const back_api = "http://127.0.0.1:8000";
@@ -247,7 +248,6 @@ export const savePost = post_id => (dispatch, getState) => {
                 //type: DELETE_POST_FAIL 
             //});
         })
-        //.catch(err => console.log(err));
 }
 
 //UNSAVE POST
@@ -305,16 +305,37 @@ export const getSavedContent = () => (dispatch, getState) => {
 }
 
 export const increase_viewcount = id => (dispatch, getState) => {
-  axios.get(`${back_api}/api/add_viewcount_post/${id}`)
-  .then(res => {
-    dispatch({
-      type: VIEW_COUNT,
-      payload: id,
-    });
-  })
-  .catch(err => {
-    console.log(err);
-  });
+    axios.get(`${back_api}/api/add_viewcount_post/${id}`)
+        .then(res => {
+            dispatch({
+                type: VIEW_COUNT,
+                payload: id,
+            });
+        })
+        .catch(err => {
+            console.log(err);
+        });
+};
+
+// DELETE COMMENT 
+export const deleteComment= (post_id,comment_id) => (dispatch, getState) => {
+    const data = JSON.stringify({"comment_id":comment_id});
+    //console.log(post_id)
+    //console.log(comment_id)
+    const config = tokenConfig(getState);
+    config.data = data
+    axios
+        .delete(`${back_api}/api/comment/${post_id}/`,config)
+        .then((res) => {
+            dispatch(createMessage({DeleteComment :'Comment Deleted'}));
+            dispatch({
+                type: DELETE_COMMENT,
+                payload: comment_id,
+            });
+        })
+        .catch(err => {
+            dispatch(returnErrors(err.response.data, err.response.status));
+        })
 };
 
 

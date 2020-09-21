@@ -199,8 +199,8 @@ class SinglePost extends Component {
                     (<button onClick={this.handleDelete}>Delete</button>):
                     (null)}
                     <hr />
-                    <CommentForm postId = {postId} />
-                    <CommentList postId = {postId} />
+                    <CommentForm postId = {postId} authId={user_id}/>
+                    <CommentList postId = {postId} authId={user_id}/>
                     {this.props.liked}
                     </div>
 

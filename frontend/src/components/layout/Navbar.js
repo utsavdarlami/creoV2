@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import {NavLink, Link} from 'react-router-dom';
+//import {NavLink, Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
-import { Container,Navbar as BNavbar,Button,NavDropdown,Nav,Dropdown} from 'react-bootstrap';
+import { Navbar as BNavbar,NavDropdown,Nav} from 'react-bootstrap';
 
 
 class Navbar extends Component {
@@ -12,8 +12,10 @@ class Navbar extends Component {
         logout: PropTypes.func.isRequired,
     };
 
+    //componentDidMou
+    
     render() {
-        const { isAuthenticated } = this.props.auth;
+        //const { isAuthenticated } = this.props.auth;
 
         const authLinks = (
             <Nav className="ml-auto">
@@ -58,7 +60,7 @@ class Navbar extends Component {
                                 Audio 
                             </Nav.Link>
                         </Nav>
-                        {isAuthenticated ? authLinks : guestLinks}
+                        {this.props.auth.isAuthenticated ? authLinks : guestLinks}
                     </BNavbar.Collapse>
                 </BNavbar>
         );
