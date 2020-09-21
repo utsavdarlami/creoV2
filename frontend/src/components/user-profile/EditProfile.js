@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ImageUploader from "react-images-upload";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { userDetails, updateUserInfo } from "../../actions/auth";
@@ -16,7 +17,8 @@ class EditProfile extends Component {
             portfolio_site: "",
             bio: "",
             resume: null,
-            profile_pic: null
+            profile_pic: null,
+            initial_pic: null,
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleFileChange = this.handleFileChange.bind(this);
@@ -40,7 +42,8 @@ class EditProfile extends Component {
             portfolio_site: user_details.portfolio_site ? user_details.portfolio_site : "",
             bio: user_details.bio ? user_details.bio : "",
             resume: user_details.resume ? user_details.resume : null,
-            profile_pic: user_details.profile_pic ? user_details.profile_pic : null   
+            profile_pic: user_details.profile_pic ? user_details.profile_pic : null,
+            initial_pic: user_details.profile_pic ? user_details.profile_pic : null,
         })
     }
 
@@ -56,10 +59,15 @@ class EditProfile extends Component {
         });
     }
 
-    handleImageChange(event) {
+    handleImageChange(pictureFiles,pictureDataURLs) {
+        //console.log(pictureFiles[0])
+        //console.log(pictureDataURLs)
         this.setState({
-            profile_pic: event.target.files[0],
+            profile_pic : pictureFiles[0],
+            //profile_pic : this.state.profile_pic.concat(pictureFiles),
+            //profile_pic: pictureFiles,
         });
+        //console.log(this.state.pictures)
     }
 
     handleGeneralUpdate(event){
