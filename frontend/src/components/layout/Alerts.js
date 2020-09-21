@@ -77,6 +77,9 @@ export class Alerts extends Component{
             if(message.Unsaved){
                 alert.success(`${message.Unsaved}`);
             }
+            if(message.DeleteComment){
+                alert.success(`${message.DeleteComment}`);
+            }
         }
     }
 

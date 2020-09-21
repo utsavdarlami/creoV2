@@ -206,7 +206,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         Destroy -> delete like object and decrease like count
         api
     """
-    queryset = CommentPost.objects.all()
+    queryset = CommentPost.objects.all().order_by('pub_date')
 
     permissions_classes = [
         permissions.IsAuthenticated,
@@ -243,7 +243,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class UsernameCommentViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = CommentPost.objects.all()
+    queryset = CommentPost.objects.all().order_by("-pub_date")
     permissions_classes = [
         permissions.IsAuthenticated,
     ]
@@ -251,8 +251,8 @@ class UsernameCommentViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = CommentUserSerializer
 
     def retrieve(self, request, *args, **kwargs):
-        if CommentPost.objects.filter(post=self.kwargs.get('pk')).exists():
-            comments = CommentPost.objects.filter(post=self.kwargs.get('pk'))
+        if self.queryset.filter(post=self.kwargs.get('pk')).exists():
+            comments = self.queryset.filter(post=self.kwargs.get('pk'))
             serializer = self.get_serializer(comments, many=True)
 
             return Response(serializer.data)

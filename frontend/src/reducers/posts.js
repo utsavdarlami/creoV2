@@ -13,7 +13,8 @@ import {
   UNSAVE_POST,
   GET_SAVED_CONTENT,
   HAS_USER_SAVED, ADD_COMMENT, GET_COMMENTS,
-  GET_AUTHOR_POST, GET_SINGLE_POST, VIEW_COUNT, LIKE_FAIL
+  GET_AUTHOR_POST, GET_SINGLE_POST, VIEW_COUNT, LIKE_FAIL,
+  DELETE_COMMENT
 } from '../actions/types.js';
 
 const initialState = {
@@ -74,7 +75,12 @@ export default function(state = initialState, action) {
     case ADD_COMMENT:
       return {
         ...state,
-        post_comments: [...state.post_comments, action.payload]
+        post_comments: [action.payload,...state.post_comments]
+      }
+    case DELETE_COMMENT:
+      return {
+        ...state,
+        post_comments: state.post_comments.filter((post_comment) => post_comment.id !== action.payload)
       }
     case GET_COMMENTS:
       return {

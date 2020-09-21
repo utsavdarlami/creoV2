@@ -23,8 +23,6 @@ import Photos from './posts/PostList/Photos';
 import Videos from "./posts/PostList/Videos"
 import Audios from "./posts/PostList/Audios"
 
-//bootstrap
-import { Container} from 'react-bootstrap';
 
 // Alert 
 import {Provider as AlertProvider} from 'react-alert';

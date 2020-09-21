@@ -211,8 +211,8 @@ class SinglePost extends Component {
                     </div>
 
                     <hr />
-                    <CommentForm postId = {postId} />
-                    <CommentList postId = {postId} />
+                    <CommentForm postId = {postId} authId={user_id}/>
+                    <CommentList postId = {postId} authId={user_id}/>
                     {this.props.liked}
                     </div>
 

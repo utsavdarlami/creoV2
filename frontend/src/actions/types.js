@@ -43,3 +43,5 @@ export const GET_AUTHOR_POST = "GET_AUTHOR_POST";
 export const CREATE_MESSAGE = "CREATE_MESSAGE";
 export const GET_ERRORS = "GET_ERRORS";
 export const LIKE_FAIL = "LIKE_FAIL";
+
+export const DELETE_COMMENT = "DELETE_COMMENT";
