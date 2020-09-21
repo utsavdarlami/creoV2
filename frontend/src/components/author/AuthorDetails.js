@@ -22,32 +22,41 @@ class AuthorDetails extends Component {
     render() {
         const author = this.props.author_details ? 
         (
-            <div className="details-body">
-                <img src={this.props.author_details.profile_pic}
-                alt="Profile display" className="profile-picture" />
-                <div className="user-details">
-                <p>Name: {this.props.author_details.user.first_name} {this.props.author_details.user.last_name}</p>
-                <p>Bio:{this.props.author_details.bio}</p>
-
-          <span>About</span>
-          <div className="user-details-about">
-            <section>
-              <p>Username</p>
-              <p>Name</p>
-              <p>Email</p>
-              <p>Profession</p>
-              <p>Portfolio/Online Presence</p>
-            </section>
-
-            <section>
-              <p>Username: {this.props.author_details.user.username}</p>
-              <p>Email: {this.props.author_details.user.email}</p>
-              <p>Gender: {this.props.author_details.gender}</p>
-              <p>Portfolio site: {this.props.author_details.portfolio_site}</p>
-              <p>Resume: {this.props.author_details.resume}</p>   
-            </section>
-          </div>
-            </div>
+          <div className="oprofile-row">
+            <div className="oprofile-col-60 oprofile-innercontainer">
+              <div className="oprofile-innerrow">
+                <div className="oprofile-user-name oprofile-col-100">
+                  <h1> {this.props.author_details.user.first_name}  </h1>
+                  <h1>{this.props.author_details.user.last_name}</h1>
+                </div> 
+              </div>
+              <div className="oprofile-innerrow">
+                <div className="oprofile-row">
+                  <div className="oprofile-user-bio">
+                    <p>{this.props.author_details.bio}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="oprofile-innerrow">
+                <div className="oprofile-user-info">
+                  <h2>General Info</h2>
+                  <ul>
+                    <li><span>Username: </span>{this.props.author_details.user.username}</li>
+                    <li><span>E-mail: </span>{this.props.author_details.user.email}</li>
+                    <li><span>Gender: </span>{this.props.author_details.gender}</li>
+                    <li><span><a href="{this.props.author_details.portfolio_site}">Visit my porftolio</a></span></li>
+                    <li><span><a href="{this.props.author_details.resume}">View my resume</a></span></li>
+                  </ul>
+                </div>
+              </div>
+              </div>
+              <div className="oprofile-col-40">
+                <div className="oprofile-user-image">
+                  <div className="oprofile-avatar">
+                    <img src={this.props.author_details.profile_pic} alt="Profile display"  />
+                  </div>
+                </div>
+              </div>
             </div>
         ) : 
         (null)
@@ -66,10 +75,8 @@ class AuthorDetails extends Component {
       // </div>
 
         return (
-            <div className="profile-page">
-              <section className="profile-detail">
+            <div className="oprofile-wrapper">
                 {author}
-              </section>
                 {/* {author_content} */}
             </div>
         )

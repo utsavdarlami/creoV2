@@ -77,11 +77,11 @@ class EditProfile extends Component {
         const { first_name, last_name, email} = this.state; 
         const {gender, portfolio_site, bio} = this.state;
 
-        const user = {
-            first_name,
-            last_name,
-            email,
-        }
+        // const user = {
+        //     first_name,
+        //     last_name,
+        //     email,
+        // }
 
         const form_data = new FormData();
 
@@ -140,158 +140,158 @@ class EditProfile extends Component {
         }, 400);
     }
 
-    render() {
-        return (
-            <div>
-                <div className="row">
-                    <div className="col-75">
-                        <div className="container">       
-                            <form onSubmit={this.handleGeneralUpdate}>
-                                <div className="row">
-                                    <div className="col-50">
-                                        <h3>Edit Profile Information</h3>
-                                        <hr />
-                                        <div className="row">
-                                            <div className="col-50">
-                                                <label><i className="fa fa-user"></i> First Name:</label>
-                                                <input 
-                                                    type = "text"
-                                                    value={this.state.first_name}
-                                                    name="first_name"
-                                                    onChange = {this.handleChange}
-                                                    className="editprofile-text" />
-                                            </div>
-                                            <div className="col-50">
-                                                <label><i class="fa fa-user"></i> Last Name:</label>
-                                                <input 
-                                                    type = "text"
-                                                    value={this.state.last_name}
-                                                    name="last_name"
-                                                    onChange = {this.handleChange}
-                                                    className="editprofile-text" />
-                                            </div>
-                                        </div>
-                                        <label><i class="fa fa-envelope"></i> Email:</label>
-                                        <input 
-                                            type = "email"
-                                            value={this.state.email}
-                                            name="email"
-                                            onChange = {this.handleChange}
-                                            className="editprofile-email" />
+render() {
+return (
+    <div>
+    <div className="editrow">
+    <div className="editcol-75">
+    <div className="editcontainer">       
+        <form onSubmit={this.handleGeneralUpdate}>
+            <div className="editrow-component">
+            <div className="editcol-50">
+            <h3>Edit Profile Information</h3>
+            <hr />
+            <div className="editrow-component">
+            <div className="editcol-50">
+                <label><i className="fa fa-user"></i> First Name:</label>
+                    <input 
+                        type = "text"
+                        value={this.state.first_name}
+                        name="first_name"
+                        onChange = {this.handleChange}
+                        className="editprofile-text" />
+            </div>
+            <div className="editcol-50">
+                <label><i className="fa fa-user"></i> Last Name:</label>
+                    <input 
+                        type = "text"
+                        value={this.state.last_name}
+                        name="last_name"
+                        onChange = {this.handleChange}
+                        className="editprofile-text" />
+            </div>
+            </div>
+                <label><i className="fa fa-envelope"></i> Email:</label>
+                    <input 
+                        type = "email"
+                        value={this.state.email}
+                        name="email"
+                        onChange = {this.handleChange}
+                        className="editprofile-email" />
 
-                                        <p>Please select your gender: </p>
-                                        <span className="choice">      
-                                            <label><input
-                                                type="radio"
-                                                name="gender"
-                                                value="M"
-                                                checked={this.state.gender === 'M'}
-                                                onChange={this.handleChange}
-                                                className="editprofile-radio"
-                                            />
-                                                {' '}
-                                                Male
-                                            </label>
+                <p>Please select your gender: </p>
+                <span className="choice">      
+                <label><input
+                        type="radio"
+                        name="gender"
+                        value="M"
+                        checked={this.state.gender === 'M'}
+                        onChange={this.handleChange}
+                        className="editprofile-radio"
+                        />
+                        {' '}
+                        Male
+                </label>
+                
+                <label><input
+                        type="radio"
+                         name="gender"
+                        value="F"
+                        checked={this.state.gender === 'F'}
+                        onChange={this.handleChange}
+                        className="editprofile-radio"
+                        />
+                        {' '}
+                        Female
+                </label>
 
-                                            <label><input
-                                                type="radio"
-                                                name="gender"
-                                                value="F"
-                                                checked={this.state.gender === 'F'}
-                                                onChange={this.handleChange}
-                                                className="editprofile-radio"
-                                            />
-                                                {' '}
-                                                Female
-                                            </label>
+                <label><input
+                        type="radio"
+                        name="gender"
+                        value="O"
+                        checked={this.state.gender === 'O'}
+                        onChange={this.handleChange}
+                        className="editprofile-radio"
+                        />
+                        {' '}
+                         Other
+                </label>
+                </span>
+                <br />
+                <br />
 
-                                            <label><input
-                                                type="radio"
-                                                name="gender"
-                                                value="O"
-                                                checked={this.state.gender === 'O'}
-                                                onChange={this.handleChange}
-                                                className="editprofile-radio"
-                                            />
-                                                {' '}
-                                                Other
-                                            </label>
-                                        </span>
-                                        <br />
-                                        <br />
+                <label><i className="fa fa-link"></i> Portfolio site:</label>
+                <input 
+                    type="url"
+                    name="portfolio_site"
+                    value={this.state.portfolio_site}
+                    onChange={this.handleChange}
+                    className="editprofile-url"
+                />
 
-                                        <label><i class="fa fa-link"></i> Portfolio site:</label>
-                                        <input 
-                                            type="url"
-                                            name="portfolio_site"
-                                            value={this.state.portfolio_site}
-                                            onChange={this.handleChange}
-                                            className="editprofile-url"
-                                        />
+                <label><i className="fa fa-envelope"></i> Bio:</label>
+                <input 
+                    type="text"
+                    name="bio"
+                    value={this.state.bio}
+                    onChange = {this.handleChange}
+                    className="editprofile-text"
+                />
+        </div>
+        </div>
+        <button>Update Profile</button>
+    </form>
+    </div>
+    </div>
 
-                                        <label><i class="fa fa-envelope"></i> Bio:</label>
-                                        <input 
-                                            type="text"
-                                            name="bio"
-                                            value={this.state.bio}
-                                            onChange = {this.handleChange}
-                                            className="editprofile-text"
-                                        />
-                                    </div>
-                                </div>
-                                <button>Update Profile</button>
-                            </form>
-                        </div>
+    <div className="editcol-25">
+        <div className="editcontainer">
+        <form onSubmit={this.handleProfilePictureUpdate}>
+                    <div className="post-form-component">
+                        <label>Profile picture:</label>  
+                        <img src={this.state.initial_pic} alt="profile" />
+                            <ImageUploader
+                                withIcon={false}
+                                withPreview={true}
+                                //defaultImages={[this.state.profile_pic]}
+                                buttonText="Choose images"
+                                label=" "
+                                singleImage={true}
+                                onChange={this.handleImageChange}
+                                imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+                                maxFileSize={5242880}
+                            />
                     </div>
 
-                    <div className="col-25">
-                        <div className="container">
-                            <form onSubmit={this.handleProfilePictureUpdate}>
-                                <div className="post-form-component">
-                                    <label>Profile picture:</label>  
-                                    <img src={this.state.initial_pic} alt="profile" />
-                                    <ImageUploader
-                                        withIcon={false}
-                                        withPreview={true}
-                                        //defaultImages={[this.state.profile_pic]}
-                                        buttonText="Choose images"
-                                        label=" "
-                                        singleImage={true}
-                                        onChange={this.handleImageChange}
-                                        imgExtension={[".jpg", ".gif", ".png", ".gif"]}
-                                        maxFileSize={5242880}
-                                    />
-                                </div>
+                    <button>Update Profile Picture</button>
+                </form>
+        </div>
+    </div>
+</div>
 
-                                <button>Update Profile Picture</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="row">
-                    <div className="col-75">
-                        <div className="container">
-                            <form onSubmit={this.handleResumeUpdate}>
-                                <div className="row">
-                                    <div className="col-50">
-                                        <h3>Edit Resume</h3>
-                                        <hr />
-                                        <input className="post-selection"
-                                            type = "file"
-                                            name="resume"
-                                            onChange = {this.handleFileChange}
-                                            className="editprofile-file"
-                                        />  
-                                    </div>
-                                </div>
-                                <button>Update Resume</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div className="col-25" style={{marginTop: "15px;"}}></div>
+<div className="editrow">
+    <div className="editcol-75">
+        <div className="editcontainer">
+        <form onSubmit={this.handleResumeUpdate}>
+            <div className="editrow-component">
+                <div className="editcol-50">
+                    <h3>Edit Resume</h3>
+                    <hr />
+                    <input 
+                            type = "file"
+                            name="resume"
+                            onChange = {this.handleFileChange}
+                            className="editprofile-file"
+                    />  
                 </div>
             </div>
+                <button>Update Resume</button>
+        </form>
+        </div>
+    </div>
+    <div className="editcol-25" style={{marginTop: "15px"}}></div>
+</div>
+</div>
         )
     }
 }

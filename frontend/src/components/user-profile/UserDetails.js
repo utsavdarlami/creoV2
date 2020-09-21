@@ -16,33 +16,32 @@ class UserDetails extends Component {
   render() {
     const user = this.props.user_details ? 
     (
-      <div className="details-body">
-        <img src={this.props.user_details.profile_pic}
-         alt="Profile display" className="profile-picture"/>
-        <div className="user-details">
-          <p>{this.props.user_details.user.first_name} {this.props.user_details.user.last_name}</p>
-          <p>{this.props.user_details.bio}</p>
-
-          <span>About</span>
-          <div className="user-details-about">
-            <section>
-              <p>Username</p>
-              <p>Name</p>
-              <p>Email</p>
-              <p>Profession</p>
-              <p>Portfolio/Online Presence</p>
-            </section>
-
-            <section>
-              <p>{this.props.user_details.user.username}</p>
-              <p>{this.props.user_details.user.first_name} {this.props.user_details.user.last_name}</p>
-              <p>{this.props.user_details.user.email}</p>
-              <p>{this.props.user_details.bio}</p>
-              <p>{this.props.user_details.portfolio_site}</p>
-            </section>
-          </div>
+      <div className="profile-row">
+        <div className="profile-col-25">
+          <span className="profile-avatar">
+            <img src={this.props.user_details.profile_pic}
+            alt="Profile display" className="profile-avatar"/>
+          </span>
         </div>
-        <div><NavLink to="/editprofile">Edit Profile</NavLink></div>
+        <div className="profile-col-75">
+          <div className="profile-row">
+            <div className="profile-col-75">
+              <div className="profile-user-data">
+                <p className="profile-user-label">Username:{this.props.user_details.user.username}</p>
+                <p className="profile-user-label"> Name: {this.props.user_details.user.first_name} {this.props.user_details.user.last_name}</p>
+                <p className="profile-user-label">Email: {this.props.user_details.user.email}</p>
+                <p className="profile-user-label">Profession: {this.props.user_details.bio}</p>
+                <p className="profile-user-label">Portfolio/Online Presence: {this.props.user_details.portfolio_site}</p>
+            </div>
+            </div>
+            <div className="profile-col-25">
+            <NavLink to="/editprofile"><button className="profile-edit-button">Edit Profile</button></NavLink>
+              {/* <div style={{ marginLeft: "1%", border: "1px solid black"}}><NavLink to="/editprofile">Edit Profile</NavLink></div> */}
+            </div>
+          </div>
+
+        </div>
+       
     </div>
     ) : (null)
     

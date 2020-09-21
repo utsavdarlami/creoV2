@@ -16,7 +16,7 @@ import {
     GET_POST_AUTHOR, 
     GET_AUTHOR_DETAILS,
     // GET_COMMENT_AUTHOR
-    GET_ERRORS
+    // GET_ERRORS
 } from './types';
 
 const back_api = "http://127.0.0.1:8000";
@@ -179,14 +179,15 @@ export const logout = () => (dispatch, getState) => {
 
 //GET POST AUTHOR
 export const getPostAuthor = id => (dispatch) => {
-    axios.get(`${back_api}/api/view_user/${id}/`)
+    axios
+    .get(`${back_api}/api/view_user/${id}/`)
         .then(res => {
             dispatch({
                 type: GET_POST_AUTHOR,
                 payload: res.data
-            })
-        }).
-        catch(err => {
+            });
+        })
+        .catch(err => {
             //console.log(err);
             dispatch(returnErrors(err.response.data, err.response.status));
         });
