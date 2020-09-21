@@ -10,16 +10,16 @@ class Profile extends Component {
   render() {
     return (
       <Fragment>
-        <div className="profile-page">
-          <section className="profile-detail">
+        <div className="profile-wrapper">
             <UserDetails />
-          </section>
-          <div className="profile-content">
-            <ul className="profile-content-list">
-              <li><NavLink to="/profile/posted">Posted Content</NavLink></li>
-              <li><NavLink to="/profile/liked">Liked Content</NavLink></li>
-              <li><NavLink to="/profile/saved">Saved Content</NavLink></li>
-            </ul>
+          <div className="profile-row">
+            <div className="profile-col-100">
+              <div className="profile-container" id="profile-container">
+                <div className="profile-item"><NavLink to="/profile/posted">Posted Content</NavLink></div>
+                <div className="profile-item"><NavLink to="/profile/liked">Liked Content</NavLink></div>
+                <div className="profile-item"><NavLink to="/profile/saved">Saved Content</NavLink></div>
+              </div>
+            </div>
           </div>
         </div>
       </Fragment>

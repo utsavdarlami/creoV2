@@ -27,7 +27,7 @@ const initialState = {
   liked: null,
   post_comments: [],
   author_posts: [],
-  single_post : null
+  single_post : {}
 };
 
 export default function(state = initialState, action) {

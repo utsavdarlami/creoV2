@@ -33,7 +33,7 @@ class Navbar extends Component {
       //   </li>
       // </ul>
 
-      <div >
+      <div>
         <ul className="nav navbar-nav ml-auto">
         <li className="nav-item mr-auto">
           <NavLink to="/submitpost" activeStyle={{fontWeight: "bold"}}>

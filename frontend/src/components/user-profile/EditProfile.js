@@ -69,12 +69,12 @@ class EditProfile extends Component {
         const { first_name, last_name, email} = this.state; 
         const {gender, portfolio_site, bio} = this.state;
 
-        const user = {
-            first_name,
-            last_name,
-            email,
-        }
-        
+        // const user = {
+        //     first_name,
+        //     last_name,
+        //     email,
+        // }
+
         const form_data = new FormData();
 
         // general form 
@@ -135,16 +135,16 @@ class EditProfile extends Component {
 render() {
 return (
     <div>
-    <div className="row">
-    <div className="col-75">
-    <div className="container">       
+    <div className="editrow">
+    <div className="editcol-75">
+    <div className="editcontainer">       
         <form onSubmit={this.handleGeneralUpdate}>
-            <div className="row">
-            <div className="col-50">
+            <div className="editrow-component">
+            <div className="editcol-50">
             <h3>Edit Profile Information</h3>
             <hr />
-            <div className="row">
-            <div className="col-50">
+            <div className="editrow-component">
+            <div className="editcol-50">
                 <label><i className="fa fa-user"></i> First Name:</label>
                     <input 
                         type = "text"
@@ -153,8 +153,8 @@ return (
                         onChange = {this.handleChange}
                         className="editprofile-text" />
             </div>
-            <div className="col-50">
-                <label><i class="fa fa-user"></i> Last Name:</label>
+            <div className="editcol-50">
+                <label><i className="fa fa-user"></i> Last Name:</label>
                     <input 
                         type = "text"
                         value={this.state.last_name}
@@ -163,7 +163,7 @@ return (
                         className="editprofile-text" />
             </div>
             </div>
-                <label><i class="fa fa-envelope"></i> Email:</label>
+                <label><i className="fa fa-envelope"></i> Email:</label>
                     <input 
                         type = "email"
                         value={this.state.email}
@@ -212,7 +212,7 @@ return (
                 <br />
                 <br />
 
-                <label><i class="fa fa-link"></i> Portfolio site:</label>
+                <label><i className="fa fa-link"></i> Portfolio site:</label>
                 <input 
                     type="url"
                     name="portfolio_site"
@@ -221,7 +221,7 @@ return (
                     className="editprofile-url"
                 />
 
-                <label><i class="fa fa-envelope"></i> Bio:</label>
+                <label><i className="fa fa-envelope"></i> Bio:</label>
                 <input 
                     type="text"
                     name="bio"
@@ -236,8 +236,8 @@ return (
     </div>
     </div>
 
-    <div className="col-25">
-        <div className="container">
+    <div className="editcol-25">
+        <div className="editcontainer">
         <form onSubmit={this.handleProfilePictureUpdate}>
                     <div className="post-form-component">
                         <label>Profile picture:</label>  
@@ -256,15 +256,15 @@ return (
     </div>
 </div>
 
-<div className="row">
-    <div className="col-75">
-        <div className="container">
+<div className="editrow">
+    <div className="editcol-75">
+        <div className="editcontainer">
         <form onSubmit={this.handleResumeUpdate}>
-            <div className="row">
-                <div className="col-50">
+            <div className="editrow-component">
+                <div className="editcol-50">
                     <h3>Edit Resume</h3>
                     <hr />
-                    <input className="post-selection"
+                    <input 
                             type = "file"
                             name="resume"
                             onChange = {this.handleFileChange}
@@ -276,7 +276,7 @@ return (
         </form>
         </div>
     </div>
-    <div className="col-25" style={{marginTop: "15px;"}}></div>
+    <div className="editcol-25" style={{marginTop: "15px"}}></div>
 </div>
 </div>
         )

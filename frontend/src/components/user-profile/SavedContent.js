@@ -42,19 +42,23 @@ class LikedContent extends Component {
     )
     return (
       <Fragment>
-        <div className="profile-page">
-          <section className="profile-detail">
+        <div className="profile-wrapper">
             <UserDetails />
-          </section>
-          <div className="profile-content">
-            <ul className="profile-content-list">
-              <li><NavLink to="/profile/posted">Posted Content</NavLink></li>
-              <li><NavLink to="/profile/liked">Liked Content</NavLink></li>
-              <li><NavLink to="/profile/saved" activeStyle={{fontWeight: "bold"}}>Saved Content</NavLink></li>
-            </ul>
-            {saved_content}
+          <div className="profile-row">
+            <div className="profile-col-100">
+              <div className="profile-container" id="profile-container">
+                <div className="profile-item"><NavLink to="/profile/posted">Posted Content</NavLink></div>
+                <div className="profile-item"><NavLink to="/profile/liked">Liked Content</NavLink></div>
+                <div className="profile-item"><NavLink to="/profile/saved" activeStyle={{backgroundColor: "yellow"}}>Saved Content</NavLink></div>
+              </div>
+            </div>
           </div>
         </div>
+
+      <div>
+      {saved_content}
+      </div>
+
       </Fragment>
     );
   }
