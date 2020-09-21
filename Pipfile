@@ -13,6 +13,9 @@ django-rest-knox = "*"
 pillow = "*"
 django-cors-headers = "*"
 django-filter = "*"
+django-extensions = "*"
+pyparsing = "*"
+pydot = "*"
 
 [requires]
 python_version = "3.8"
