@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { userDetails, updateUserInfo } from "../../actions/auth";
 import { withRouter } from "react-router-dom";
-
+import {Button} from "react-bootstrap"
 
 class EditProfile extends Component {
     constructor(){
@@ -146,7 +146,7 @@ return (
     <div className="editrow">
     <div className="editcol-75">
     <div className="editcontainer">       
-        <form onSubmit={this.handleGeneralUpdate}>
+        <form>
             <div className="editrow-component">
             <div className="editcol-50">
             <h3>Edit Profile Information</h3>
@@ -192,6 +192,7 @@ return (
                         {' '}
                         Male
                 </label>
+                <br />
                 
                 <label><input
                         type="radio"
@@ -204,6 +205,7 @@ return (
                         {' '}
                         Female
                 </label>
+                <br />
 
                 <label><input
                         type="radio"
@@ -239,14 +241,18 @@ return (
                 />
         </div>
         </div>
-        <button>Update Profile</button>
+        <Button variant="success" 
+        onClick= {this.handleGeneralUpdate}
+        /*style={{width: "75%", marginLeft: "12%"}}*/
+        >Update Profile Information</Button>
+        {/* <button>Update Profile</button> */}
     </form>
     </div>
     </div>
 
     <div className="editcol-25">
         <div className="editcontainer">
-        <form onSubmit={this.handleProfilePictureUpdate}>
+        <form>
                     <div className="post-form-component">
                         <label>Profile picture:</label>  
                         <img src={this.state.initial_pic} alt="profile" />
@@ -263,7 +269,7 @@ return (
                             />
                     </div>
 
-                    <button>Update Profile Picture</button>
+                    <Button variant="success" onClick={this.handleProfilePictureUpdate}>Update Profile Picture</Button>
                 </form>
         </div>
     </div>
@@ -272,7 +278,7 @@ return (
 <div className="editrow">
     <div className="editcol-75">
         <div className="editcontainer">
-        <form onSubmit={this.handleResumeUpdate}>
+        <form>
             <div className="editrow-component">
                 <div className="editcol-50">
                     <h3>Edit Resume</h3>
@@ -285,7 +291,7 @@ return (
                     />  
                 </div>
             </div>
-                <button>Update Resume</button>
+            <Button variant="success" onClick={this.handleResumeUpdate}>Update Resume</Button>
         </form>
         </div>
     </div>
