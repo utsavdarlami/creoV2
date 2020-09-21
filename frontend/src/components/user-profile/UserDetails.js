@@ -31,8 +31,20 @@ class UserDetails extends Component {
                 <p className="profile-user-label">@ {this.props.user_details.user.username}</p>
                 <p className="profile-user-label"> Name: {this.props.user_details.user.first_name} {this.props.user_details.user.last_name}</p>
                 <p className="profile-user-label">Email: {this.props.user_details.user.email}</p>
-                <p className="profile-user-label">Profession: {this.props.user_details.bio}</p>
-                <p className="profile-user-label">Portfolio/Online Presence: {this.props.user_details.portfolio_site}</p>
+                {(this.props.user_details.bio) ? 
+                (<p className="profile-user-label">Profession: {this.props.user_details.bio}</p>) 
+                : (<p className="profile-user-label">Add bio</p>)}
+                
+                {(this.props.user_details.portfolio_site) ? 
+                (<p className="profile-user-label"><a href={this.props.user_details.portfolio_site} target="_blank"><span style={{color: "black"}}>Portfolio/Online Presence</span> <i className="fas fa-link"></i></a></p>) : 
+                (<p className="profile-user-label">Add portfolio site: </p>)}
+                
+                {(this.props.user_details.resume) ? 
+                (<p className="profile-user-label">
+                  <a href={this.props.user_details.resume} target="_blank">
+                    <span style={{color: "black"}}>View my resume</span> <i className="fas fa-link"></i></a></p>)
+                 : (<p className="profile-user-label">Add resume:</p>)}
+                
             </div>
             </div>
             <div className="profile-col-25">

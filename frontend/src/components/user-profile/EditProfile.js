@@ -192,6 +192,7 @@ return (
                         {' '}
                         Male
                 </label>
+                <br />
                 
                 <label><input
                         type="radio"
@@ -204,6 +205,7 @@ return (
                         {' '}
                         Female
                 </label>
+                <br />
 
                 <label><input
                         type="radio"

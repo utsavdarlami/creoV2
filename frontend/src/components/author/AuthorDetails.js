@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { getAuthorDetails } from "../../actions/auth";
 import {withRouter, Link} from "react-router-dom";
 import { getAuthorPost } from '../../actions/posts';
+import AudioLogo from "../posts/PostList/audio_image.jpg"
 
 class AuthorDetails extends Component {
 
@@ -42,11 +43,17 @@ class AuthorDetails extends Component {
                 <div className="oprofile-user-info">
                   <h2>General Info</h2>
                   <ul> 
-                    <li><span>Username: </span>{this.props.author_details.user.username}</li>
-                    <li><span>E-mail: </span>{this.props.author_details.user.email}</li>
-                    <li><span>Gender: </span>{this.props.author_details.gender}</li>
-                    <li><span><a href="{this.props.author_details.portfolio_site}">Visit my porftolio <i class="fas fa-link"></i></a></span></li>
-                    <li><span><a href="{this.props.author_details.resume}">View my resume <i class="fas fa-link"></i></a></span></li>
+                    <li><span style={{color:"#808181"}}>@ </span>{this.props.author_details.user.username}</li>
+                    <li><span style={{color:"#808181"}}>E-mail: </span>{this.props.author_details.user.email}</li>
+                    {/* <li><span>Gender: </span>{this.props.author_details.gender}</li> */}
+                    
+                    {(this.props.author_details.portfolio_site) ? 
+                    (<li><span><a href={this.props.author_details.portfolio_site}><span style={{color: "#808181"}}>My porftolio site</span> <i className="fas fa-link" style={{color:"#808181"}}></i></a></span></li>) : (null)}
+              
+                    {(this.props.author_details.resume) ? 
+                    (<li><span><a href={this.props.author_details.resume}><span style={{color: "#808181"}}>View my resume</span> <i className="fas fa-link" style={{color:"#808181"}}></i></a></span></li>)
+                     : (null)}
+                    
                   </ul>
                 </div>
               </div>
@@ -62,22 +69,52 @@ class AuthorDetails extends Component {
         ) : 
         (null)
 
-        const author_content = <div className="post-contents2">
-        {this.props.author_posts.map(post => (
-          <div className="postContainer2" key={post.id}>
-            <Link to={`/posts/${post.id}`}>
-              <p>Id:{post.id}</p>
-              <p>Title:{post.title}</p>
-              <p>Description:{post.description}</p>
-              <img className="post-image2" src={`${back_api}${post.content}`} alt="content" />
-            </Link>
-          </div>
-        ))}
+        const author_content = 
+        <div className="content-area">
+          <main className="main-content-area">
+            <section className="posts">
+              {this.props.author_posts.map(post => (
+                <article className="post post-one-third" key={post.id}>
+                  <Link to={`/posts/${post.id}`}>
+                      <div style={{backgroundColor: "black", borderRadius: "2%"}}>
+                        {(() => {
+                          switch (post.post_type){
+                            case "I":
+                              return <img src={`${back_api}${post.content}`} alt="content" style={{borderRadius: "2%"}} />;
+                            case "V": 
+                              return  <video width="100%" height="100%" controls><source src={`${back_api}${post.content}`} /></video>;
+                            case "A": 
+                              return <div style={{ height: "84%", border: "1px solid black", borderRadius: "2%", backgroundColor: "white"}}>
+                                <img src={AudioLogo} alt="audio" style={{height: "100%"}}  />
+                                <div>
+                                  <audio controls style={{width:"100%", height: "52px"}}>
+                                    <source src={`${back_api}${post.content}`} />
+                                    </audio>
+                                    </div>
+                                    </div>
+                            default: return ""
+                            }
+                      })()}
+                    </div>
+
+                  <div className="post-content">
+                    <span>
+                      {post.title}
+                    </span>
+                  </div>
+                  </Link>
+                </article>
+              ))}
+            </section>
+          </main>
       </div>
 
         return (
             <div className="oprofile-wrapper">
                 {author}
+                <div className="oprofile-row">
+                  <p className="oprofile-p">Author Posts</p>
+                </div>
                 {author_content}
             </div>
         )
