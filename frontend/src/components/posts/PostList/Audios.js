@@ -21,7 +21,7 @@ class Audios extends Component {
                             post.post_type === "A" ? 
                             (
                             <article className="post post-one-third" key={post.id}>
-                                <Link to={`posts/${post.id}`}>
+                                <Link to={`posts/${post.id}`} style={{textDecoration: "none"}}>
                                     <div style={{border: "1px solid black"}}>
                                                 <img src={AudioLogo} alt="audio" style={{ marginTop: "1%",height: "84%", borderRadius: "none"}} />
                                             <div>

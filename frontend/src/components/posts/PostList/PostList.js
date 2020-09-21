@@ -39,7 +39,7 @@ class PostList extends Component {
                         post.post_type === "I" ? 
                         (
                         <article className="post post-one-third" key={post.id}>
-                            <Link to={`posts/${post.id}`}>
+                            <Link to={`posts/${post.id}`} style={{textDecoration: "none"}}>
                                 <div>
                                     <img src={post.content} alt="content" />    
                                 </div>

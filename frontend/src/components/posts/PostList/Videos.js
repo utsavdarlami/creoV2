@@ -21,7 +21,7 @@ class Videos extends Component {
                                 post.post_type === "V" ? 
                                 (
                                 <article className="post post-one-third" key={post.id}>
-                                    <Link to={`posts/${post.id}`}>
+                                    <Link to={`posts/${post.id}`} style={{textDecoration: "none"}}>
                                         <div style={{border: "1px solid black",
                                             borderRadius: "2%",
                                             backgroundColor: "black"}} >

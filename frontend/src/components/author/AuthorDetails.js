@@ -40,12 +40,12 @@ class AuthorDetails extends Component {
               <div className="oprofile-innerrow">
                 <div className="oprofile-user-info">
                   <h2>General Info</h2>
-                  <ul>
+                  <ul> 
                     <li><span>Username: </span>{this.props.author_details.user.username}</li>
                     <li><span>E-mail: </span>{this.props.author_details.user.email}</li>
                     <li><span>Gender: </span>{this.props.author_details.gender}</li>
-                    <li><span><a href="{this.props.author_details.portfolio_site}">Visit my porftolio</a></span></li>
-                    <li><span><a href="{this.props.author_details.resume}">View my resume</a></span></li>
+                    <li><span><a href="{this.props.author_details.portfolio_site}">Visit my porftolio <i class="fas fa-link"></i></a></span></li>
+                    <li><span><a href="{this.props.author_details.resume}">View my resume <i class="fas fa-link"></i></a></span></li>
                   </ul>
                 </div>
               </div>

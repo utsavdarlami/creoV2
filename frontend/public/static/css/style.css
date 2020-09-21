@@ -6,12 +6,14 @@
 
 body, button, input, textarea{
     color: black;
+    font-family: 'Asap', sans-serif;
     font-size: 16px;
     line-height: 1.5;
 }
 
 body{
     background-color: #EDEDED;
+    font-family: 'Asap', sans-serif;
 }
 
 img{
@@ -631,8 +633,6 @@ a{
     padding: 10px ;
   }
   
-  
-  
   .profile-col-25 {
     flex: 25%;
   }
@@ -662,7 +662,7 @@ a{
   
   .profile-container{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
   }
   
   .profile-item{
@@ -858,14 +858,16 @@ a{
   
     @media screen and (min-width: 810px) {
   
-    .posts {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
-  
-    .post {
-      flex-basis: 49%;
+      .posts {
+        display: flex;
+        flex-wrap: wrap;
+        /*padding: 20px;*/
+      }
+    
+      .post {
+        flex-basis: 49%;
+        padding: 20px;
+        
     }
   }
   
