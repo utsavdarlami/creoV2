@@ -16,6 +16,7 @@ import {Link, withRouter} from "react-router-dom";
 import CommentForm from "./CommentForm";
 import CommentList from './CommentList';
 import PostAuthor from './PostAuthor';
+import AudioLogo from "./PostList/audio_image.jpg"
 
 class SinglePost extends Component {
     constructor(){
@@ -116,6 +117,9 @@ class SinglePost extends Component {
     }
 
     render() { 
+        const publisher = this.props.post? (this.props.post.publisher) : (null)
+        const user_id  = this.props.auth.user ? (this.props.auth.user.id) : (null);
+        const postId = this.props.post ? (this.props.post.id) : (null)
         const { isAuthenticated } = this.props.auth;
         const likeButton = !isAuthenticated ? (
             <Link to ="/login">
@@ -123,16 +127,20 @@ class SinglePost extends Component {
             </Link>
         ) : this.state.is_liked_by_user === true ? 
         // (console.log("liked"),
-        <button onClick={this.handleUnlike}>Unlike</button> : 
+        <button onClick={this.handleUnlike}>Unlike <i className="fas fa-heart" style={{color: "red"}}></i></button> : 
         // (console.log("not liked"),
-        <button onClick= {this.handleLike}>Like</button> 
+        <button onClick= {this.handleLike}>Like <i className="far fa-heart"></i></button> 
 
         const saveButton = !isAuthenticated ? (
             <Link to="/login">
                 <button>Save</button>
             </Link>) : this.state.is_saved_by_user === true ?  
-            (<button onClick={this.handleUnSave}>Unsave</button>) 
-            : (<button onClick= {this.handleSave}>Save</button>) 
+            (<button onClick={this.handleUnSave}>Unsave <i className="fas fa-bookmark"></i></button>) 
+            : (<button onClick= {this.handleSave}>Save <i className="far fa-bookmark"></i></button>) 
+
+        const deleteButton = (publisher === user_id) ? 
+            (<button onClick={this.handleDelete}>Delete</button>):
+            (null)
 
         const created_at = this.props.post ? this.props.post.created_at : null
         var now = new Date(created_at);
@@ -141,7 +149,10 @@ class SinglePost extends Component {
         const post = this.props.post ? (
                 <div> 
                         <div className="post-metadata">
-                            <p className="post-title">Title:{this.props.post.title}</p>
+                            <div style={{display: "flex", justifyContent: "space-between"}}>
+                                <p className="post-title">Title:{this.props.post.title}</p>
+                                {deleteButton}
+                            </div>
                             <p className="post-createdat text-muted">Created at: {gmtDate} </p>
                         </div>
 
@@ -153,7 +164,14 @@ class SinglePost extends Component {
                                     case "V":
                                         return  <video width="100%" height="100%" controls><source src={this.props.post.content} /></video>;
                                     case "A":
-                                        return  <audio controls><source src={this.props.post.content} /></audio>
+                                        return <div style={{ margin: "0 auto", height: "86%", border: "1px solid black", borderRadius: "2%", backgroundColor: "white"}}>
+                          <img src={AudioLogo} alt="audio" style={{height: "100%"}}  />
+                          <div>
+                            <audio controls style={{width:"100%"}}>
+                              <source src={this.props.post.content} />
+                              </audio>
+                              </div>
+                              </div>
                                     default:
                                         return ""
                                 }
@@ -174,17 +192,13 @@ class SinglePost extends Component {
             </div>
         );
 
-        const publisher = this.props.post? (this.props.post.publisher) : (null)
-        const user_id  = this.props.auth.user ? (this.props.auth.user.id) : (null);
-        const postId = this.props.post ? (this.props.post.id) : (null)
-
         return (
             <div className="detail-wrapper">
                 <div className="post card">
                     {post}
-                    <div className="post-content">
+                    <div className="post-content" style={{border: "1px solid black"}}>
                         <span>
-                            <p>Post Author: {(this.state.is_liked_by_user) ? 
+                            <p><i className="far fa-user-circle"></i> {(this.state.is_liked_by_user) ? 
                         (<PostAuthor publisher = {publisher} />
                         ) : (null)}</p>
                         </span>
@@ -195,9 +209,7 @@ class SinglePost extends Component {
                             {saveButton}
                         </span>
                     </div>
-                    { (publisher === user_id) ? 
-                    (<button onClick={this.handleDelete}>Delete</button>):
-                    (null)}
+
                     <hr />
                     <CommentForm postId = {postId} />
                     <CommentList postId = {postId} />
