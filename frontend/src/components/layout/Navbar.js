@@ -3,158 +3,70 @@ import {NavLink, Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
+import { Container,Navbar as BNavbar,Button,NavDropdown,Nav,Dropdown} from 'react-bootstrap';
+
 
 class Navbar extends Component {
-  static propTypes = {
-    auth: PropTypes.object.isRequired,
-    logout: PropTypes.func.isRequired,
-  };
+    static propTypes = {
+        auth: PropTypes.object.isRequired,
+        logout: PropTypes.func.isRequired,
+    };
 
-  render() {
-    const { isAuthenticated } = this.props.auth;
+    render() {
+        const { isAuthenticated } = this.props.auth;
 
-    const authLinks = (
-      // <ul className="nav-links">
-      //   <li className="nav-item">
-      //     <NavLink to="/profile" activeStyle={{fontWeight: "bold"}}>
-      //       <span>Profile</span>
-      //     </NavLink>
-      //   </li>
-      //   <li className="nav-item">
-      //     <NavLink to="/submitpost" activeStyle={{fontWeight: "bold"}}>
-      //       <span>Upload</span>
-      //     </NavLink>
-      //   </li>
-      //   <li className="nav-item">
-      //     {' '}
-      //     <button onClick={this.props.logout} className="logout-button">
-      //       Logout
-      //     </button>
-      //   </li>
-      // </ul>
+        const authLinks = (
+            <Nav className="ml-auto">
+                <Nav.Link href="/submitpost">
+                    Upload 
+                </Nav.Link>
+                <Nav.Item>
+                <NavDropdown alignRight title="Profile" id="collasible-nav-dropdown">
+                    <NavDropdown.Item href="/profile">View Profile</NavDropdown.Item>
+                    <NavDropdown.Item href="/editprofile">Edit Profile</NavDropdown.Item>
+                    <NavDropdown.Item onClick= {this.props.logout}>Logout</NavDropdown.Item>
+                </NavDropdown>
+                </Nav.Item>
+            </Nav>
+        );
 
-      <div >
-        <ul className="nav navbar-nav ml-auto">
-        <li className="nav-item mr-auto">
-          <NavLink to="/submitpost" activeStyle={{fontWeight: "bold"}}>
-            Upload
-          </NavLink>
-        </li>
-        </ul>
-
-        <ul className="nav navbar-nav">
-        <li className="nav-item dropdown">
-        <Link to="#" className="nav-link dropdown-toggle" data-toggle="dropdown">Profile</Link>
-          <div className="dropdown-menu dropdown-menu-right">
-            <NavLink to="/profile" className="drop-item" >View Profile</NavLink>
-            <NavLink to="/editprofile" className="drop-item">Edit Profile</NavLink>
-            <button onClick = {this.props.logout} className="logout-button">Logout</button>
-          </div>
-        </li>
-        </ul>
-      </div>
-      
-
-
-    );
-
-    const guestLinks = (
-      // <ul className="nav-links">
-      //   <li className="nav-item">
-      //     <NavLink to="/login" activeStyle={{fontWeight: "bold"}}>
-      //       <span>Sign in</span>
-      //     </NavLink>
-      //   </li>
-      //   <li className="nav-item">
-      //     <NavLink to="/signup"activeStyle={{fontWeight: "bold"}}>
-      //       <span>Sign up</span>
-      //     </NavLink>
-      //   </li>
-      // </ul>
-
-      <ul className="nav navbar-nav ml-auto">
-        <li className="nav-item mr-auto">
-          <NavLink to="/login" activeStyle={{fontWeight: "bold"}}>
-            Sign In
-          </NavLink>
-        </li>
-
-        <li className="nav-item mr-auto">
-          <NavLink to="/signup" activeStyle={{fontWeight: "bold"}}>
-            Sign Up
-          </NavLink>
-        </li>
-      </ul>
-    );
-    return (
-      // <nav className="navbar">
-      //   <ul className="nav-bar-home nav-links">
-      //     <li className="nav-item">
-      //       <NavLink to="/" style={{ textDecoration: 'none' }}>
-      //         <span>Home</span>
-      //       </NavLink>
-      //     </li>
-      //     <li className="nav-item">
-      //         <NavLink to="/photos" 
-      //         activeStyle={{fontWeight: "bold"}}><span>Photos</span></NavLink>
-      //     </li>
-      //     <li className="nav-item">
-      //       <NavLink to="/videos" activeStyle={{fontWeight: "bold"}}><span>Videos</span></NavLink>
-      //       </li>
-      //     <li className="nav-item">
-      //       <NavLink to="/audios" activeStyle={{fontWeight: "bold"}}><span>Audios</span></NavLink>
-      //       </li>
-      //   </ul>
-      //   {isAuthenticated ? authLinks : guestLinks}
-      // </nav>
-
-      <div className="outer-wrap">
-        {/* NavBar Starts Here  */}
-        <div className="navbar-component">
-          <nav className="navbar navbar-expand-md navbar-light bg-light">
-            <button type="button" className="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-              <span className="navbar-toggler-icon"></span>
-            </button>
-
-            <div id="navbarCollapse" className="collapse navbar-collapse">
-              <ul className="nav navbar-nav">
-                <li className="nav-item">
-                  <NavLink to="/" style={{ textDecoration: "none"}}>
-                    Home
-                  </NavLink>
-                </li>
-
-                <li className="nav-item">
-                  <NavLink to="/photos" 
-                    activeStyle={{fontWeight: "bold"}}>
-                      Photos
-                  </NavLink>
-                </li>
-
-                <li className="nav-item">
-                  <NavLink to="/videos" activeStyle={{fontWeight: "bold"}}>
-                    Videos
-                  </NavLink>
-                </li>
-
-                <li className="nav-item">
-                  <NavLink to="/audios" activeStyle={{fontWeight: "bold"}}>
-                    Audios
-                  </NavLink>
-                </li>
-              </ul>
-
-              {isAuthenticated ? authLinks : guestLinks}
-            </div>
-          </nav>
-        </div>
-      </div>
-    );
-  }
+        const guestLinks = (
+            <Nav className="ml-auto">
+                <Nav.Link href="/login">
+                    Sign In 
+                </Nav.Link>
+                <Nav.Link href="/signup">
+                    Sign Up
+                </Nav.Link>
+            </Nav>
+        );
+        return (
+                <BNavbar expand="md" bg="light">
+                    <BNavbar.Toggle aria-controls="basic-navbar-nav" />
+                    <BNavbar.Collapse id="basic-navbar-nav">
+                        <Nav className="mr-auto">
+                            <Nav.Link href="/">
+                                Home 
+                            </Nav.Link>
+                            <Nav.Link href="/photos">
+                                Photos 
+                            </Nav.Link>
+                            <Nav.Link href="/videos">
+                                Videos 
+                            </Nav.Link>
+                            <Nav.Link href="/audio">
+                                Audio 
+                            </Nav.Link>
+                        </Nav>
+                        {isAuthenticated ? authLinks : guestLinks}
+                    </BNavbar.Collapse>
+                </BNavbar>
+        );
+    }
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth,
+    auth: state.auth,
 });
 
 export default connect(mapStateToProps, { logout })(Navbar);
