@@ -249,13 +249,18 @@ return (
         <form onSubmit={this.handleProfilePictureUpdate}>
                     <div className="post-form-component">
                         <label>Profile picture:</label>  
-                        <input 
-                            type="file"
-                            name="profile_pic"
-                            onChange={this.handleImageChange}
-                            className="editprofile-file"
-                        />
-                        <img src={this.state.profile_pic} alt="profile" />
+                        <img src={this.state.initial_pic} alt="profile" />
+                            <ImageUploader
+                                withIcon={false}
+                                withPreview={true}
+                                //defaultImages={[this.state.profile_pic]}
+                                buttonText="Choose images"
+                                label=" "
+                                singleImage={true}
+                                onChange={this.handleImageChange}
+                                imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+                                maxFileSize={5242880}
+                            />
                     </div>
 
                     <button>Update Profile Picture</button>

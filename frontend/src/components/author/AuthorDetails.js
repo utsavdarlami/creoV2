@@ -44,8 +44,8 @@ class AuthorDetails extends Component {
                     <li><span>Username: </span>{this.props.author_details.user.username}</li>
                     <li><span>E-mail: </span>{this.props.author_details.user.email}</li>
                     <li><span>Gender: </span>{this.props.author_details.gender}</li>
-                    <li><span>Portfolio site: </span>{this.props.author_details.portfolio_site}</li>
-                    <li><span>Resume: </span>{this.props.author_details.resume}</li>
+                    <li><span><a href="{this.props.author_details.portfolio_site}">Visit my porftolio</a></span></li>
+                    <li><span><a href="{this.props.author_details.resume}">View my resume</a></span></li>
                   </ul>
                 </div>
               </div>
