@@ -30,7 +30,7 @@ class LikedContent extends Component {
                   {(() => {
                       switch (liked_post.post.post_type){
                         case "I":
-                          return <img className="post-image2" src={liked_post.post.content} alt="content" />;
+                          return <img className="post-image2" src={liked_post.post.content} alt="content" style={{borderRadius: "2%"}} />;
                         case "V": 
                           return  <video width="100%" height="100%" controls><source src={liked_post.post.content} /></video>;
                         case "A": 
@@ -71,6 +71,7 @@ class LikedContent extends Component {
                 <div className="profile-item"><NavLink to="/profile/liked" activeStyle={{backgroundColor: "yellow"}}>Liked Content</NavLink></div>
                 <div className="profile-item"><NavLink to="/profile/saved">Saved Content</NavLink></div>
               </div>
+              <hr />
             </div>
           </div>
         </div>

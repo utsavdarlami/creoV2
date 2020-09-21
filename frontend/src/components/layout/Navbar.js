@@ -19,13 +19,14 @@ class Navbar extends Component {
 
         const authLinks = (
             <Nav className="ml-auto">
-                <Nav.Link href="/submitpost">
+                <NavLink to="/submitpost" style={{marginTop: "8px"}}>
                     Upload 
-                </Nav.Link>
+                </NavLink>
                 <Nav.Item>
                 <NavDropdown alignRight title="Profile" id="collasible-nav-dropdown">
-                    <NavDropdown.Item href="/profile">View Profile</NavDropdown.Item>
-                    <NavDropdown.Item href="/editprofile">Edit Profile</NavDropdown.Item>
+                    <NavLink to="/profile" 
+                    style={{display: "block", border: "1px solid black", padding: "0 15%", backgroundColor:"yellow"}}>View Profile</NavLink>
+                    <NavLink to="/editprofile" style={{display: "block", border: "1px solid black", padding: "0 15%", backgroundColor:"yellow"}}>Edit Profile</NavLink>
                     <NavDropdown.Item onClick= {this.props.logout}>Logout</NavDropdown.Item>
                 </NavDropdown>
                 </Nav.Item>
@@ -33,32 +34,32 @@ class Navbar extends Component {
         );
 
         const guestLinks = (
-            <Nav className="ml-auto">
-                <Nav.Link href="/login">
+            <Nav className="ml-auto" style={{border: "1px solid black", width: "8%", display: "flex", justifyContent: "space-around"}}>
+                <NavLink to="/login">
                     Sign In 
-                </Nav.Link>
-                <Nav.Link href="/signup">
+                </NavLink>
+                <NavLink to="/signup">
                     Sign Up
-                </Nav.Link>
+                </NavLink>
             </Nav>
         );
         return (
                 <BNavbar expand="md" bg="light">
                     <BNavbar.Toggle aria-controls="basic-navbar-nav" />
                     <BNavbar.Collapse id="basic-navbar-nav">
-                        <Nav className="mr-auto">
-                            <Nav.Link href="/">
+                        <Nav className="mr-auto" style={{ width: "15%", display: "flex", justifyContent: "space-between"}}>
+                            <NavLink to="/">
                                 Home 
-                            </Nav.Link>
-                            <Nav.Link href="/photos">
+                            </NavLink>
+                            <NavLink to="/photos">
                                 Photos 
-                            </Nav.Link>
-                            <Nav.Link href="/videos">
+                            </NavLink>
+                            <NavLink to="/videos">
                                 Videos 
-                            </Nav.Link>
-                            <Nav.Link href="/audio">
+                            </NavLink>
+                            <NavLink to="/audios">
                                 Audio 
-                            </Nav.Link>
+                            </NavLink>
                         </Nav>
                         {this.props.auth.isAuthenticated ? authLinks : guestLinks}
                     </BNavbar.Collapse>

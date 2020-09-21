@@ -33,7 +33,7 @@ class CommentList extends Component {
     render() {
         return (
             <div>
-                <p>Responses: </p>
+                <p>Responses: <i className="far fa-comments"></i></p>
                 {
                     ((this.props.post_comments).length !== 0) ? 
                         (

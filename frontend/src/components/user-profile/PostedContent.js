@@ -70,6 +70,7 @@ class PostedContent extends Component {
                 <div className="profile-item"><NavLink to="/profile/liked">Liked Content</NavLink></div>
                 <div className="profile-item"><NavLink to="/profile/saved">Saved Content</NavLink></div>
               </div>
+              <hr />
             </div>
           </div>
         </div>

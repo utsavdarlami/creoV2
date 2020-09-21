@@ -1,9 +1,10 @@
 import React, { Component, Fragment} from 'react';
 import UserDetails from './UserDetails';
-import {NavLink} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getSavedContent } from '../../actions/posts';
+import AudioLogo from "../posts/PostList/audio_image.jpg"
 
 class LikedContent extends Component {
   static propTypes = {
@@ -18,26 +19,42 @@ class LikedContent extends Component {
   render() {
     const saved_content = 
     (
-      <div className="post-contents2">
-      {this.props.saved_posts.map(saved_post => (
-        <div className="postContainer2" key={saved_post.post.id}>
-          
-          <p>Id:{saved_post.post.id}</p>
-          <p>Title:{saved_post.post.title}</p>
-          <p>Description:{saved_post.post.description}</p>
-          {(() => {
-                switch (saved_post.post.post_type){
-                  case "I":
-                    return <img className="post-image2" src={saved_post.post.content} alt="content" />;
-                  case "V": 
-                    return  <video width="100%" height="240" controls><source src={saved_post.post.content} /></video>;
-                  case "A": 
-                    return  <audio controls><source src={saved_post.post.content} /></audio>
-                  default: return ""
-                  }  
-                })()}      
+      <div className="content-area">
+        <main className="main-content-area">
+          <section className="posts">
+            {this.props.saved_posts.map(saved_post => (
+              <article className="post post-one-third" key={saved_post.post.id}>
+                <Link to={`/posts/${saved_post.id}`}>
+                  <div style={{backgroundColor: "black", borderRadius: "2%"}}>
+                    {(() => {
+                      switch (saved_post.post.post_type){
+                        case "I":
+                          return <img className="post-image2" src={saved_post.post.content} alt="content" style={{borderRadius: "2%"}} />;
+                        case "V": 
+                          return  <video width="100%" height="100%" controls><source src={saved_post.post.content} /></video>;
+                        case "A": 
+                          return  <div style={{ height: "84%", border: "1px solid black", borderRadius: "2%", backgroundColor: "white"}}>
+                          <img src={AudioLogo} alt="audio" style={{height: "100%"}}  />
+                          <div>
+                            <audio controls style={{width:"100%", height: "52px"}}>
+                              <source src={saved_post.post.content} />
+                              </audio>
+                              </div>
+                              </div>
+                        default: return ""
+                        }  
+                    })()}     
                   </div>
-      ))}
+                    <div className="post-content">
+                      <span>
+                        {saved_post.post.title}
+                      </span>
+                    </div>
+                </Link>
+                </article>
+              ))}
+          </section>
+        </main>
     </div>
     )
     return (
@@ -51,6 +68,7 @@ class LikedContent extends Component {
                 <div className="profile-item"><NavLink to="/profile/liked">Liked Content</NavLink></div>
                 <div className="profile-item"><NavLink to="/profile/saved" activeStyle={{backgroundColor: "yellow"}}>Saved Content</NavLink></div>
               </div>
+              <hr />
             </div>
           </div>
         </div>
