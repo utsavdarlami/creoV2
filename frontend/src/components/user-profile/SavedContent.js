@@ -4,7 +4,9 @@ import {NavLink, Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getSavedContent } from '../../actions/posts';
-import AudioLogo from "../posts/PostList/audio_image.jpg"
+// import AudioLogo from "../posts/PostList/audio_image.jpg"
+import AudioLogo from "../posts/PostList/audio_image3.png"
+
 
 class LikedContent extends Component {
   static propTypes = {
@@ -24,7 +26,7 @@ class LikedContent extends Component {
           <section className="posts">
             {this.props.saved_posts.map(saved_post => (
               <article className="post post-one-third" key={saved_post.post.id}>
-                <Link to={`/posts/${saved_post.id}`}>
+                <Link to={`/posts/${saved_post.post.id}`}>
                   <div style={{backgroundColor: "black", borderRadius: "2%"}}>
                     {(() => {
                       switch (saved_post.post.post_type){

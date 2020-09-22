@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import { getAuthorDetails } from "../../actions/auth";
 import {withRouter, Link} from "react-router-dom";
 import { getAuthorPost } from '../../actions/posts';
-import AudioLogo from "../posts/PostList/audio_image.jpg"
+// import AudioLogo from "../posts/PostList/audio_image.jpg"
+import AudioLogo from "../posts/PostList/audio_image3.png"
 
 class AuthorDetails extends Component {
 
@@ -43,7 +44,7 @@ class AuthorDetails extends Component {
                 <div className="oprofile-user-info">
                   <h2>General Info</h2>
                   <ul> 
-                    <li><span style={{color:"#808181"}}>@ </span>{this.props.author_details.user.username}</li>
+                    <li><span style={{color:"#808181"}}>@</span>{this.props.author_details.user.username}</li>
                     <li><span style={{color:"#808181"}}>E-mail: </span>{this.props.author_details.user.email}</li>
                     {/* <li><span>Gender: </span>{this.props.author_details.gender}</li> */}
                     

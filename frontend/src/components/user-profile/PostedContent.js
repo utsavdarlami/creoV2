@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getUserPost } from '../../actions/posts';
-import AudioLogo from "../posts/PostList/audio_image.jpg"
-
+// import AudioLogo from "../posts/PostList/audio_image.jpg"
+import AudioLogo from "../posts/PostList/audio_image3.png"
 
 class PostedContent extends Component {
   static propTypes = {

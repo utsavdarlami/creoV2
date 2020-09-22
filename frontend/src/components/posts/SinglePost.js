@@ -16,7 +16,8 @@ import { Link, withRouter } from "react-router-dom";
 import CommentForm from "./CommentForm";
 import CommentList from "./CommentList";
 import PostAuthor from "./PostAuthor";
-import AudioLogo from "./PostList/audio_image.jpg";
+// import AudioLogo from "./PostList/audio_image.jpg";
+import AudioLogo from "./PostList/audio_image3.png";
 import Button from "react-bootstrap/Button";
 
 class SinglePost extends Component {
@@ -46,7 +47,7 @@ class SinglePost extends Component {
 
   componentDidMount() {
     const id = this.props.match.params.post_id;
-    const { isAuthenticated } = this.props.auth;
+    // const { isAuthenticated } = this.props.auth;
     this.props.getSinglePost(id);
     this.props.increase_viewcount(id);
       this.props.checkLike(id);

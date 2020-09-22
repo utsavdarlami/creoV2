@@ -13,9 +13,14 @@ class Videos extends Component {
     
     render() {
             return (
-                <div className="content-area">
+                <div>
+                <p 
+                style={{marginLeft: "3em",
+                 marginTop: "3%",
+                  fontFamily: "'Josefin Sans', sans-serif", fontSize: "1.3em"}}>Check out creators' videos</p>
+                <div className="content-area" >
                     {/* <PostListNavbar /> */}
-                    <main className="main-content-area">
+                    <main className="main-content-area" style={{paddingTop: "1em"}}>
                         <section className="posts">
                             {this.props.posts.map(post => (
                                 post.post_type === "V" ? 
@@ -41,6 +46,7 @@ class Videos extends Component {
                             ))}
                         </section>
                     </main>
+                </div>
                 </div>
             )
     }

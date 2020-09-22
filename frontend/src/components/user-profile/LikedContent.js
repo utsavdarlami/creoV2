@@ -4,7 +4,9 @@ import {NavLink, Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getLikedContent } from '../../actions/posts';
-import AudioLogo from "../posts/PostList/audio_image.jpg"
+// import AudioLogo from "../posts/PostList/audio_image.jpg"
+import AudioLogo from "../posts/PostList/audio_image3.png"
+
 
 class LikedContent extends Component {
   static propTypes = {

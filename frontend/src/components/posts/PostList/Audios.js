@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 // import PostListNavbar from "./PostListNavbar";
 // import Logo from "./music_track.png";
-import AudioLogo from "./audio_image.jpg";
+// import AudioLogo from "./audio_image.jpg";
+import AudioLogo from "./audio_image3.png"
+
 
 import { Link } from "react-router-dom";
 
@@ -13,9 +15,14 @@ class Audios extends Component {
     }
     render() {
         return (
+            <div>
+                 <p 
+                style={{marginLeft: "3em",
+                 marginTop: "3%",
+                  fontFamily: "'Josefin Sans', sans-serif", fontSize: "1.3em"}}>Check out creators' music</p>
             <div className="content-area">
                 {/* <PostListNavbar /> */}
-                <main className="main-content-area">
+                <main className="main-content-area" style={{paddingTop: "1em"}}>
                     <section className="posts">
                         {this.props.posts.map(post => (
                             post.post_type === "A" ? 
@@ -42,6 +49,7 @@ class Audios extends Component {
                         ))}
                     </section>
                 </main>
+                </div>
                 </div>
         )
     }
