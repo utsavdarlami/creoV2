@@ -247,7 +247,10 @@ class Navbar extends Component {
               onClick={this.props.logout}
               style={{ textAlign: "center" }}
             >
-              <NavLink to="/logout">Logout</NavLink>
+              <NavDropdown.Item onClick={this.props.logout}>
+                Logout
+              </NavDropdown.Item>
+              {/* <NavLink to="/logout">Logout</NavLink> */}
             </NavDropdown.Item>
           </NavDropdown>
         </Nav.Item>
