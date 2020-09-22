@@ -79,7 +79,7 @@ a {
 /* LOG IN  -  SIGN UP PAGE STYLING */
 .access-form-display {
   display: grid;
-  /* height: 90vh; */
+  height: 95vh;
   grid-template-columns: 0.5fr 1fr;
 }
 
@@ -87,7 +87,7 @@ a {
   grid-column: 1/2;
   background-color: burlywood;
   background: url("../bkgdimg.jpg");
-  height: 90vh;
+  /* height: 90vh; */
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -203,7 +203,7 @@ a {
 }
 
 .post-form{
-    /* background-color: #f8f4e5; */
+    background-color: #f2f2f2;
     border: 1px solid black;
     border-top: 10px solid #f45702;
     margin: 5% 8%;

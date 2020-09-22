@@ -14,7 +14,7 @@ class PostList extends Component {
 
     static propTypes = {
         posts: PropTypes.array.isRequired,
-        // getPosts: PropTypes.func.isRequired
+        getPosts: PropTypes.func.isRequired
     }
 
     // handleMostChange(){
@@ -23,6 +23,10 @@ class PostList extends Component {
 
     // handleMostViewed(){
     //     this.props.getPosts("like_count");
+    // }
+
+    // componentDidMount(){
+    //     this.props.getPosts();
     // }
 
     render() {
@@ -65,4 +69,4 @@ const mapStateToProps = state => ({
     posts: state.posts.posts
 });
 
-export default connect(mapStateToProps, /*{getPosts}*/)(PostList);
+export default connect(mapStateToProps)(PostList);

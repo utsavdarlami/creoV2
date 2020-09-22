@@ -28,7 +28,7 @@ class UserDetails extends Component {
           <div className="profile-row">
             <div className="profile-col-75">
               <div className="profile-user-data">
-                <p className="profile-user-label">@ {this.props.user_details.user.username}</p>
+                <p className="profile-user-label">@{this.props.user_details.user.username}</p>
                 <p className="profile-user-label"> Name: {this.props.user_details.user.first_name} {this.props.user_details.user.last_name}</p>
                 <p className="profile-user-label">Email: {this.props.user_details.user.email}</p>
                 {(this.props.user_details.bio) ? 
@@ -36,12 +36,12 @@ class UserDetails extends Component {
                 : (<p className="profile-user-label">Add bio</p>)}
                 
                 {(this.props.user_details.portfolio_site) ? 
-                (<p className="profile-user-label"><a href={this.props.user_details.portfolio_site} target="_blank"><span style={{color: "black"}}>Portfolio/Online Presence</span> <i className="fas fa-link"></i></a></p>) : 
+                (<p className="profile-user-label"><a href={this.props.user_details.portfolio_site} target="_blank" rel="noopener noreferrer"><span style={{color: "black"}}>Portfolio/Online Presence</span> <i className="fas fa-link"></i></a></p>) : 
                 (<p className="profile-user-label">Add portfolio site: </p>)}
                 
                 {(this.props.user_details.resume) ? 
                 (<p className="profile-user-label">
-                  <a href={this.props.user_details.resume} target="_blank">
+                  <a href={this.props.user_details.resume} target="_blank" rel="noopener noreferrer">
                     <span style={{color: "black"}}>View my resume</span> <i className="fas fa-link"></i></a></p>)
                  : (<p className="profile-user-label">Add resume:</p>)}
                 

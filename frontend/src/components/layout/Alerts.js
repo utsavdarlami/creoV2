@@ -48,9 +48,9 @@ export class Alerts extends Component{
             if(error.msg.detail){ 
                 alert.error(`message: Not Authorized, Please Login`);
             }
-            else{
-                alert.error(`message: ${error.msg}`);
-            }
+            // else{
+            //     alert.error(`message: ${error.msg}`);
+            // }
         }
         if(message !== prevProps.message){
             if(message.Login){

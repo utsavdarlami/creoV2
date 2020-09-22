@@ -49,7 +49,6 @@ class SinglePost extends Component {
     const { isAuthenticated } = this.props.auth;
     this.props.getSinglePost(id);
     this.props.increase_viewcount(id);
-    if (isAuthenticated) {
       this.props.checkLike(id);
       this.props.checkSave(id);
       setTimeout(() => {
@@ -77,9 +76,8 @@ class SinglePost extends Component {
           });
         }
       }, 1000);
-    }
   }
-
+  
   handleLike() {
     this.props.likePost(this.props.post.id);
     this.setState({
@@ -200,7 +198,7 @@ class SinglePost extends Component {
       <div>
         <div className="post-metadata">
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <p className="post-title">Title:{this.props.post.title}</p>
+            <p className="post-title">{this.props.post.title}</p>
             {deleteButton}
           </div>
           <p className="post-createdat text-muted">Created at: {gmtDate} </p>
@@ -247,7 +245,7 @@ class SinglePost extends Component {
         </div>
 
         <div className="post-content">
-          <p>Description:{this.props.post.description}</p>
+          <p>Description: {this.props.post.description}</p>
           {/* <p>{this.props.post.like_count} likes</p>
                         <p>{this.props.post.view_count}</p> */}
         </div>

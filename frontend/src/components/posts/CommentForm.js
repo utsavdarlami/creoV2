@@ -45,7 +45,6 @@ class CommentForm extends Component {
     return (
       <div>
         <form
-          onSubmit={this.handleSubmit}
           style={{
             padding: "12px",
             // border: "2px solid yellow",
@@ -63,14 +62,12 @@ class CommentForm extends Component {
           {/* <button style={{ marginLeft: "2%", borderRadius: "5px" }}>
             Submit
           </button> */}
-          <button style={{ border: "none", backgroundColor: "white" }}>
             <Button
-              variant="outine-success"
-              style={{ width: "100px", marginLeft: "10px" }}
+              variant="success"
+              style={{ width: "100px", marginLeft: "10px" }} onClick={this.handleSubmit}
             >
               Submit
             </Button>
-          </button>
         </form>
       </div>
     );

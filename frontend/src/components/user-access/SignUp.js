@@ -76,7 +76,7 @@ class SignUp extends Component {
           </div>
         </div>
         <div className="access-rhs" style={{ margin: '5% 0' }}>
-          <h1 style={{ color: 'grey' }}>Sign Up</h1>
+          <h1 style={{ color: 'black', fontFamily: "'Josefin Sans', sans-serif" }}>Sign Up</h1>
           <form className="access-form">
             <input
               type="text"
@@ -180,10 +180,10 @@ class SignUp extends Component {
             </div>
             <Button variant="info" onClick={this.handleSubmit} style={{width: "25%", margin: "2% 1%"}}>Submit</Button>
             {/* <button className="access-submit-button">Submit</button> */}
-            <p>
+            <p style={{fontFamily: "'Josefin Sans', sans-serif"}}>
               Already have an account?
-              <Link to="/login">
-                <span style={{ color: '#ea4c89' }}>Login</span>
+              <Link to="/login" style={{textDecoration: "none"}}>
+                <span style={{ color: '#ea4c89', fontFamily: "'Josefin Sans', sans-serif" }}> Sign In</span>
               </Link>
             </p>
           </form>

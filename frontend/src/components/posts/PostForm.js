@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addPost } from '../../actions/posts';
-import { withRouter } from "react-router-dom"
+import { withRouter } from "react-router-dom";
+import {Button} from "react-bootstrap";
 
 class PostForm extends Component {
   constructor() {
@@ -50,9 +51,9 @@ class PostForm extends Component {
       content: null,
       post_type: ''
     });
-    //setTimeout(() => {
-      //this.props.history.push("/profile");
-    //}, 2000);
+    setTimeout(() => {
+      this.props.history.push("/profile");
+    }, 1000);
   }
 
   render() {
@@ -60,7 +61,7 @@ class PostForm extends Component {
     return (
       <div className="post-submission-component">
         <h3>Publish Your Work</h3>
-        <form onSubmit={this.handleSubmit} className="post-form">
+        <form className="post-form">
           <div className="post-form-component">
             <label>Title:</label>
             <br />
@@ -140,7 +141,10 @@ class PostForm extends Component {
           </div>
         </div>
           
-          <button className="post-submit-button">Submit</button>
+          <Button variant="success"
+           onClick={this.handleSubmit}
+           style={{width: "25%"}}
+           >Submit</Button>
         </form>
       </div>
     );
