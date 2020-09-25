@@ -69,8 +69,8 @@ export default function(state = initialState, action) {
     case ADD_POST:
       return {
         ...state,
-        posts: [...state.posts, action.payload],
-        user_posts: [...state.user_posts, action.payload]
+        posts: [action.payload, ...state.posts],
+        user_posts: [action.payload, ...state.user_posts]
       };
     case ADD_COMMENT:
       return {

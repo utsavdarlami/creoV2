@@ -12,10 +12,10 @@ class PostList extends Component {
   //     this.handleMostViewed = this.handleMostViewed.bind(this);
   // }
 
-  static propTypes = {
-    posts: PropTypes.array.isRequired,
-    // getPosts: PropTypes.func.isRequired
-  };
+    static propTypes = {
+        posts: PropTypes.array.isRequired,
+        // getPosts: PropTypes.func.isRequired
+    }
 
   // handleMostChange(){
   //     this.props.getPosts("-view_count");
@@ -25,11 +25,15 @@ class PostList extends Component {
   //     this.props.getPosts("like_count");
   // }
 
-  render() {
-    // const likeorderedPosts = this.props.posts.slice().sort((a,b) => a.like_count < b.like_count)
-    return (
-      <div>
-        {/* <button onClick={this.handleMostChange}>Most liked</button>
+    // componentDidMount(){
+    //     this.props.getPosts();
+    // }
+
+    render() {
+        // const likeorderedPosts = this.props.posts.slice().sort((a,b) => a.like_count < b.like_count)
+        return (
+            <div>
+                {/* <button onClick={this.handleMostChange}>Most liked</button>
                 <button onClick={this.handleMostViewed}>Most viewed</button> */}
         <div className="content-area">
           {/* <PostListNavbar /> */}
@@ -68,4 +72,4 @@ const mapStateToProps = (state) => ({
   posts: state.posts.posts,
 });
 
-export default connect(mapStateToProps /*{getPosts}*/)(PostList);
+export default connect(mapStateToProps)(PostList);

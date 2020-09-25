@@ -172,17 +172,12 @@
 
 ///New Navar Codes from Gyanas
 import React, { Component } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 import {
-  Container,
-  Navbar as BNavbar,
-  Button,
-  NavDropdown,
-  Nav,
-  Dropdown,
+  Navbar as BNavbar, NavDropdown, Nav,
 } from "react-bootstrap";
 
 class Navbar extends Component {
@@ -201,7 +196,7 @@ class Navbar extends Component {
           className="font-color"
           style={{ marginTop: "8px", paddingRight: "15px" }}
         >
-          Upload
+          <span style={{color: "white"}}>Upload</span>
         </NavLink>
         <Nav.Item>
           <NavDropdown
@@ -209,7 +204,7 @@ class Navbar extends Component {
             title="Profile"
             id="collasible-nav-dropdown"
             style={{
-              color: "white",
+              color: "black",
               //   border: "2px solid red",
               backgroundColor: "rgb(248, 249, 252)",
             }}
@@ -228,8 +223,10 @@ class Navbar extends Component {
                 // padding: "0 15%",
                 // backgroundColor: "yellow",
               }}
-            >
-              View Profile
+            ><span style={{color: "black"}}>
+                View Profile
+            </span>
+              
             </NavLink>
             <NavLink
               to="/editprofile"
@@ -240,17 +237,14 @@ class Navbar extends Component {
                 // padding: "0 15%",
                 // backgroundColor: "yellow",
               }}
-            >
+            ><span style={{color: "black"}}>
               Edit Profile
+            </span>
             </NavLink>
             <NavDropdown.Item
               onClick={this.props.logout}
               style={{ textAlign: "center" }}
-            >
-              <NavDropdown.Item onClick={this.props.logout}>
-                Logout
-              </NavDropdown.Item>
-              {/* <NavLink to="/logout">Logout</NavLink> */}
+            >Logout
             </NavDropdown.Item>
           </NavDropdown>
         </Nav.Item>
@@ -263,15 +257,13 @@ class Navbar extends Component {
           to="/login"
           style={{ paddingRight: "15px" }}
           className="font-color"
-        >
-          Sign In
+        ><span style={{color: "white"}}>Sign In</span>
         </NavLink>
         <NavLink
           to="/signup"
           className="font-color"
           style={{ marginLeft: "2%" }}
-        >
-          Sign Up
+        ><span style={{color: "white"}}>Sign Up</span>
         </NavLink>
       </Nav>
     );
@@ -290,29 +282,29 @@ class Navbar extends Component {
               //   justifyContent: "space-between",
             }}
           >
-            <NavLink to="/" className="font-color">
-              Home
+            <NavLink to="/" className="font-color" style={{textDecoration: "none"}}>
+              <span style={{color: "white"}}>Home</span>
             </NavLink>
             <NavLink
               to="/photos"
               className="font-color"
               style={{ paddingLeft: "15px" }}
             >
-              Photos
+              <span style={{color: "white"}}>Photos</span>
             </NavLink>
             <NavLink
               to="/videos"
               className="font-color"
               style={{ paddingLeft: "15px" }}
             >
-              Videos
+              <span style={{color: "white"}}>Videos</span>
             </NavLink>
             <NavLink
               to="/audios"
               className="font-color"
               style={{ paddingLeft: "15px" }}
             >
-              Audio
+              <span style={{color: "white"}}>Audios</span>
             </NavLink>
           </Nav>
           {isAuthenticated ? authLinks : guestLinks}

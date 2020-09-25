@@ -48,10 +48,10 @@ class AuthorDetails extends Component {
                     {/* <li><span>Gender: </span>{this.props.author_details.gender}</li> */}
                     
                     {(this.props.author_details.portfolio_site) ? 
-                    (<li><span><a href={this.props.author_details.portfolio_site}><span style={{color: "#808181"}}>My porftolio site</span> <i className="fas fa-link" style={{color:"#808181"}}></i></a></span></li>) : (null)}
+                    (<li><span><a href={this.props.author_details.portfolio_site} target="_blank" rel="noopener noreferrer"><span style={{color: "#808181"}}>My porftolio site</span> <i className="fas fa-link" style={{color:"#808181"}}></i></a></span></li>) : (null)}
               
                     {(this.props.author_details.resume) ? 
-                    (<li><span><a href={this.props.author_details.resume}><span style={{color: "#808181"}}>View my resume</span> <i className="fas fa-link" style={{color:"#808181"}}></i></a></span></li>)
+                    (<li><span><a href={this.props.author_details.resume} target="_blank" rel="noopener noreferrer"><span style={{color: "#808181"}}>View my resume</span> <i className="fas fa-link" style={{color:"#808181"}}></i></a></span></li>)
                      : (null)}
                     
                   </ul>

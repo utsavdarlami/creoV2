@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getComments, deleteComment } from "../../actions/posts";
-import { loadUser } from "../../actions/auth";
+// import { loadUser } from "../../actions/auth";
 import { withRouter } from "react-router-dom";
 // import CommentAuthor from './CommentAuthor';
 //bootstrap
