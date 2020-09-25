@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
@@ -8,24 +8,24 @@ import { Link } from "react-router-dom";
 import AudioLogo from "./audio_image3.png"
 
 class PostList extends Component {
-    // constructor(){
-    //     super();
-    //     this.handleMostChange = this.handleMostChange.bind(this);
-    //     this.handleMostViewed = this.handleMostViewed.bind(this);
-    // }
+  // constructor(){
+  //     super();
+  //     this.handleMostChange = this.handleMostChange.bind(this);
+  //     this.handleMostViewed = this.handleMostViewed.bind(this);
+  // }
 
     static propTypes = {
         posts: PropTypes.array.isRequired,
         // getPosts: PropTypes.func.isRequired
     }
 
-    // handleMostChange(){
-    //     this.props.getPosts("-view_count");
-    // }
+  // handleMostChange(){
+  //     this.props.getPosts("-view_count");
+  // }
 
-    // handleMostViewed(){
-    //     this.props.getPosts("like_count");
-    // }
+  // handleMostViewed(){
+  //     this.props.getPosts("like_count");
+  // }
 
     // componentDidMount(){
     //     this.props.getPosts();
@@ -86,8 +86,8 @@ class PostList extends Component {
 }
 }
 
-const mapStateToProps = state => ({
-    posts: state.posts.posts
+const mapStateToProps = (state) => ({
+  posts: state.posts.posts,
 });
 
 export default connect(mapStateToProps)(PostList);
