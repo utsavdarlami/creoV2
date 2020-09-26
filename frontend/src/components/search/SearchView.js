@@ -20,27 +20,20 @@ class SearchView extends Component {
         </p>
         {this.props.search_user.length !== 0 ? (
           <div>
-              {this.props.search_user.map((user) => (
-                  <div key={user.id} style={{ padding: "0 10px" }}>
+              {this.props.search_user.map((userdetails) => (
+                  <div key={userdetails.user.id} style={{ padding: "0 10px" }}>
                       <span style={{}}>
-                          <p key={user.id}>
-                              <i className="far fa-user-circle"
-                                  style={{
-                                      // border: "2px solid blue",
-                                      fontSize: "35px",
-                                      marginTop: "18px",
-                                  }}
-                              >
-                              </i>{" "}
-                            <Link key={user.id} to={`/users/${user.id}`} style={{textDecoration: "none"}}>
-                                {user.username}
+                          <p key={userdetails.user.id}>
+                            <img key={userdetails.user.id} src={userdetails.profile_pic} alt="Avatar" className="utsav_avatar"/>{"  "}
+                            <Link key={userdetails.user.id} to={`/users/${userdetails.user.id}`} style={{textDecoration: "none"}}>
+                                {userdetails.user.username}
                         </Link>
                           </p>
                       </span>
-                      <div style={{fontSize: "1.2em", fontWeight: "bold"}}>{user.username}</div>
+                      <div style={{fontSize: "1.2em", fontWeight: "bold"}}>{userdetails.user.username}</div>
                       <p style={{ display: "flex" }}>
-                          {user.first_name + " " }
-                          {user.last_name}
+                          {userdetails.user.first_name + " " }
+                          {userdetails.user.last_name}
                       </p>
                       <hr />
                   </div>

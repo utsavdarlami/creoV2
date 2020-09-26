@@ -142,7 +142,7 @@ def view_user(request,pk=None):
     return Response(status=status.HTTP_204_NO_CONTENT)
 
 class UserSearchListApi(generics.ListAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+    queryset = UserProfileInfo.objects.all()
+    serializer_class = UserProfileInfoSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['username', 'first_name','last_name']
+    search_fields = ['user__username', 'user__first_name','user__last_name']
