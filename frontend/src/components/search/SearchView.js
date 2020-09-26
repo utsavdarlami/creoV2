@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import PostAuthor from "../posts/PostAuthor";
 
 class SearchView extends Component {
 
@@ -13,9 +14,40 @@ class SearchView extends Component {
     render() {
         console.log(this.props.search_user);
         return (
-            <div>
-                User Lists
-            </div>  
+      <div>
+        <p style={{ paddingLeft: "10px", fontSize: "20px" }}>
+          Search Results:{" "}
+        </p>
+        {this.props.search_user.length !== 0 ? (
+          <div>
+              {this.props.search_user.map((user) => (
+                  <div key={user.id} style={{ padding: "0 10px" }}>
+                      <span style={{}}>
+                          <p key={user.id}>
+                              <i className="far fa-user-circle"
+                                  style={{
+                                      // border: "2px solid blue",
+                                      fontSize: "35px",
+                                      marginTop: "18px",
+                                  }}
+                              >
+                              </i>{" "}
+                            <Link key={user.id} to={`/users/${user.id}`} style={{textDecoration: "none"}}>
+                                {user.username}
+                        </Link>
+                          </p>
+                      </span>
+                      <div style={{fontSize: "1.2em", fontWeight: "bold"}}>{user.username}</div>
+                      <p style={{ display: "flex" }}>
+                          {user.first_name + " " }
+                          {user.last_name}
+                      </p>
+                      <hr />
+                  </div>
+              ))}
+          </div>
+        ) : <p>No such user is found</p>}
+      </div>
         )
     }
 }

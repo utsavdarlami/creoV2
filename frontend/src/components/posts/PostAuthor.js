@@ -21,7 +21,7 @@ class PostAuthor extends Component {
         const author_id = this.props.post_author ? (this.props.post_author.id) : (null)
         return (
             <span style={{fontSize: "1.5em", fontWeight: "bold"}}>
-                <Link to={`/users/${author_id}`} style={{textDecoration: "none"}}>
+                <Link key={author_id} to={`/users/${author_id}`} style={{textDecoration: "none"}}>
                     {username}
                 </Link>
             </span>

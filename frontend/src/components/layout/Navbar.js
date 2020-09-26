@@ -41,7 +41,7 @@ class Navbar extends Component {
     });
 
     //setTimeout(() => {
-    this.props.history.push("/search)");
+    this.props.history.push("/search");
     //}, 1000);
 
     //<SearchListView>
@@ -188,4 +188,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { logout })(withRouter(Navbar));
+export default connect(mapStateToProps, { logout,searchUser})(withRouter(Navbar));

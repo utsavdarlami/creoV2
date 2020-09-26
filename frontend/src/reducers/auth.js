@@ -90,7 +90,7 @@ export default function(state = initialState, action) {
         author_details: null
       };
     case SEARCH_USER:
-        console.log(action.payload)
+        //console.log(action.payload)
         return {
             ...state,
             search_user : action.payload
