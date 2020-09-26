@@ -1,6 +1,6 @@
 from django.urls import path,include
 from rest_framework import routers
-from .views import RegisterAPI,LoginAPI,UserAPI,UserProfileInfoViewSet,get_user,view_user,ChangePassword
+from .views import RegisterAPI,LoginAPI,UserAPI,UserProfileInfoViewSet,get_user,view_user,ChangePassword,UserSearchListApi
 from knox import views as knox_views
 
 router = routers.DefaultRouter()
@@ -15,5 +15,6 @@ urlpatterns = [
     path('api/get_user/<str:username>/',get_user,name="get_user"),
     path('api/view_user/<int:pk>/',view_user,name="view_user"),
     path('api/auth/changepassword',ChangePassword.as_view()),
+    path('api/search_user/',UserSearchListApi.as_view()),
 ] + router.urls
 

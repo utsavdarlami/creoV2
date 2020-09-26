@@ -1,4 +1,4 @@
-from rest_framework import generics, permissions, viewsets
+from rest_framework import generics, permissions, viewsets,filters
 from rest_framework.response import Response
 
 from rest_framework.decorators import api_view
@@ -140,3 +140,9 @@ def view_user(request,pk=None):
         serializer = UserSerializer(user)
         return Response(serializer.data)
     return Response(status=status.HTTP_204_NO_CONTENT)
+
+class UserSearchListApi(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['username', 'first_name','last_name']
