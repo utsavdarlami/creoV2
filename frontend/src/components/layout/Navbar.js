@@ -1,33 +1,37 @@
 ///New Navar Codes from Gyanas
 import React, { Component } from "react";
-import { NavLink, withRouter} from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { logout ,searchUser} from "../../actions/auth";
+import { logout, searchUser } from "../../actions/auth";
 import {
-  Navbar as BNavbar, NavDropdown, Nav,Form,FormControl,Button
+  Navbar as BNavbar,
+  NavDropdown,
+  Nav,
+  Form,
+  FormControl,
+  Button,
 } from "react-bootstrap";
 
 class Navbar extends Component {
-
   constructor() {
     super();
-    this.handleLogOut = this.handleLogOut.bind(this)
-    this.searchChange= this.searchChange.bind(this);
+    this.handleLogOut = this.handleLogOut.bind(this);
+    this.searchChange = this.searchChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
-        search : "",
-    }
+      search: "",
+    };
   }
   static propTypes = {
     auth: PropTypes.object.isRequired,
     logout: PropTypes.func.isRequired,
   };
 
-  searchChange(event){
-      this.setState({
-          [event.target.name]: event.target.value,
-      });
+  searchChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
   }
 
   handleSubmit(event) {
@@ -45,11 +49,11 @@ class Navbar extends Component {
     //}, 1000);
 
     //<SearchListView>
- }
-    
-  handleLogOut(){
+  }
+
+  handleLogOut() {
     this.props.logout();
-    this.props.history.push("/")
+    this.props.history.push("/");
   }
 
   render() {
@@ -62,7 +66,7 @@ class Navbar extends Component {
           className="font-color"
           style={{ marginTop: "8px", paddingRight: "15px" }}
         >
-          <span style={{color: "white"}}>Upload</span>
+          <span style={{ color: "white" }}>Upload</span>
         </NavLink>
         <Nav.Item>
           <NavDropdown
@@ -89,10 +93,8 @@ class Navbar extends Component {
                 // padding: "0 15%",
                 // backgroundColor: "yellow",
               }}
-            ><span style={{color: "black"}}>
-                View Profile
-            </span>
-              
+            >
+              <span style={{ color: "black" }}>View Profile</span>
             </NavLink>
             <NavLink
               to="/editprofile"
@@ -103,14 +105,14 @@ class Navbar extends Component {
                 // padding: "0 15%",
                 // backgroundColor: "yellow",
               }}
-            ><span style={{color: "black"}}>
-              Edit Profile
-            </span>
+            >
+              <span style={{ color: "black" }}>Edit Profile</span>
             </NavLink>
             <NavDropdown.Item
               onClick={this.handleLogOut}
               style={{ textAlign: "center" }}
-            >Logout
+            >
+              Logout
             </NavDropdown.Item>
           </NavDropdown>
         </Nav.Item>
@@ -123,13 +125,15 @@ class Navbar extends Component {
           to="/login"
           style={{ paddingRight: "15px" }}
           className="font-color"
-        ><span style={{color: "white"}}>Sign In</span>
+        >
+          <span style={{ color: "white" }}>Sign In</span>
         </NavLink>
         <NavLink
           to="/signup"
           className="font-color"
           style={{ marginLeft: "2%" }}
-        ><span style={{color: "white"}}>Sign Up</span>
+        >
+          <span style={{ color: "white" }}>Sign Up</span>
         </NavLink>
       </Nav>
     );
@@ -148,36 +152,64 @@ class Navbar extends Component {
               //   justifyContent: "space-between",
             }}
           >
-            <NavLink to="/" className="font-color" style={{textDecoration: "none"}}>
-              <span style={{color: "white"}}>Home</span>
+            <NavLink
+              to="/"
+              className="font-color"
+              style={{ textDecoration: "none" }}
+            >
+              <span style={{ color: "white" }}>Home</span>
             </NavLink>
             <NavLink
               to="/photos"
               className="font-color"
               style={{ paddingLeft: "15px" }}
             >
-              <span style={{color: "white"}}>Photos</span>
+              <span style={{ color: "white" }}>Photos</span>
             </NavLink>
             <NavLink
               to="/videos"
               className="font-color"
               style={{ paddingLeft: "15px" }}
             >
-              <span style={{color: "white"}}>Videos</span>
+              <span style={{ color: "white" }}>Videos</span>
             </NavLink>
             <NavLink
               to="/audios"
               className="font-color"
               style={{ paddingLeft: "15px" }}
             >
-              <span style={{color: "white"}}>Audios</span>
+              <span style={{ color: "white" }}>Audios</span>
             </NavLink>
           </Nav>
-          {isAuthenticated ? authLinks : guestLinks}
-          <Form inline>
-            <FormControl value={this.state.search} name="search" onChange={this.searchChange} type="text" placeholder="Search creator" className="mr-sm-2" />
-            <Button onClick={this.handleSubmit} variant="outline-success">Search</Button>
+          <Form
+            inline
+            style={{
+              // border: "2px solid blue",
+              marginLeft: "auto",
+              marginRight: "-250px",
+              display: "flex",
+              // width: "100%",
+              justifyContent: "space-between",
+            }}
+          >
+            <FormControl
+              value={this.state.search}
+              name="search"
+              onChange={this.searchChange}
+              type="text"
+              placeholder="Search creator"
+              className="mr-sm-2"
+              // style={{ width: "100%" }}
+            />
+            <Button
+              onClick={this.handleSubmit}
+              variant="outline-success"
+              style={{ width: "25%" }}
+            >
+              Search
+            </Button>
           </Form>
+          {isAuthenticated ? authLinks : guestLinks}
         </BNavbar.Collapse>
       </BNavbar>
     );
@@ -188,4 +220,6 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { logout,searchUser})(withRouter(Navbar));
+export default connect(mapStateToProps, { logout, searchUser })(
+  withRouter(Navbar)
+);
