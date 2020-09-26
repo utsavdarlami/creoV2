@@ -12,11 +12,12 @@ textarea {
   font-family: "Asap", sans-serif;
   font-size: 16px;
   line-height: 1.5;
+ 
 }
 
 body {
   /* background-color: #ededed; */
-  background-color: #e9edfc;
+  background-color: red;
   font-family: "Asap", sans-serif;
 }
 
@@ -422,7 +423,7 @@ a {
   /* bottom: 0;  */
   /*background: rgb(0, 0, 0);
   background: rgba(0, 0, 0, 0.5);*/ /* Black see-through */
-  background-color: #778899;
+  background-color: black;
   /*border: 2px solid black;
   border-top: 0px;*/
   width: inherit;
@@ -448,7 +449,8 @@ a {
 .post-home-title {
   margin: auto;
   opacity: 1;
-  color: white;
+  font-size: 1em;
+  font-weight: 400;
   /* border: 2px solid blue; */
   /*color: black;*/
 }

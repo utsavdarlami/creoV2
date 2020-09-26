@@ -20,7 +20,7 @@ class CommentAuthor extends Component {
         console.log(author_id)
         return (
             <div>
-                {username}
+                <p style={{fontSize: "1.5em", fontWeight: "bold"}}>{username}</p>
             </div>
         )
     }

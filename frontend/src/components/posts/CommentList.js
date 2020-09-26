@@ -40,7 +40,7 @@ class CommentList extends Component {
           <div>
             {this.props.post_comments.map((post_comment) => (
               <div key={post_comment.id} style={{ padding: "0 10px" }}>
-                <div>{post_comment.publisher.username}</div>
+                <div style={{fontSize: "1.2em", fontWeight: "bold"}}>{post_comment.publisher.username}</div>
                 <p style={{ display: "flex" }}>
                   {post_comment.comment}
                   {post_comment.publisher.id === this.props.authId ? (

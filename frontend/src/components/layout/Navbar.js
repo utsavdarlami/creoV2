@@ -1,6 +1,6 @@
 ///New Navar Codes from Gyanas
 import React, { Component } from "react";
-import { NavLink} from "react-router-dom";
+import { NavLink, withRouter} from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout ,searchUser} from "../../actions/auth";
@@ -12,6 +12,7 @@ class Navbar extends Component {
 
   constructor() {
     super();
+    this.handleLogOut = this.handleLogOut.bind(this)
     this.searchChange= this.searchChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
@@ -28,6 +29,7 @@ class Navbar extends Component {
           [event.target.name]: event.target.value,
       });
   }
+
   handleSubmit(event) {
     event.preventDefault();
 
@@ -39,11 +41,14 @@ class Navbar extends Component {
     });
 
     //setTimeout(() => {
-      this.props.history.push("/search)");
+    this.props.history.push("/search)");
     //}, 1000);
 
     //<SearchListView>
     
+  handleLogOut(){
+    this.props.logout();
+    this.props.history.push("/")
   }
 
   render() {
@@ -102,7 +107,7 @@ class Navbar extends Component {
             </span>
             </NavLink>
             <NavDropdown.Item
-              onClick={this.props.logout}
+              onClick={this.handleLogOut}
               style={{ textAlign: "center" }}
             >Logout
             </NavDropdown.Item>
@@ -182,4 +187,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { logout, searchUser})(Navbar);
+export default connect(mapStateToProps, { logout })(withRouter(Navbar));

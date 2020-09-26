@@ -14,7 +14,8 @@ import {
   GET_SAVED_CONTENT,
   HAS_USER_SAVED, ADD_COMMENT, GET_COMMENTS,
   GET_AUTHOR_POST, GET_SINGLE_POST, VIEW_COUNT, LIKE_FAIL,
-  DELETE_COMMENT
+  DELETE_COMMENT,
+  LOGOUT_SUCCESS
 } from '../actions/types.js';
 
 const initialState = {
@@ -28,7 +29,7 @@ const initialState = {
   liked: null,
   post_comments: [],
   author_posts: [],
-  single_post : {}
+  single_post : {},
 };
 
 export default function(state = initialState, action) {
@@ -36,7 +37,6 @@ export default function(state = initialState, action) {
     case GET_ALL_POSTS:
       return {
         ...state,
-
         posts: action.payload,
       };
     case GET_SINGLE_POST:
@@ -140,6 +140,12 @@ export default function(state = initialState, action) {
        case LIKE_FAIL:
           return {
               ...state,
+          }
+        case LOGOUT_SUCCESS:
+          return {
+            ...state,
+            check_liked: [],
+            check_saved: []
           }
     default:
       return state;

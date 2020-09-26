@@ -52,7 +52,7 @@ class PostList extends Component {
                                 {(() => {
                     switch (post.post_type){
                       case "I":
-                        return <img src={post.content} alt="content" style={{borderRadius: "2%"}} />;
+                        return <img src={post.content} alt="content" style={{borderRadius: "none"}} />;
                       case "V": 
                         return  <video width="100%" height="100%" controls><source src={post.content} /></video>;
                       case "A": 
@@ -70,7 +70,7 @@ class PostList extends Component {
                   })()}   
                                 </div>
                                 <div className="post-content">
-                                    <span>
+                                    <span className="post-home-title">
                                     {post.title}
                                     </span>
                                 </div>
