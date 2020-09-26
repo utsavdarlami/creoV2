@@ -45,3 +45,4 @@ export const GET_ERRORS = "GET_ERRORS";
 export const LIKE_FAIL = "LIKE_FAIL";
 
 export const DELETE_COMMENT = "DELETE_COMMENT";
+export const SEARCH_USER = "SEARCH_USER"

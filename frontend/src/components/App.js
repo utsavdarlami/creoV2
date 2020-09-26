@@ -21,7 +21,8 @@ import SavedContent from './user-profile/SavedContent';
 import AuthorDetails from "./author/AuthorDetails";
 import Photos from './posts/PostList/Photos';
 import Videos from "./posts/PostList/Videos"
-import Audios from "./posts/PostList/Audios"
+import Audios from "./posts/PostList/Audios";
+import SearchView from "./search/SearchView";
 
 
 // Alert 
@@ -58,6 +59,7 @@ class App extends React.Component {
                             <Route exact path="/photos" component={Photos} />
                             <Route exact path="/videos" component={Videos} />
                             <Route exact path="/audios" component={Audios} />
+                            <Route exact path="/search" component={SearchView} />
                             <Route exact path="/posts/:post_id" component={SinglePost} />
                             <PrivateRoute exact path="/users/:author_id" component={AuthorDetails} />
                             <PrivateRoute exact path="/profile" component={Profile} />

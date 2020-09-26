@@ -15,6 +15,7 @@ import {
     UPDATE_USER_INFO, 
     GET_POST_AUTHOR, 
     GET_AUTHOR_DETAILS,
+    SEARCH_USER,
     // GET_COMMENT_AUTHOR
     // GET_ERRORS
 } from './types';
@@ -233,4 +234,17 @@ export const tokenConfig2 = getState => {
     return config;
 };
 
-
+export const searchUser= query => (dispatch) => {
+    axios
+    .get(`${back_api}/api/search_user/?search=${query}`)
+        .then(res => {
+            dispatch({
+                type: SEARCH_USER,
+                payload: res.data
+            });
+        })
+        .catch(err => {
+            //console.log(err);
+            dispatch(returnErrors(err.response.data, err.response.status));
+        });
+};
