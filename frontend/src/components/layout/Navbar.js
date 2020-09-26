@@ -45,6 +45,7 @@ class Navbar extends Component {
     //}, 1000);
 
     //<SearchListView>
+ }
     
   handleLogOut(){
     this.props.logout();

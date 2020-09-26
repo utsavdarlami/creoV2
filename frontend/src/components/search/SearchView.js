@@ -9,7 +9,9 @@ class SearchView extends Component {
         search_user : PropTypes.array.isRequired,
     }
 
+
     render() {
+        console.log(this.props.search_user);
         return (
             <div>
                 User Lists
