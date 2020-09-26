@@ -172,7 +172,7 @@
 
 ///New Navar Codes from Gyanas
 import React, { Component } from "react";
-import { NavLink} from "react-router-dom";
+import { NavLink, withRouter} from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
@@ -181,10 +181,19 @@ import {
 } from "react-bootstrap";
 
 class Navbar extends Component {
+  constructor(){
+    super();
+    this.handleLogOut = this.handleLogOut.bind(this)
+  }
   static propTypes = {
     auth: PropTypes.object.isRequired,
     logout: PropTypes.func.isRequired,
   };
+
+  handleLogOut(){
+    this.props.logout();
+    this.props.history.push("/")
+  }
 
   render() {
     const { isAuthenticated } = this.props.auth;
@@ -242,8 +251,9 @@ class Navbar extends Component {
             </span>
             </NavLink>
             <NavDropdown.Item
-              onClick={this.props.logout}
+              onClick={this.handleLogOut}
               style={{ textAlign: "center" }}
+              
             >Logout
             </NavDropdown.Item>
           </NavDropdown>
@@ -318,4 +328,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { logout })(Navbar);
+export default connect(mapStateToProps, { logout })(withRouter(Navbar));
