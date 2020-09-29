@@ -36,4 +36,6 @@ $ npm start
 
 ## FRONTEND TODO
 
-- [ ] Make a Plan
+- [x] Make a Plan
+- [ ] Search on Post
+- [ ] Confirmation of Action's
