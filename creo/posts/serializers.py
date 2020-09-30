@@ -13,6 +13,7 @@ class PostSerializer(serializers.ModelSerializer):
         model = Posts
         fields = '__all__'
 
+
 class CommentSerializer(serializers.ModelSerializer):
     """
         Comment Create,Retrieve And Delete Serializer
