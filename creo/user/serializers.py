@@ -11,6 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields =  ('id','username','email','first_name','last_name')
 
+
 # Register Serializer
 class RegisterSerializer(serializers.ModelSerializer):
 
@@ -46,9 +47,12 @@ class LoginSerializer(serializers.Serializer):
 # User Profile Info Serializer
 class UserProfileInfoSerializer(serializers.ModelSerializer):
 
+    # needed for register
     user = RegisterSerializer(required=False)
     confirm_password = serializers.CharField(required=False)
+
     # user_id = serializers.IntegerField(required=False)
+    # needed for udpates
     first_name = serializers.CharField(max_length=150,required=False)
     last_name= serializers.CharField(max_length=150,required=False)
     email = serializers.EmailField(required=False)

@@ -2,6 +2,11 @@ from rest_framework import serializers
 from posts.models import Posts,CommentPost,Likes,Saves
 from user.serializers import UserSerializer
 
+
+"""
+    Serialization allows the data such as querysets and model instances to be converted to native Python datatypes that can then be easily rendered into JSON,XML or other content types
+"""
+
 # Post Serializer
 class PostSerializer(serializers.ModelSerializer):
     class Meta:

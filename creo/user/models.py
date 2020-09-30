@@ -15,5 +15,6 @@ class UserProfileInfo(models.Model):
     bio = models.TextField(max_length=500,blank=True)
     resume = models.FileField(upload_to ='resumes',blank=True)
     profile_pic = models.ImageField(upload_to ='profilepics',default="profilepics/default1.jpg", blank=True)
+    
     def __str__(self):
         return self.user.username
