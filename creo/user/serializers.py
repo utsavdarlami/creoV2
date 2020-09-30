@@ -47,12 +47,12 @@ class LoginSerializer(serializers.Serializer):
 # User Profile Info Serializer
 class UserProfileInfoSerializer(serializers.ModelSerializer):
 
-    # needed for register
+    # needed for register/create
     user = RegisterSerializer(required=False)
     confirm_password = serializers.CharField(required=False)
 
     # user_id = serializers.IntegerField(required=False)
-    # needed for udpates
+    # needed for udpates/update
     first_name = serializers.CharField(max_length=150,required=False)
     last_name= serializers.CharField(max_length=150,required=False)
     email = serializers.EmailField(required=False)
@@ -64,6 +64,9 @@ class UserProfileInfoSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         # print(validated_data)
+        """
+            register part
+        """
         user_data = validated_data.pop('user',None)
         confirm_password = validated_data.pop('confirm_password',None)
 

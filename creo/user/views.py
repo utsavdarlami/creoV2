@@ -104,6 +104,8 @@ class ChangePassword(generics.UpdateAPIView):
         serializer = self.get_serializer(data= request.data)
         serializer.is_valid(raise_exception = True)
 
+
+        #self.object is the user who requested for password change
         if not self.object.check_password(serializer.data.get("old_password")):
             return Response(
                 {"old_password" : ["Wrong Old Password"]},

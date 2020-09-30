@@ -70,6 +70,7 @@ class PostViewSet(viewsets.ModelViewSet):
         # print(serializer)
 
 
+
 class PostListViewSet(viewsets.ReadOnlyModelViewSet):
     """
     This viewset automatically provides `list` and `detail` actions.
@@ -79,6 +80,7 @@ class PostListViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = PostSerializer
     filter_backends = [filters.OrderingFilter]
     ordering_fields = ['like_count', 'view_count']
+
 
 class UsersPostView(viewsets.ReadOnlyModelViewSet):
 
@@ -200,6 +202,7 @@ class SavePostViewset(viewsets.ModelViewSet):
         self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
 class CommentViewSet(viewsets.ModelViewSet):
     """ Viewset related to like in a post , liking post and deleting like post
     Create -> add to db and increase like count
@@ -242,6 +245,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
 class UsernameCommentViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = CommentPost.objects.all().order_by("-pub_date")
     permissions_classes = [
@@ -257,6 +261,7 @@ class UsernameCommentViewSet(viewsets.ReadOnlyModelViewSet):
 
             return Response(serializer.data)
         return Response([])
+
 
 @api_view(['GET'])
 def add_viewcount_post(request, pk=None):
