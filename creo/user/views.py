@@ -33,6 +33,7 @@ class RegisterAPI(generics.GenericAPIView):
         })
 
 
+
 # Login API
 class LoginAPI(generics.GenericAPIView):
 
@@ -50,6 +51,7 @@ class LoginAPI(generics.GenericAPIView):
         })
 
 
+
 #  Get User API
 class UserAPI(generics.RetrieveAPIView):
 
@@ -64,6 +66,7 @@ class UserAPI(generics.RetrieveAPIView):
         if not self.request.user.is_authenticated:
             raise PermissionDenied()
         return self.request.user
+
 
 
 # UserProfileInfo Serializer
@@ -89,6 +92,7 @@ class UserProfileInfoViewSet(viewsets.ModelViewSet):
             serializer = self.get_serializer(user)
             return Response(serializer.data)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 
 class ChangePassword(generics.UpdateAPIView):
@@ -129,6 +133,7 @@ class ChangePassword(generics.UpdateAPIView):
 
 
 
+
 # User Detail Based On Username
 @api_view(['GET'])
 def get_user(request,username=None):
@@ -139,6 +144,7 @@ def get_user(request,username=None):
     return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+
 # UserDetailBasesOnID
 @api_view(['GET'])
 def view_user(request,pk=None):
@@ -147,6 +153,7 @@ def view_user(request,pk=None):
         serializer = UserSerializer(user)
         return Response(serializer.data)
     return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 
 class UserSearchListApi(generics.ListAPIView):

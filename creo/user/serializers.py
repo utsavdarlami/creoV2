@@ -33,17 +33,6 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
 
-# Login Serializer
-class LoginSerializer(serializers.Serializer):
-    username  = serializers.CharField()
-    password = serializers.CharField()
-
-    def validate(self,data):
-        user = authenticate(**data)
-        if user and user.is_active:
-            return user
-        raise serializers.ValidationError("Incorrect Credentials")
-
 # User Profile Info Serializer
 class UserProfileInfoSerializer(serializers.ModelSerializer):
 
@@ -52,7 +41,7 @@ class UserProfileInfoSerializer(serializers.ModelSerializer):
     confirm_password = serializers.CharField(required=False)
 
     # user_id = serializers.IntegerField(required=False)
-    # needed for udpates/update
+    # needed for updates
     first_name = serializers.CharField(max_length=150,required=False)
     last_name= serializers.CharField(max_length=150,required=False)
     email = serializers.EmailField(required=False)
@@ -64,25 +53,29 @@ class UserProfileInfoSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         # print(validated_data)
+        """"
+            Registering User
         """
-            register part
-        """
+        #validated_data contains above stated fields plus the fields from UserProfileInfo
+        #retrieving only user data i.e: first_name, last_name, username, email and password if available and storing them in user_data 
         user_data = validated_data.pop('user',None)
         confirm_password = validated_data.pop('confirm_password',None)
 
         if user_data == None:
-            raise serializers.ValidationError({"user": ["It must not be None when creating"]})
+            raise serializers.ValidationError({"user": ["There is no user data for the user to be registered"]})
 
         if confirm_password == None:
-            raise serializers.ValidationError({"password":["Confirm Password Not Provided Match"]})
+            raise serializers.ValidationError({"password":["Password Confirmation is not provided."]})
 
         if user_data["password"]!=confirm_password:
-            raise serializers.ValidationError({"password":["Passwords Does Not Match"]})
+            raise serializers.ValidationError({"password":["Does not Match with password field."]})
 
         user = RegisterSerializer.create(RegisterSerializer(), validated_data=user_data)
         # validated_data["user"] = user
+        #Creating the user profile info after the user has been registered
         userprofile = UserProfileInfo.objects.create(user=user,**validated_data)
         return user,userprofile
+        
 
     def update(self,instance,validated_data):
         """ Reference
@@ -104,6 +97,7 @@ class UserProfileInfoSerializer(serializers.ModelSerializer):
 
         # user_validated_data = instance_serializer.data
 
+        #Updating Email, Firstname and Lastname of user 
         user = instance.user
         user.email = validated_data.get('email',user.email)
         user.first_name = validated_data.get('first_name',user.first_name)
@@ -111,6 +105,8 @@ class UserProfileInfoSerializer(serializers.ModelSerializer):
         # user.set_password(user_validated_data.get('password',user.password))
         user.save()
 
+
+        #Updating UserProfileInfo model of User
         instance.gender = validated_data.get('gender',instance.gender)
         instance.portfolio_site = validated_data.get('portfolio_site',instance.portfolio_site)
         instance.bio = validated_data.get('bio',instance.bio)
@@ -120,6 +116,20 @@ class UserProfileInfoSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
+
+
+# Login Serializer
+class LoginSerializer(serializers.Serializer):
+    username  = serializers.CharField()
+    password = serializers.CharField()
+
+    def validate(self,data):
+        user = authenticate(**data)
+        if user and user.is_active:
+            return user
+        raise serializers.ValidationError("Incorrect Credentials")
+
+
 
 class PasswordChangeSerializer(serializers.Serializer):
 
