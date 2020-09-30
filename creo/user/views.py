@@ -1,13 +1,13 @@
-from rest_framework import generics, permissions, viewsets,filters
+from rest_framework import generics, permissions, viewsets,filters, status
 from rest_framework.response import Response
 
 from rest_framework.decorators import api_view
-from rest_framework import status
+# from rest_framework import status
 from django.shortcuts import get_object_or_404
 
 from knox.models import AuthToken
 
-from .serializers import UserSerializer,LoginSerializer,UserProfileInfoSerializer,PasswordChangeSerializer
+from .serializers import UserProfileInfoSerializer, UserSerializer, LoginSerializer, PasswordChangeSerializer
 
 from django.contrib.auth.models import User
 
@@ -32,6 +32,7 @@ class RegisterAPI(generics.GenericAPIView):
             "token"   : token
         })
 
+
 # Login API
 class LoginAPI(generics.GenericAPIView):
 
@@ -48,6 +49,7 @@ class LoginAPI(generics.GenericAPIView):
             "token" : token
         })
 
+
 #  Get User API
 class UserAPI(generics.RetrieveAPIView):
 
@@ -62,6 +64,7 @@ class UserAPI(generics.RetrieveAPIView):
         if not self.request.user.is_authenticated:
             raise PermissionDenied()
         return self.request.user
+
 
 # UserProfileInfo Serializer
 class UserProfileInfoViewSet(viewsets.ModelViewSet):
@@ -86,6 +89,7 @@ class UserProfileInfoViewSet(viewsets.ModelViewSet):
             serializer = self.get_serializer(user)
             return Response(serializer.data)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 class ChangePassword(generics.UpdateAPIView):
     serializer_class = PasswordChangeSerializer
@@ -134,6 +138,7 @@ def get_user(request,username=None):
         return Response(serializer.data)
     return Response(status=status.HTTP_204_NO_CONTENT)
 
+
 # UserDetailBasesOnID
 @api_view(['GET'])
 def view_user(request,pk=None):
@@ -142,6 +147,7 @@ def view_user(request,pk=None):
         serializer = UserSerializer(user)
         return Response(serializer.data)
     return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 class UserSearchListApi(generics.ListAPIView):
     queryset = UserProfileInfo.objects.all()
