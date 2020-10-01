@@ -16,7 +16,7 @@ from .models import UserProfileInfo
 from django.core.exceptions import PermissionDenied
 
 
-# Register API
+# API for Register
 class RegisterAPI(generics.GenericAPIView):
 
     serializer_class = UserProfileInfoSerializer
@@ -34,7 +34,7 @@ class RegisterAPI(generics.GenericAPIView):
 
 
 
-# Login API
+# API for Login
 class LoginAPI(generics.GenericAPIView):
 
     serializer_class = LoginSerializer
@@ -52,49 +52,7 @@ class LoginAPI(generics.GenericAPIView):
 
 
 
-#  Get User API
-class UserAPI(generics.RetrieveAPIView):
-
-    permissions_classes = [
-        # permissions.AllowAny
-        permissions.IsAuthenticated,
-    ]
-
-    serializer_class = UserSerializer
-
-    def get_object(self):
-        if not self.request.user.is_authenticated:
-            raise PermissionDenied()
-        return self.request.user
-
-
-
-# UserProfileInfo Serializer
-class UserProfileInfoViewSet(viewsets.ModelViewSet):
-    queryset = UserProfileInfo.objects.all()
-
-    permissions_classes = [
-       # permissions.AllowAny
-        permissions.IsAuthenticated,
-    ]
-
-    serializer_class = UserProfileInfoSerializer
-
-    def get_queryset(self):
-        if not self.request.user.is_authenticated:
-            raise PermissionDenied()
-        # return self.request.user.publisher.all()
-        return UserProfileInfo.objects.filter(user=self.request.user)
-
-    def retrieve(self,request,*args,**kwargs):
-        if UserProfileInfo.objects.filter(user = self.kwargs.get('pk')).exists():
-            user = UserProfileInfo.objects.get(user = self.kwargs.get('pk'))
-            serializer = self.get_serializer(user)
-            return Response(serializer.data)
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-
+# API for changing password
 class ChangePassword(generics.UpdateAPIView):
     serializer_class = PasswordChangeSerializer
     model = User
@@ -134,14 +92,47 @@ class ChangePassword(generics.UpdateAPIView):
 
 
 
-# User Detail Based On Username
-@api_view(['GET'])
-def get_user(request,username=None):
-    if User.objects.filter(username = username).exists():
-        user = User.objects.get(username = username)
-        serializer = UserSerializer(user)
-        return Response(serializer.data)
-    return Response(status=status.HTTP_204_NO_CONTENT)
+
+#  Get User API - gives the user detail
+class UserAPI(generics.RetrieveAPIView):
+
+    permissions_classes = [
+        # permissions.AllowAny
+        permissions.IsAuthenticated,
+    ]
+
+    serializer_class = UserSerializer
+
+    def get_object(self):
+        if not self.request.user.is_authenticated:
+            raise PermissionDenied()
+        return self.request.user
+
+
+
+#User Profile Info View - gives the entire user profile informtion 
+class UserProfileInfoViewSet(viewsets.ModelViewSet):
+    queryset = UserProfileInfo.objects.all()
+
+    permissions_classes = [
+       # permissions.AllowAny
+        permissions.IsAuthenticated,
+    ]
+
+    serializer_class = UserProfileInfoSerializer
+
+    def get_queryset(self):
+        if not self.request.user.is_authenticated:
+            raise PermissionDenied()
+        # return self.request.user.publisher.all()
+        return UserProfileInfo.objects.filter(user=self.request.user)
+
+    def retrieve(self,request,*args,**kwargs):
+        if UserProfileInfo.objects.filter(user = self.kwargs.get('pk')).exists():
+            user = UserProfileInfo.objects.get(user = self.kwargs.get('pk'))
+            serializer = self.get_serializer(user)
+            return Response(serializer.data)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 
@@ -153,6 +144,21 @@ def view_user(request,pk=None):
         serializer = UserSerializer(user)
         return Response(serializer.data)
     return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+
+# User Detail Based On Username
+@api_view(['GET'])
+def get_user(request,username=None):
+    if User.objects.filter(username = username).exists():
+        user = User.objects.get(username = username)
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
 
 
 
