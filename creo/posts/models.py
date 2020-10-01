@@ -29,18 +29,6 @@ class Posts(models.Model):
     #     return reverse('post_detail', args=[str(self.id)])
 
 
-#Comment Post Model
-class CommentPost(models.Model):
-    post = models.ForeignKey(Posts,on_delete=models.CASCADE,)
-    publisher = models.ForeignKey(User,on_delete=models.CASCADE)
-    comment  = models.CharField(max_length=500)
-    pub_date = models.DateTimeField(auto_now_add=True)
-
-    
-    def __str__(self):
-        return str(self.comment[:10])
-
-
 #Like Post Model
 class Likes(models.Model):
     post = models.ForeignKey(Posts,on_delete=models.CASCADE,)
@@ -62,3 +50,18 @@ class Saves(models.Model):
     
     def __str__(self):
         return str(self.savedby)
+
+
+
+#Comment Post Model
+class CommentPost(models.Model):
+    post = models.ForeignKey(Posts,on_delete=models.CASCADE,)
+    publisher = models.ForeignKey(User,on_delete=models.CASCADE)
+    comment  = models.CharField(max_length=500)
+    pub_date = models.DateTimeField(auto_now_add=True)
+
+    
+    def __str__(self):
+        return str(self.comment[:10])
+
+
