@@ -136,6 +136,25 @@ class UserProfileInfoViewSet(viewsets.ModelViewSet):
 
 
 
+# User Detail Based On Username
+@api_view(['GET'])
+def get_user(request,username=None):
+    if User.objects.filter(username = username).exists():
+        user = User.objects.get(username = username)
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+class UserSearchListApi(generics.ListAPIView):
+    queryset = UserProfileInfo.objects.all()
+    serializer_class = UserProfileInfoSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['user__username', 'user__first_name','user__last_name']
+
+
+
 # UserDetailBasesOnID
 @api_view(['GET'])
 def view_user(request,pk=None):
@@ -148,22 +167,3 @@ def view_user(request,pk=None):
 
 
 
-# User Detail Based On Username
-@api_view(['GET'])
-def get_user(request,username=None):
-    if User.objects.filter(username = username).exists():
-        user = User.objects.get(username = username)
-        serializer = UserSerializer(user)
-        return Response(serializer.data)
-    return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-
-
-
-
-class UserSearchListApi(generics.ListAPIView):
-    queryset = UserProfileInfo.objects.all()
-    serializer_class = UserProfileInfoSerializer
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['user__username', 'user__first_name','user__last_name']
