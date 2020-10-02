@@ -8,10 +8,13 @@ import { getUserPost } from '../../actions/posts';
 // import AudioLogo from "../posts/PostList/audio_image.jpg"
 import AudioLogo from "../posts/PostList/audio_image3.png"
 
+import Spinner from '../layout/Spinner';
+
 class PostedContent extends Component {
   static propTypes = {
     user_posts: PropTypes.array.isRequired,
     getUserPost: PropTypes.func.isRequired,
+    postLoading : PropTypes.bool.isRequired,
   };
 
   componentDidMount() {
@@ -59,6 +62,10 @@ class PostedContent extends Component {
       </main>
     </div>
 
+    if (this.props.postLoading) {
+        return <Spinner/> 
+    }
+
     return (
       <Fragment>
         <div className="profile-wrapper" style={{ marginTop: "2%"}}>
@@ -85,6 +92,7 @@ class PostedContent extends Component {
 
 const mapStateToProps = state => ({
   user_posts: state.posts.user_posts,
+    postLoading : state.posts.isLoading,
 });
 
 export default connect(mapStateToProps, { getUserPost })(PostedContent);

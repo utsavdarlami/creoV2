@@ -24,6 +24,8 @@ import Videos from "./posts/PostList/Videos"
 import Audios from "./posts/PostList/Audios";
 import SearchView from "./search/SearchView";
 
+import About from './pages/about';
+
 
 // Alert 
 import {Provider as AlertProvider} from 'react-alert';
@@ -61,6 +63,7 @@ class App extends React.Component {
                             <Route exact path="/audios" component={Audios} />
                             <Route exact path="/search" component={SearchView} />
                             <Route exact path="/posts/:post_id" component={SinglePost} />
+                            <Route exact path="/about" component={About} />
                             <PrivateRoute exact path="/users/:author_id" component={AuthorDetails} />
                             <PrivateRoute exact path="/profile" component={Profile} />
                             <PrivateRoute exact path="/editprofile" component={EditProfile} />
