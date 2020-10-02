@@ -67,9 +67,11 @@ class PostViewSet(viewsets.ModelViewSet):
                     ]
                 }, status=status.HTTP_400_BAD_REQUEST)
 
+
     def perform_create(self, serializer):
         serializer.save(publisher=self.request.user)
         # print(serializer)
+
 
 
 # api/allposts - gives the list of all posts
@@ -85,7 +87,7 @@ class PostListViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 
-# api/users_post
+# api/users_post 
 class UsersPostView(viewsets.ReadOnlyModelViewSet):
 
     queryset = Posts.objects.all().order_by('-created_at')
@@ -102,6 +104,8 @@ class UsersPostView(viewsets.ReadOnlyModelViewSet):
             serializer = PostSerializer(posts, many=True)
             return Response(serializer.data)
         return Response([])
+
+
 
 # api/like
 class addLikeViewset(viewsets.ModelViewSet):
@@ -122,9 +126,10 @@ class addLikeViewset(viewsets.ModelViewSet):
         return Likes.objects.filter(publisher=self.request.user)
 
     def retrieve(self, request, *args, **kwargs):
-        if Likes.objects.filter(post=self.kwargs.get('pk'), publisher=self.request.user).exists():
+        if Likes.objects.filter(post=self.kwargs.get('pk'), publisher=self.request.user).exists(): 
             likes = Likes.objects.get(post=self.kwargs.get(
                 'pk'), publisher=self.request.user)
+            # print(likes)
             serializer = LikeSerializer(likes)
             return Response(serializer.data)
         return Response(status=status.HTTP_204_NO_CONTENT)
@@ -151,7 +156,8 @@ class addLikeViewset(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-# api/who_liked_in_post/<int:pk>
+
+# api/who_liked_in_post/<int:pk> -api view to see the list of users who liked the post
 @api_view(['GET'])
 def who_liked_the_post(request, pk=None):
     if not request.user.is_authenticated:
@@ -162,6 +168,7 @@ def who_liked_the_post(request, pk=None):
             serializer = LikeUserSerializer(likes, many=True)
             return Response(serializer.data)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 
 # api/save
@@ -208,6 +215,7 @@ class SavePostViewset(viewsets.ModelViewSet):
             post=self.kwargs.get('pk'), savedby=self.request.user)
         self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 
 # api/comment
@@ -282,7 +290,7 @@ def add_viewcount_post(request, pk=None):
     return Response({"Success":"view count increased"},status = status.HTTP_200_OK)
 
 
-
+# api/search_post/?search=
 class PostSearchListApi(generics.ListAPIView):
     # queryset = Posts.objects.all()
     queryset = Posts.objects.all().order_by('-created_at')

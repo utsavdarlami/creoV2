@@ -49,6 +49,8 @@ class CommentSerializer(serializers.ModelSerializer):
 
         return post,commented
 
+
+
 class CommentUserSerializer(serializers.ModelSerializer):
     """
         Comment Create,Retrieve And Delete Serializer
@@ -60,12 +62,17 @@ class CommentUserSerializer(serializers.ModelSerializer):
         model = CommentPost
         fields = '__all__'
 
+
+
 class LikeUserSerializer(serializers.ModelSerializer):
     publisher = UserSerializer(required=True)
     class Meta:
         model = Likes
         fields = '__all__'
 
+
+
+#Serializer for liking user posts
 class LikeSerializer(serializers.ModelSerializer):
     """ #Like Create,Retrieve And Delete Serializer
     """
@@ -99,6 +106,8 @@ class LikeSerializer(serializers.ModelSerializer):
         liked = Likes.objects.create(post=post,**validated_data)
 
         return post,liked
+
+
 
 class SaveSerializer(serializers.ModelSerializer):
 
