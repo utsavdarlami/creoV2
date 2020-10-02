@@ -194,18 +194,18 @@ a {
 } */
 
 .post-submission-component h3 {
-  color: #f45702;
+  color: #68527c;
   font-size: 200%;
-  font-style: italic;
-  font-weight: bold;
+  /* font-style: italic; */
+  /* font-weight: bold; */
   padding-top: 2%;
   text-align: center;
+  font-family: "Josefin Sans, sans-serif";
 }
 
 .post-form {
   background-color: #f2f2f2;
-  border: 1px solid black;
-  border-top: 10px solid #f45702;
+  border: 1px solid rgb(201, 198, 198);
   margin: 5% 8%;
   /* max-width: 70%; */
   display: flex;

@@ -186,7 +186,7 @@ class Navbar extends Component {
             style={{
               // border: "2px solid blue",
               marginLeft: "auto",
-              marginRight: "-250px",
+              marginRight: "-245px",
               display: "flex",
               // width: "100%",
               justifyContent: "space-between",
@@ -204,9 +204,8 @@ class Navbar extends Component {
             <Button
               onClick={this.handleSubmit}
               variant="outline-success"
-              style={{ width: "25%" }}
-            >
-              Search
+              style={{ width: "22%" }}
+            >Search
             </Button>
           </Form>
           {isAuthenticated ? authLinks : guestLinks}
