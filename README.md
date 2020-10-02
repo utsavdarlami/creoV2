@@ -32,7 +32,6 @@ $ npm start
 - [x] Password Change 
 - [x] Add Video/Music
 - [x] Tags On Content
-- [ ] Follow Artist
 
 ## FRONTEND TODO
 
