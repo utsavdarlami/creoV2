@@ -16,6 +16,7 @@ import {
     GET_POST_AUTHOR, 
     GET_AUTHOR_DETAILS,
     SEARCH_USER,
+    SEARCH_POST,
     // GET_COMMENT_AUTHOR
     // GET_ERRORS
 } from './types';
@@ -242,9 +243,26 @@ export const searchUser= query => (dispatch) => {
                 type: SEARCH_USER,
                 payload: res.data
             });
+            dispatch(searchPosts(query));
         })
         .catch(err => {
             //console.log(err);
             dispatch(returnErrors(err.response.data, err.response.status));
         });
 };
+
+export const searchPosts= query => (dispatch) => {
+    axios
+    .get(`${back_api}/api/search_post/?search=${query}`)
+        .then(res => {
+            dispatch({
+                type: SEARCH_POST,
+                payload: res.data
+            });
+        })
+        .catch(err => {
+            //console.log(err);
+            dispatch(returnErrors(err.response.data, err.response.status));
+        });
+};
+
