@@ -9,7 +9,8 @@ import {
   REGISTER_FAIL,
   USER_DETAILS,
   UPDATE_USER_INFO, GET_POST_AUTHOR, GET_AUTHOR_DETAILS,
-  SEARCH_USER
+  SEARCH_USER,
+  SEARCH_POST
   // LIKE_POST,
   // UNLIKE_POST
 } from '../actions/types';
@@ -24,6 +25,7 @@ const initialState = {
   post_author: null,
   author_details: null,
   search_user: [],
+  search_post: [],
 };
 
 export default function(state = initialState, action) {
@@ -94,6 +96,12 @@ export default function(state = initialState, action) {
         return {
             ...state,
             search_user : action.payload
+        };
+    case SEARCH_POST:
+        //console.log(action.payload)
+        return {
+            ...state,
+            search_post: action.payload
         };
     default:
       return state;
