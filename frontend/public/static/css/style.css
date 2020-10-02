@@ -933,11 +933,19 @@ h3 {
     flex-basis: 32%;
   }
 }
-.utsav_avatar {
+
+.n_avatar{
   vertical-align: middle;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
+}
+
+.post_n_avatar{
+  vertical-align: middle;
+  width: 70px;
+  height: 70px;
+  border-radius: 90%;
 }
 
 /*--------------------------------------------------------------

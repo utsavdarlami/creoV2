@@ -2,11 +2,17 @@ from rest_framework import serializers
 from posts.models import Posts,CommentPost,Likes,Saves
 from user.serializers import UserSerializer
 
+
+"""
+    Serialization allows the data such as querysets and model instances to be converted to native Python datatypes that can then be easily rendered into JSON,XML or other content types
+"""
+
 # Post Serializer
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Posts
         fields = '__all__'
+
 
 class CommentSerializer(serializers.ModelSerializer):
     """
@@ -43,6 +49,8 @@ class CommentSerializer(serializers.ModelSerializer):
 
         return post,commented
 
+
+
 class CommentUserSerializer(serializers.ModelSerializer):
     """
         Comment Create,Retrieve And Delete Serializer
@@ -54,12 +62,17 @@ class CommentUserSerializer(serializers.ModelSerializer):
         model = CommentPost
         fields = '__all__'
 
+
+
 class LikeUserSerializer(serializers.ModelSerializer):
     publisher = UserSerializer(required=True)
     class Meta:
         model = Likes
         fields = '__all__'
 
+
+
+#Serializer for liking user posts
 class LikeSerializer(serializers.ModelSerializer):
     """ #Like Create,Retrieve And Delete Serializer
     """
@@ -93,6 +106,8 @@ class LikeSerializer(serializers.ModelSerializer):
         liked = Likes.objects.create(post=post,**validated_data)
 
         return post,liked
+
+
 
 class SaveSerializer(serializers.ModelSerializer):
 

@@ -32,8 +32,9 @@ $ npm start
 - [x] Password Change 
 - [x] Add Video/Music
 - [x] Tags On Content
-- [ ] Follow Artist
 
 ## FRONTEND TODO
 
-- [ ] Make a Plan
+- [x] Make a Plan
+- [ ] Search on Post
+- [ ] Confirmation of Action's

@@ -1,13 +1,13 @@
-from rest_framework import generics, permissions, viewsets,filters
+from rest_framework import generics, permissions, viewsets,filters, status
 from rest_framework.response import Response
 
 from rest_framework.decorators import api_view
-from rest_framework import status
+# from rest_framework import status
 from django.shortcuts import get_object_or_404
 
 from knox.models import AuthToken
 
-from .serializers import UserSerializer,LoginSerializer,UserProfileInfoSerializer,PasswordChangeSerializer
+from .serializers import UserProfileInfoSerializer, UserSerializer, LoginSerializer, PasswordChangeSerializer
 
 from django.contrib.auth.models import User
 
@@ -16,7 +16,8 @@ from .models import UserProfileInfo
 from django.core.exceptions import PermissionDenied
 
 
-# Register API
+# API for Register
+# api/auth/register
 class RegisterAPI(generics.GenericAPIView):
 
     serializer_class = UserProfileInfoSerializer
@@ -32,7 +33,10 @@ class RegisterAPI(generics.GenericAPIView):
             "token"   : token
         })
 
-# Login API
+
+
+# API for Login
+# api/auth/login
 class LoginAPI(generics.GenericAPIView):
 
     serializer_class = LoginSerializer
@@ -48,7 +52,52 @@ class LoginAPI(generics.GenericAPIView):
             "token" : token
         })
 
-#  Get User API
+
+
+# API for changing password
+# api/auth/changepassword
+class ChangePassword(generics.UpdateAPIView):
+    serializer_class = PasswordChangeSerializer
+    model = User
+    permissions_classes = [
+       # permissions.AllowAny
+        permissions.IsAuthenticated,
+    ]
+
+    def get_object(self,queryset=None):
+        obj = self.request.user
+        return obj
+
+    def update(self,request,*args,**kwargs):
+        self.object = self.get_object()
+        serializer = self.get_serializer(data= request.data)
+        serializer.is_valid(raise_exception = True)
+
+
+        #self.object is the user who requested for password change
+        if not self.object.check_password(serializer.data.get("old_password")):
+            return Response(
+                {"old_password" : ["Wrong Old Password"]},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        self.object.set_password(serializer.data.get("new_password"))
+        self.object.save()
+
+        response = {
+            'status' : 'success',
+            'code'   : status.HTTP_200_OK,
+            'message': 'Password Updated Successfully',
+            'token'  : 'token maybe needed'
+        }
+        return Response(response)
+
+
+
+
+
+#  Get User API - gives the user detail
+# api/auth/user
 class UserAPI(generics.RetrieveAPIView):
 
     permissions_classes = [
@@ -63,7 +112,10 @@ class UserAPI(generics.RetrieveAPIView):
             raise PermissionDenied()
         return self.request.user
 
-# UserProfileInfo Serializer
+
+
+#User Profile Info View - gives the entire user profile informtion
+# api/profile/id
 class UserProfileInfoViewSet(viewsets.ModelViewSet):
     queryset = UserProfileInfo.objects.all()
 
@@ -87,43 +139,10 @@ class UserProfileInfoViewSet(viewsets.ModelViewSet):
             return Response(serializer.data)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class ChangePassword(generics.UpdateAPIView):
-    serializer_class = PasswordChangeSerializer
-    model = User
-    permissions_classes = [
-       # permissions.AllowAny
-        permissions.IsAuthenticated,
-    ]
-
-    def get_object(self,queryset=None):
-        obj = self.request.user
-        return obj
-
-    def update(self,request,*args,**kwargs):
-        self.object = self.get_object()
-        serializer = self.get_serializer(data= request.data)
-        serializer.is_valid(raise_exception = True)
-
-        if not self.object.check_password(serializer.data.get("old_password")):
-            return Response(
-                {"old_password" : ["Wrong Old Password"]},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-
-        self.object.set_password(serializer.data.get("new_password"))
-        self.object.save()
-
-        response = {
-            'status' : 'success',
-            'code'   : status.HTTP_200_OK,
-            'message': 'Password Updated Successfully',
-            'token'  : 'token maybe needed'
-        }
-        return Response(response)
-
 
 
 # User Detail Based On Username
+# api/get_user/<str:username>
 @api_view(['GET'])
 def get_user(request,username=None):
     if User.objects.filter(username = username).exists():
@@ -132,7 +151,19 @@ def get_user(request,username=None):
         return Response(serializer.data)
     return Response(status=status.HTTP_204_NO_CONTENT)
 
+
+#API for searching user based on text fields only
+#api/search_user/?search=
+class UserSearchListApi(generics.ListAPIView):
+    queryset = UserProfileInfo.objects.all()
+    serializer_class = UserProfileInfoSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['user__username', 'user__first_name','user__last_name']
+
+
+
 # UserDetailBasesOnID
+# api/view_user/<int:pk>/
 @api_view(['GET'])
 def view_user(request,pk=None):
     if User.objects.filter(id = pk).exists():
@@ -141,8 +172,6 @@ def view_user(request,pk=None):
         return Response(serializer.data)
     return Response(status=status.HTTP_204_NO_CONTENT)
 
-class UserSearchListApi(generics.ListAPIView):
-    queryset = UserProfileInfo.objects.all()
-    serializer_class = UserProfileInfoSerializer
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['user__username', 'user__first_name','user__last_name']
+
+
+

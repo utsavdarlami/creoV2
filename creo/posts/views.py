@@ -17,7 +17,7 @@ from django.db.models import F
 POST_CHOICE_DIC = {'A': 'audio', 'V': 'video', 'I': 'image'}
 # Post ViewSet
 
-
+# api/posts - gives user only posts
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Posts.objects.all()
     permissions_classes = [
@@ -27,6 +27,7 @@ class PostViewSet(viewsets.ModelViewSet):
 
     serializer_class = PostSerializer
 
+
     def get_queryset(self):
         if not self.request.user.is_authenticated:
             raise PermissionDenied()
@@ -34,6 +35,7 @@ class PostViewSet(viewsets.ModelViewSet):
         return Posts.objects.filter(publisher=self.request.user)
     # return Posts.objects.all()
 
+    
     def create(self, request, *args, **kwargs):
         # need a logic to check if the uploaded file is as mentioned as the post_type
         # print(self.request.data)
@@ -61,15 +63,18 @@ class PostViewSet(viewsets.ModelViewSet):
             else:
                 return Response({
                     "Content_Type": [
-                        "Content Type And Your Post Choice Did Not Match."
+                        "Your Post Choice Did Not Match With Content Type."
                     ]
                 }, status=status.HTTP_400_BAD_REQUEST)
+
 
     def perform_create(self, serializer):
         serializer.save(publisher=self.request.user)
         # print(serializer)
 
 
+
+# api/allposts - gives the list of all posts
 class PostListViewSet(viewsets.ReadOnlyModelViewSet):
     """
     This viewset automatically provides `list` and `detail` actions.
@@ -80,6 +85,9 @@ class PostListViewSet(viewsets.ReadOnlyModelViewSet):
     filter_backends = [filters.OrderingFilter]
     ordering_fields = ['like_count', 'view_count']
 
+
+
+# api/users_post 
 class UsersPostView(viewsets.ReadOnlyModelViewSet):
 
     queryset = Posts.objects.all().order_by('-created_at')
@@ -98,6 +106,8 @@ class UsersPostView(viewsets.ReadOnlyModelViewSet):
         return Response([])
 
 
+
+# api/like
 class addLikeViewset(viewsets.ModelViewSet):
     """ Viewset related to like in a post , liking post and deleting like post
     Create -> add to db and increase like count
@@ -116,9 +126,10 @@ class addLikeViewset(viewsets.ModelViewSet):
         return Likes.objects.filter(publisher=self.request.user)
 
     def retrieve(self, request, *args, **kwargs):
-        if Likes.objects.filter(post=self.kwargs.get('pk'), publisher=self.request.user).exists():
+        if Likes.objects.filter(post=self.kwargs.get('pk'), publisher=self.request.user).exists(): 
             likes = Likes.objects.get(post=self.kwargs.get(
                 'pk'), publisher=self.request.user)
+            # print(likes)
             serializer = LikeSerializer(likes)
             return Response(serializer.data)
         return Response(status=status.HTTP_204_NO_CONTENT)
@@ -145,6 +156,8 @@ class addLikeViewset(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+
+# api/who_liked_in_post/<int:pk> -api view to see the list of users who liked the post
 @api_view(['GET'])
 def who_liked_the_post(request, pk=None):
     if not request.user.is_authenticated:
@@ -156,6 +169,9 @@ def who_liked_the_post(request, pk=None):
             return Response(serializer.data)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
+
+# api/save
 class SavePostViewset(viewsets.ModelViewSet):
     """ Viewset related to saving a post and deleting saved post
     Create -> add to db saved post
@@ -200,6 +216,9 @@ class SavePostViewset(viewsets.ModelViewSet):
         self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
+
+# api/comment
 class CommentViewSet(viewsets.ModelViewSet):
     """ Viewset related to like in a post , liking post and deleting like post
     Create -> add to db and increase like count
@@ -242,6 +261,8 @@ class CommentViewSet(viewsets.ModelViewSet):
         self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
+# api/comments_on_post
 class UsernameCommentViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = CommentPost.objects.all().order_by("-pub_date")
     permissions_classes = [
@@ -258,9 +279,21 @@ class UsernameCommentViewSet(viewsets.ReadOnlyModelViewSet):
             return Response(serializer.data)
         return Response([])
 
+
+
+# api/add_viewcount_post/<int:pk>
 @api_view(['GET'])
 def add_viewcount_post(request, pk=None):
     current_post = get_object_or_404(Posts, pk=pk)
     current_post.view_count= F('view_count') + 1
     current_post.save()
     return Response({"Success":"view count increased"},status = status.HTTP_200_OK)
+
+
+# api/search_post/?search=
+class PostSearchListApi(generics.ListAPIView):
+    # queryset = Posts.objects.all()
+    queryset = Posts.objects.all().order_by('-created_at')
+    serializer_class = PostSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['publisher__username','title','description']
