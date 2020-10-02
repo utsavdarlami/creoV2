@@ -17,7 +17,7 @@ from django.db.models import F
 POST_CHOICE_DIC = {'A': 'audio', 'V': 'video', 'I': 'image'}
 # Post ViewSet
 
-
+# api/posts
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Posts.objects.all()
     permissions_classes = [
@@ -70,7 +70,7 @@ class PostViewSet(viewsets.ModelViewSet):
         # print(serializer)
 
 
-
+# api/allposts
 class PostListViewSet(viewsets.ReadOnlyModelViewSet):
     """
     This viewset automatically provides `list` and `detail` actions.
@@ -82,6 +82,7 @@ class PostListViewSet(viewsets.ReadOnlyModelViewSet):
     ordering_fields = ['like_count', 'view_count']
 
 
+# api/users_post
 class UsersPostView(viewsets.ReadOnlyModelViewSet):
 
     queryset = Posts.objects.all().order_by('-created_at')
@@ -99,7 +100,7 @@ class UsersPostView(viewsets.ReadOnlyModelViewSet):
             return Response(serializer.data)
         return Response([])
 
-
+# api/like
 class addLikeViewset(viewsets.ModelViewSet):
     """ Viewset related to like in a post , liking post and deleting like post
     Create -> add to db and increase like count
@@ -147,6 +148,7 @@ class addLikeViewset(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+# api/who_liked_in_post/<int:pk>
 @api_view(['GET'])
 def who_liked_the_post(request, pk=None):
     if not request.user.is_authenticated:
@@ -158,6 +160,8 @@ def who_liked_the_post(request, pk=None):
             return Response(serializer.data)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
+# api/save
 class SavePostViewset(viewsets.ModelViewSet):
     """ Viewset related to saving a post and deleting saved post
     Create -> add to db saved post
@@ -203,6 +207,7 @@ class SavePostViewset(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+# api/comment
 class CommentViewSet(viewsets.ModelViewSet):
     """ Viewset related to like in a post , liking post and deleting like post
     Create -> add to db and increase like count
@@ -246,6 +251,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+# api/comments_on_post
 class UsernameCommentViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = CommentPost.objects.all().order_by("-pub_date")
     permissions_classes = [
@@ -263,6 +269,8 @@ class UsernameCommentViewSet(viewsets.ReadOnlyModelViewSet):
         return Response([])
 
 
+
+# api/add_viewcount_post/<int:pk>
 @api_view(['GET'])
 def add_viewcount_post(request, pk=None):
     current_post = get_object_or_404(Posts, pk=pk)

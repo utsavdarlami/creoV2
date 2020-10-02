@@ -17,6 +17,7 @@ from django.core.exceptions import PermissionDenied
 
 
 # API for Register
+# api/auth/register
 class RegisterAPI(generics.GenericAPIView):
 
     serializer_class = UserProfileInfoSerializer
@@ -35,6 +36,7 @@ class RegisterAPI(generics.GenericAPIView):
 
 
 # API for Login
+# api/auth/login
 class LoginAPI(generics.GenericAPIView):
 
     serializer_class = LoginSerializer
@@ -53,6 +55,7 @@ class LoginAPI(generics.GenericAPIView):
 
 
 # API for changing password
+# api/auth/changepassword
 class ChangePassword(generics.UpdateAPIView):
     serializer_class = PasswordChangeSerializer
     model = User
@@ -94,6 +97,7 @@ class ChangePassword(generics.UpdateAPIView):
 
 
 #  Get User API - gives the user detail
+# api/auth/user
 class UserAPI(generics.RetrieveAPIView):
 
     permissions_classes = [
@@ -110,7 +114,8 @@ class UserAPI(generics.RetrieveAPIView):
 
 
 
-#User Profile Info View - gives the entire user profile informtion 
+#User Profile Info View - gives the entire user profile informtion
+# api/profile/id
 class UserProfileInfoViewSet(viewsets.ModelViewSet):
     queryset = UserProfileInfo.objects.all()
 
@@ -137,6 +142,7 @@ class UserProfileInfoViewSet(viewsets.ModelViewSet):
 
 
 # User Detail Based On Username
+# api/get_user/<str:username>
 @api_view(['GET'])
 def get_user(request,username=None):
     if User.objects.filter(username = username).exists():
@@ -146,7 +152,8 @@ def get_user(request,username=None):
     return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-
+#API for searching user based on text fields only
+#api/search_user/?search=
 class UserSearchListApi(generics.ListAPIView):
     queryset = UserProfileInfo.objects.all()
     serializer_class = UserProfileInfoSerializer
@@ -156,6 +163,7 @@ class UserSearchListApi(generics.ListAPIView):
 
 
 # UserDetailBasesOnID
+# api/view_user/<int:pk>/
 @api_view(['GET'])
 def view_user(request,pk=None):
     if User.objects.filter(id = pk).exists():
