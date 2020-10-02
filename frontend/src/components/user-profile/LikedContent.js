@@ -67,7 +67,6 @@ class LikedContent extends Component {
 
     if (this.props.postLoading) {
         return <Spinner/> 
-            //(<Spinner/>
     }
 
     return (
