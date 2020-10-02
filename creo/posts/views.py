@@ -17,7 +17,7 @@ from django.db.models import F
 POST_CHOICE_DIC = {'A': 'audio', 'V': 'video', 'I': 'image'}
 # Post ViewSet
 
-# api/posts
+# api/posts - gives user only posts
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Posts.objects.all()
     permissions_classes = [
@@ -27,6 +27,7 @@ class PostViewSet(viewsets.ModelViewSet):
 
     serializer_class = PostSerializer
 
+
     def get_queryset(self):
         if not self.request.user.is_authenticated:
             raise PermissionDenied()
@@ -34,6 +35,7 @@ class PostViewSet(viewsets.ModelViewSet):
         return Posts.objects.filter(publisher=self.request.user)
     # return Posts.objects.all()
 
+    
     def create(self, request, *args, **kwargs):
         # need a logic to check if the uploaded file is as mentioned as the post_type
         # print(self.request.data)
@@ -61,7 +63,7 @@ class PostViewSet(viewsets.ModelViewSet):
             else:
                 return Response({
                     "Content_Type": [
-                        "Content Type And Your Post Choice Did Not Match."
+                        "Your Post Choice Did Not Match With Content Type."
                     ]
                 }, status=status.HTTP_400_BAD_REQUEST)
 
@@ -70,7 +72,7 @@ class PostViewSet(viewsets.ModelViewSet):
         # print(serializer)
 
 
-# api/allposts
+# api/allposts - gives the list of all posts
 class PostListViewSet(viewsets.ReadOnlyModelViewSet):
     """
     This viewset automatically provides `list` and `detail` actions.
@@ -80,6 +82,7 @@ class PostListViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = PostSerializer
     filter_backends = [filters.OrderingFilter]
     ordering_fields = ['like_count', 'view_count']
+
 
 
 # api/users_post
@@ -277,3 +280,12 @@ def add_viewcount_post(request, pk=None):
     current_post.view_count= F('view_count') + 1
     current_post.save()
     return Response({"Success":"view count increased"},status = status.HTTP_200_OK)
+
+
+
+class PostSearchListApi(generics.ListAPIView):
+    # queryset = Posts.objects.all()
+    queryset = Posts.objects.all().order_by('-created_at')
+    serializer_class = PostSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['publisher__username','title','description']
