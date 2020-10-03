@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 // import PostListNavbar from "./PostListNavbar";
 import { Link } from "react-router-dom";
 
+import Spinner from '../../layout/Spinner';
+
 // import { Link } from "react-router-dom";
 
 class Videos extends Component {
@@ -12,7 +14,11 @@ class Videos extends Component {
     }
     
     render() {
-            return (
+        if (this.props.postLoading) {
+            return <Spinner/> 
+            //(<Spinner/>
+        }
+        return (
                 <div>
                 <p 
                 style={{marginLeft: "3em",
@@ -53,7 +59,8 @@ class Videos extends Component {
 }
 
 const mapStateToProps = state => ({
-    posts: state.posts.posts
+    posts: state.posts.posts,
+    postLoading : state.posts.isLoading,
 });
 
 export default connect(mapStateToProps)(Videos);

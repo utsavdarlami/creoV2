@@ -30,6 +30,7 @@ const back_api = "http://127.0.0.1:8000";
 
 // GET ALL POSTS
 export const getPosts = (based_on = "") => (dispatch) => {
+  dispatch({ type: POST_LOADING });
   axios
     .get(`${back_api}/api/allposts/?ordering=${based_on}`)
     .then((res) => {
@@ -148,6 +149,7 @@ export const getComments = (id) => (dispatch, getState) => {
 
 // DELETE POST
 export const deletePost = (id) => (dispatch, getState) => {
+  dispatch({ type: POST_LOADING });
   axios
     .delete(`${back_api}/api/posts/${id}/`, tokenConfig(getState))
     .then((res) => {

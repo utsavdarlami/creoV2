@@ -26,6 +26,8 @@ import SearchView from "./search/SearchView";
 
 import About from './pages/about';
 
+//import Spinner from './layout/Spinner';
+//import { connect } from "react-redux";
 
 // Alert 
 import {Provider as AlertProvider} from 'react-alert';
@@ -47,6 +49,10 @@ class App extends React.Component {
   }
 
   render() {
+    //if (this.props.postLoading) {
+          //return <Spinner/> 
+              ////(<Spinner/>
+    //}
     return (
         <Provider store={store}>
             <AlertProvider template={AlertTemplate} {...alertOptions}>
@@ -79,5 +85,11 @@ class App extends React.Component {
     );
   }
 }
+
+//const mapStateToProps = (state) => ({
+  //postLoading : state.posts.isLoading,
+//});
+
 export default App;
+//export default connect(mapStateToProps)(App);
 
