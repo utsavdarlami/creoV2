@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-// import PostListNavbar from "./PostListNavbar";
+import PhotosDropDown from "./PhotosDropDown";
 
-import Spinner from '../../layout/Spinner';
+import Spinner from '../../../layout/Spinner';
 
 class Photos extends Component {
     static propTypes = {
@@ -17,11 +17,21 @@ class Photos extends Component {
             //(<Spinner/>
         }
             return (
+                <Fragment>
                 <div>
-                    <p 
-                style={{marginLeft: "3em",
-                 marginTop: "3%",
-                  fontFamily: "'Josefin Sans', sans-serif", fontSize: "1.3em"}}>Check out creators' photos</p>
+                    <div style={{ 
+                        display: "flex", 
+                        justifyContent: "space-between",
+                        margin: "2% 5% 0 5%"}}>
+                        
+                        <p 
+                        style={{
+                        fontFamily: "'Josefin Sans', sans-serif", 
+                        fontSize: "1.3em"}}>Check out creators' photos.</p>
+
+                        <PhotosDropDown style={{width: "25%"}} />
+                        
+                    </div>
                 <div className="content-area">
                     {/* <PostListNavbar /> */}
                     <main className="main-content-area" style={{paddingTop: "1em"}}>
@@ -47,6 +57,7 @@ class Photos extends Component {
                     </main>
                 </div>
                 </div>
+                </Fragment>
             )
     }
 }

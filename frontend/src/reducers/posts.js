@@ -125,6 +125,8 @@ export default function(state = initialState, action) {
                 liked: false
             };
         case VIEW_COUNT:
+          let index2 = state.posts.findIndex(post => post.id === action.payload.id);
+          state.posts[index2] = action.payload;
             state.single_post.view_count++;
             return{
                 ...state,

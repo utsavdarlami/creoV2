@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-// import PostListNavbar from "./PostListNavbar";
 import { Link } from "react-router-dom";
+import VideosDropDown from "./VideosDropDown";
 
-import Spinner from '../../layout/Spinner';
+//import Spinner from '../../layout/Spinner';
+import Spinner from '../../../layout/Spinner';
 
 // import { Link } from "react-router-dom";
 
@@ -18,12 +19,22 @@ class Videos extends Component {
             return <Spinner/> 
             //(<Spinner/>
         }
-        return (
+            return (
+                <Fragment>
                 <div>
-                <p 
-                style={{marginLeft: "3em",
-                 marginTop: "3%",
-                  fontFamily: "'Josefin Sans', sans-serif", fontSize: "1.3em"}}>Check out creators' videos</p>
+                    <div style={{ 
+                            display: "flex", 
+                            justifyContent: "space-between",
+                            margin: "2% 5% 0 5%"}}>
+                            
+                            <p 
+                            style={{
+                            fontFamily: "'Josefin Sans', sans-serif", 
+                            fontSize: "1.3em"}}>Check out creators' videos.</p>
+
+                            <VideosDropDown style={{width: "25%"}} />
+                            
+                    </div>
                 <div className="content-area" >
                     {/* <PostListNavbar /> */}
                     <main className="main-content-area" style={{paddingTop: "1em"}}>
@@ -54,6 +65,7 @@ class Videos extends Component {
                     </main>
                 </div>
                 </div>
+                </Fragment>
             )
     }
 }
