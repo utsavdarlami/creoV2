@@ -47,3 +47,5 @@ export const LIKE_FAIL = "LIKE_FAIL";
 export const DELETE_COMMENT = "DELETE_COMMENT";
 export const SEARCH_USER = "SEARCH_USER";
 export const SEARCH_POST = "SEARCH_POST";
+
+export const LOADER = "LOADER";
