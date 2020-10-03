@@ -123,7 +123,7 @@ class Navbar extends Component {
       <Nav className="ml-auto" style={{ width: "125px", display: "flex" }}>
         <NavLink
           to="/login"
-          style={{ paddingRight: "15px", display: "flex" }}
+          style={{ paddingRight: "2%", display: "flex" }}
           className="font-color"
         >
           <span style={{ color: "white", width: "10vh" }}>Sign In</span>

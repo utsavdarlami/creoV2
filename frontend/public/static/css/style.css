@@ -896,6 +896,47 @@ span.price {
   /*border: 2px solid red;*/
 }
 
+/*SEARCH*/
+.small-jumbotron {
+  margin: auto;
+  width: 50%;
+}
+
+/* SEARCH USER VIEW */
+.search-user {
+  display: flex;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  /* border: 2px solid yellow; */
+  width: 100%;
+}
+
+.search-user-avatar {
+  display: inline;
+  float: left;
+  padding-right: 4vw;
+
+  /* flex-direction: row; */
+  /* border: 2px solid red; */
+}
+
+.search-post-avatar {
+  display: inline;
+  float: left;
+  padding-right: 4vw;
+
+  /* flex-direction: row; */
+  /* border: 2px solid red; */
+}
+
+/* 
+.search-user-info {
+  display: inline;
+  padding-left: 50vw;
+} */
+
+/* SEARCH POST VIEW */
+
 /*--------------------------------------------------------------
 	OTHER USER PROFILE END
 --------------------------------------------------------------*/
