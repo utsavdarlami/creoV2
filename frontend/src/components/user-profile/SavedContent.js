@@ -7,11 +7,14 @@ import { getSavedContent } from '../../actions/posts';
 // import AudioLogo from "../posts/PostList/audio_image.jpg"
 import AudioLogo from "../posts/PostList/audio_image3.png"
 
+import Spinner from '../layout/Spinner';
+
 
 class LikedContent extends Component {
   static propTypes = {
     saved_posts: PropTypes.array.isRequired,
     getSavedContent: PropTypes.func.isRequired,
+    postLoading : PropTypes.bool.isRequired,
   };
 
   componentDidMount() {
@@ -59,6 +62,11 @@ class LikedContent extends Component {
         </main>
     </div>
     )
+
+    if (this.props.postLoading) {
+        return <Spinner/> 
+    }
+
     return (
       <Fragment>
         <div className="profile-wrapper" style={{ marginTop: "2%"}}>
@@ -86,7 +94,8 @@ class LikedContent extends Component {
 }
 
 const mapStateToProps = state => ({
-  saved_posts: state.posts.saved_posts
+  saved_posts: state.posts.saved_posts,
+    postLoading : state.posts.isLoading,
 });
 
 export default connect(mapStateToProps, { getSavedContent })(LikedContent);

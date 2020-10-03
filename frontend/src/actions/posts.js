@@ -3,6 +3,7 @@ import { createMessage, returnErrors } from "./messages";
 import { tokenConfig, tokenConfig2 } from "./auth";
 
 import {
+  POST_LOADING,
   ADD_POST,
   DELETE_POST,
   GET_ALL_POSTS,
@@ -44,6 +45,7 @@ export const getPosts = (based_on = "") => (dispatch) => {
 
 //GET SINGLE POST
 export const getSinglePost = (id) => (dispatch) => {
+  dispatch({ type: POST_LOADING });
   axios
     .get(`${back_api}/api/allposts/${id}`)
     .then((res) => {
@@ -59,6 +61,7 @@ export const getSinglePost = (id) => (dispatch) => {
 
 // GET POST UPLOADED BY USER
 export const getUserPost = () => (dispatch, getState) => {
+  dispatch({ type: POST_LOADING });
   axios
     .get(`${back_api}/api/posts/`, tokenConfig(getState))
     .then((res) => {
@@ -74,6 +77,7 @@ export const getUserPost = () => (dispatch, getState) => {
 
 //GET POST UPLOADED BY AUTHOR
 export const getAuthorPost = (id) => (dispatch, getState) => {
+  dispatch({ type: POST_LOADING });
   axios
     .get(`${back_api}/api/users_post/${id}`, tokenConfig(getState))
     .then((res) => {
@@ -219,6 +223,7 @@ export const checkLike = (id) => (dispatch, getState) => {
 
 // Get post liked by user
 export const getLikedContent = () => (dispatch, getState) => {
+  dispatch({ type: POST_LOADING });
   axios
     .get(`${back_api}/api/like`, tokenConfig(getState))
     .then((res) => {
@@ -296,6 +301,7 @@ export const checkSave = (id) => (dispatch, getState) => {
 
 //Get post saved by user
 export const getSavedContent = () => (dispatch, getState) => {
+  dispatch({ type: POST_LOADING });
   axios
     .get(`${back_api}/api/save`, tokenConfig(getState))
     .then((res) => {

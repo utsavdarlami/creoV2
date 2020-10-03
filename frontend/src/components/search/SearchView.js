@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-// import PostAuthor from "../posts/PostAuthor";
+//import PostAuthor from "../posts/PostAuthor";
 
 class SearchView extends Component {
 

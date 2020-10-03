@@ -17,6 +17,7 @@ import {
     GET_AUTHOR_DETAILS,
     SEARCH_USER,
     SEARCH_POST,
+    LOADER,
     // GET_COMMENT_AUTHOR
     // GET_ERRORS
 } from './types';
@@ -44,6 +45,7 @@ export const loadUser = () => (dispatch, getState) => {
 
 //get user details
 export const userDetails = () => (dispatch, getState) => {
+    dispatch({ type: LOADER});
     axios
         .get(`${back_api}/api/profile`, tokenConfig(getState))
         .then(res => {
@@ -62,6 +64,7 @@ export const userDetails = () => (dispatch, getState) => {
 
 //GET AUTHOR DETAILS
 export const getAuthorDetails = id => (dispatch, getState) => {
+    dispatch({ type: LOADER});
     axios.get(`${back_api}/api/profile/${id}`, tokenConfig(getState))
         .then(res => {
             //console.log(res.data)
@@ -77,7 +80,6 @@ export const getAuthorDetails = id => (dispatch, getState) => {
             });
         });
 };
-
 
 // LOGIN USER
 export const login = (username, password) => dispatch => {
