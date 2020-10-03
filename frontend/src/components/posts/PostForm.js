@@ -51,9 +51,7 @@ class PostForm extends Component {
       content: null,
       post_type: ''
     });
-    setTimeout(() => {
       this.props.history.push("/profile");
-    }, 1000);
   }
 
   render() {

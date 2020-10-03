@@ -46,7 +46,7 @@ class Photos extends Component {
                                     </div>
                                     
                                     <div className="post-content">
-                                        <span>
+                                        <span className="post-home-title">
                                             {post.title}
                                         </span>
                                     </div>

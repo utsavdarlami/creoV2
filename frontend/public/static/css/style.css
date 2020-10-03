@@ -523,7 +523,7 @@ a {
 }
 
 .post div > img {
-  border-radius: 10px 10px 0px 0px;
+  border-radius: 10px 10px 10px 10px;
 }
 
 .post-content {
@@ -534,6 +534,7 @@ a {
   align-items: center;
   /*justify-content: space-between;*/
 }
+
 
 .account-img {
   height: 35px;
@@ -1024,3 +1025,11 @@ h3 {
 /*--------------------------------------------------------------
     EDIT PROFILE START
   --------------------------------------------------------------*/
+
+  /*--------------------------------------------------------------
+    POST DROPDOWN
+  --------------------------------------------------------------*/
+.dropdown-span:hover{
+  font-weight: bold;
+  color: rgb(96, 143, 231)
+}

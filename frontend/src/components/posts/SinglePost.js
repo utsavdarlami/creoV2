@@ -256,8 +256,7 @@ class SinglePost extends Component {
                                         style={{
                                             margin: "0 auto",
                                             height: "86%",
-                                            border: "1px solid black",
-                                            borderRadius: "2%",
+                                            border: "2px solid black",
                                             backgroundColor: "white",
                                         }}
                                     >
@@ -266,8 +265,8 @@ class SinglePost extends Component {
                                             alt="audio"
                                             style={{ height: "100%" }}
                                         />
-                                        <div>
-                                            <audio controls style={{ width: "100%" }}>
+                                        <div style={{backgroundColor: "#121211"}}>
+                                            <audio controls style={{ width: "100%", height: "100%"}} >
                                                 <source src={this.props.post.content} />
                                             </audio>
                                         </div>

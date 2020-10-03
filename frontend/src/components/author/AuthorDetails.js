@@ -79,7 +79,7 @@ class AuthorDetails extends Component {
             <section className="posts">
               {this.props.author_posts.map(post => (
                 <article className="post post-one-third" key={post.id}>
-                  <Link to={`/posts/${post.id}`}>
+                  <Link to={`/posts/${post.id}`} style={{textDecoration: "none"}}>
                       <div style={{backgroundColor: "black", borderRadius: "2%"}}>
                         {(() => {
                           switch (post.post_type){
@@ -102,7 +102,7 @@ class AuthorDetails extends Component {
                     </div>
 
                   <div className="post-content">
-                    <span>
+                    <span className="post-home-title">
                       {post.title}
                     </span>
                   </div>

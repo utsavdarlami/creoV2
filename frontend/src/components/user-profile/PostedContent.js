@@ -22,36 +22,48 @@ class PostedContent extends Component {
   }
 
   render() {
+    const dateorderedPosts = this.props.user_posts.slice().sort((a,b) => a.created_at < b.created_at)
     const posted_content =  
     <div className="content-area">
       <main className="main-content-area">
         <section className="posts">
-          {this.props.user_posts.map(post => (
+          {dateorderedPosts.map(post => (
             <article className="post post-one-third" key={post.id}>
-              <Link to={`/posts/${post.id}`}>
-                <div style={{backgroundColor: "black", borderRadius: "2%"}}>
+              <Link to={`/posts/${post.id}`} style={{textDecoration: "none"}}>
                   {(() => {
                     switch (post.post_type){
                       case "I":
-                        return <img src={post.content} alt="content" style={{borderRadius: "2%"}} />;
-                      case "V": 
-                        return  <video width="100%" height="100%" controls><source src={post.content} /></video>;
-                      case "A": 
-                        return <div style={{ height: "84%", border: "1px solid black", borderRadius: "2%", backgroundColor: "white"}}>
-                          <img src={AudioLogo} alt="audio" style={{height: "100%"}}  />
+                        return (
                           <div>
-                            <audio controls style={{width:"100%", height: "52px"}}>
-                              <source src={post.content} />
-                              </audio>
+                            <img src={post.content} style={{borderRadius: "2%"}} alt="content" />
+                          </div>
+                        )
+                      case "V": 
+                        return  (
+                          <div>
+                              <video width="100%" height="100%" style={{backgroundColor: "black"}} controls>
+                                <source src={post.content} />
+                              </video>
+                          </div>
+                        )
+                      case "A": 
+                        return (
+                          <div style={{border:"2px solid black", borderRadius: "2%"}}>
+                            <div style={{ height: "290px", backgroundColor: "white"}}>
+                              <img src={AudioLogo} alt="audio" style={{ marginTop: "1%",height: "84%", borderRadius: "none"}}  />
                               </div>
-                              </div>
+                                <audio controls style={{width:"100%", height: "52px"}}>
+                                  <source src={post.content} />
+                                </audio>
+                            </div>
+                        )
                 
                       default: return ""
                       }
                   })()}
-                </div>
+
                 <div className="post-content">
-                  <span>
+                  <span className="post-home-title">
                     {post.title}
                   </span>
                 </div>
@@ -96,4 +108,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { getUserPost })(PostedContent);
-
