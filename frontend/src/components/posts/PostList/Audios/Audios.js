@@ -36,17 +36,19 @@ class Audios extends Component {
                                 (
                                 <article className="post post-one-third" key={post.id}>
                                     <Link to={`posts/${post.id}`} style={{textDecoration: "none"}}>
-                                        <div style={{border: "1px solid black"}}>
-                                                    <img src={AudioLogo} alt="audio" style={{ marginTop: "1%",height: "84%", borderRadius: "none"}} />
-                                                <div>
-                                                    <audio controls style={{width:"100%", height: "52px"}}>
-                                                    <source src={post.content} />
-                                                </audio>
-                                                </div>
+                                        <div style={{border:"2px solid black", borderRadius: "2%"}}>
+                                        <div style={{ height: "290px", backgroundColor: "white"}}>
+                                            <img src={AudioLogo} alt="audio" style={{ marginTop: "1%",height: "84%", borderRadius: "none"}} />
+                                        </div>
+                                        <div>
+                                            <audio controls style={{width:"100%", height: "52px"}}>
+                                                <source src={post.content} />
+                                            </audio>
+                                        </div>
                                         </div>
     
-                                        <div className="post-contents">
-                                            <span>
+                                        <div className="post-content">
+                                            <span className="post-home-title">
                                                 {post.title}
                                             </span>
                                         </div>
@@ -68,3 +70,4 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(Audios);
+

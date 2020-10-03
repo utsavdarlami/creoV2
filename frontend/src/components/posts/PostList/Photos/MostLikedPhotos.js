@@ -24,7 +24,7 @@ class MostLikedPhotos extends Component {
                             <p 
                             style={{
                             fontFamily: "'Josefin Sans', sans-serif", 
-                            fontSize: "1.3em"}}>Check out creators' photos.</p>
+                            fontSize: "1.3em"}}>Check out the most liked photos.</p>
 
                             <PhotosDropDown style={{width: "25%"}} />
                             
@@ -44,7 +44,7 @@ class MostLikedPhotos extends Component {
                                             </div>
                                             
                                             <div className="post-content">
-                                                <span>
+                                                <span className="post-home-title">
                                                     {post.title}
                                                 </span>
                                             </div>

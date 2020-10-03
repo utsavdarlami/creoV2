@@ -12,22 +12,25 @@ export class AudiosDropDown extends Component {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-                <Dropdown.Item>
-                    <NavLink to = "/most_liked_audios"  style={{color: "black", textDecoration: "none"}}
-                        activeStyle={{fontWeight: "bold"}}>Most Liked</NavLink>
-                </Dropdown.Item>
-                <Dropdown.Item>
-                    <NavLink to = "/most_viewed_audios" style={{color: "black", textDecoration: "none"}}
-                    activeStyle={{fontWeight: "bold"}}>Most Viewed</NavLink>
-                </Dropdown.Item>
-                <Dropdown.Item>
-                    <NavLink to="/audios" style={{color: "black", textDecoration: "none"}}
-                       activeStyle={{fontWeight: "bold"}}>Newest</NavLink>
-                    </Dropdown.Item>
+                <div>
+                    <NavLink to = "/most_liked_audios"  
+                        style={{display: "block", 
+                            textAlign: "center", marginBottom: "1%", 
+                            color: "black", textDecoration: "none"}}
+                        activeStyle={{fontWeight: "bold"}}><span className="dropdown-span">Most Liked</span></NavLink>
+                </div>
+
+                    <NavLink to = "/most_viewed_audios" style={{display: "block", textAlign: "center", color: "black", textDecoration: "none"}}
+                    activeStyle={{fontWeight: "bold"}}><span className="dropdown-span">Most Viewed</span></NavLink>
+
+ 
+                    <NavLink to="/audios" style={{display: "block", color: "black",textAlign: "center", textDecoration: "none"}}
+                       activeStyle={{fontWeight: "bold"}}><span className="dropdown-span">Newest</span></NavLink>
             </Dropdown.Menu>
             </Dropdown>
         )
     }
 }
+
 
 export default AudiosDropDown;

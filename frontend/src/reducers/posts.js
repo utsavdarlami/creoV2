@@ -117,14 +117,14 @@ export default function(state = initialState, action) {
                 liked: true
             };
         case UNLIKE_POST:
+            // let index_unlike = state.posts.findIndex(post => post.id === action.payload)
+            // state.posts[index_unlike].like_count--;
             state.single_post.like_count--;
             return {
                 ...state,
                 liked: false
             };
         case VIEW_COUNT:
-          let index2 = state.posts.findIndex(post => post.id === action.payload.id);
-          state.posts[index2] = action.payload;
             state.single_post.view_count++;
             return{
                 ...state,

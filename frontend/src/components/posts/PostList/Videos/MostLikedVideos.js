@@ -24,7 +24,7 @@ class MostLikedVideos extends Component {
                             <p 
                             style={{
                             fontFamily: "'Josefin Sans', sans-serif", 
-                            fontSize: "1.3em"}}>Check out creators' videos.</p>
+                            fontSize: "1.3em"}}>Check out the most liked videos.</p>
 
                             <VideosDropDown style={{width: "25%"}} />
                             
@@ -47,7 +47,7 @@ class MostLikedVideos extends Component {
                                                     </video>
                                                 </div>
                                                 <div className="post-content">
-                                                    <span>
+                                                    <span className="post-home-title">
                                                         {post.title}
                                                     </span>
                                                 </div>

@@ -11,18 +11,28 @@ export class PhotosDropDown extends Component {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-                <Dropdown.Item>
-                    <NavLink to = "/most_liked_photos"  style={{color: "black", textDecoration: "none"}}
-                        activeStyle={{fontWeight: "bold"}}>Most Liked</NavLink>
-                </Dropdown.Item>
-                <Dropdown.Item>
-                    <NavLink to = "/most_viewed_photos" style={{color: "black", textDecoration: "none"}}
-                    activeStyle={{fontWeight: "bold"}}>Most Viewed</NavLink>
-                </Dropdown.Item>
-                <Dropdown.Item>
-                    <NavLink to="/photos" style={{color: "black", textDecoration: "none"}}
-                       activeStyle={{fontWeight: "bold"}}>Newest</NavLink>
-                    </Dropdown.Item>
+                <div>
+                    <NavLink to = "/most_liked_photos"  
+                        style={{color: "black", 
+                        display: "block",
+                        textAlign: "center",marginBottom: "1%",
+                        textDecoration: "none"}}
+                        activeStyle={{fontWeight: "bold"}}><span className="dropdown-span">Most Liked</span></NavLink>
+                </div>
+
+                <div>
+                    <NavLink to = "/most_viewed_photos" 
+                    style={{color: "black", textDecoration: "none",display: "block",
+                    textAlign: "center",marginBottom: "1%",}}
+                    activeStyle={{fontWeight: "bold"}}><span className="dropdown-span">Most Viewed</span></NavLink>
+                </div>
+
+                <div>
+                    <NavLink to="/photos" 
+                    style={{color: "black", textDecoration: "none", display: "block",
+                    textAlign: "center",marginBottom: "1%",}}
+                       activeStyle={{fontWeight: "bold"}}><span className="dropdown-span">Newest</span></NavLink>
+                </div>
             </Dropdown.Menu>
             </Dropdown>
         )

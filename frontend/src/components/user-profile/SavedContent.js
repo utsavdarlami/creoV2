@@ -22,36 +22,47 @@ class LikedContent extends Component {
   }
 
   render() {
+    const save_order = this.props.saved_posts.reverse();
     const saved_content = 
     (
       <div className="content-area">
         <main className="main-content-area">
           <section className="posts">
-            {this.props.saved_posts.map(saved_post => (
+            {save_order.map(saved_post => (
               <article className="post post-one-third" key={saved_post.post.id}>
-                <Link to={`/posts/${saved_post.post.id}`}>
-                  <div style={{backgroundColor: "black", borderRadius: "2%"}}>
+                <Link to={`/posts/${saved_post.post.id}`} style={{textDecoration: "none"}}>
                     {(() => {
                       switch (saved_post.post.post_type){
                         case "I":
-                          return <img className="post-image2" src={saved_post.post.content} alt="content" style={{borderRadius: "2%"}} />;
+                          return (
+                            <div>
+                              <img src={saved_post.post.content} style={{borderRadius: "2%"}} alt="content" />
+                            </div>
+                          )
                         case "V": 
-                          return  <video width="100%" height="100%" controls><source src={saved_post.post.content} /></video>;
+                          return  (
+                            <div>
+                                <video width="100%" height="100%" style={{backgroundColor: "black"}} controls>
+                                  <source src={saved_post.post.content} />
+                                </video>;
+                            </div>
+                          )
                         case "A": 
-                          return  <div style={{ height: "84%", border: "1px solid black", borderRadius: "2%", backgroundColor: "white"}}>
-                          <img src={AudioLogo} alt="audio" style={{height: "100%"}}  />
-                          <div>
-                            <audio controls style={{width:"100%", height: "52px"}}>
-                              <source src={saved_post.post.content} />
-                              </audio>
+                          return (
+                            <div style={{border:"2px solid black", borderRadius: "2%"}}>
+                              <div style={{ height: "290px", backgroundColor: "white"}}>
+                                <img src={AudioLogo} alt="audio" style={{ marginTop: "1%",height: "84%", borderRadius: "none"}}  />
+                                </div>
+                                  <audio controls style={{width:"100%", height: "52px"}}>
+                                    <source src={saved_post.post.content} />
+                                  </audio>
                               </div>
-                              </div>
+                          )
                         default: return ""
                         }  
                     })()}     
-                  </div>
                     <div className="post-content">
-                      <span>
+                      <span className="post-home-title">
                         {saved_post.post.title}
                       </span>
                     </div>

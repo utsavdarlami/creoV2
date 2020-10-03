@@ -45,7 +45,7 @@ class Videos extends Component {
                                             </video>
                                         </div>
                                         <div className="post-content">
-                                            <span>
+                                            <span className="post-home-title">
                                                 {post.title}
                                             </span>
                                         </div>
