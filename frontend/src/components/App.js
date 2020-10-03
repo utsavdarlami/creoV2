@@ -19,10 +19,22 @@ import PostedContent from './user-profile/PostedContent';
 import LikedContent from './user-profile/LikedContent';
 import SavedContent from './user-profile/SavedContent';
 import AuthorDetails from "./author/AuthorDetails";
-import Photos from './posts/PostList/Photos';
-import Videos from "./posts/PostList/Videos"
-import Audios from "./posts/PostList/Audios";
+
+import Photos from './posts/PostList/Photos/Photos';
+import MostLikedPhotos from './posts/PostList/Photos/MostLikedPhotos';
+import MostViewedPhotos from './posts/PostList/Photos/MostViewedPhotos';
+
+import Videos from "./posts/PostList/Videos/Videos";
+import MostLikedVideos from "./posts/PostList/Videos/MostLikedVideos";
+import MostViewedVideos from "./posts/PostList/Videos/MostViewedVideos";
+
+import Audios from "./posts/PostList/Audios/Audios";
+import MostLikedAudios from "./posts/PostList/Audios/MostLikedAudios";
+import MostViewedAudios from "./posts/PostList/Audios/MostViewedAudios";
+
 import SearchView from "./search/SearchView";
+
+import About from './pages/about';
 
 
 // Alert 
@@ -56,11 +68,22 @@ class App extends React.Component {
                             <Route exact path="/" component={Home} />
                             <Route exact path="/signup" component={SignUp} />
                             <Route exact path="/login" component={Login} />
+
                             <Route exact path="/photos" component={Photos} />
+                            <Route exact path="/most_liked_photos" component={MostLikedPhotos} />
+                            <Route exact path="/most_viewed_photos" component={MostViewedPhotos} />
+
                             <Route exact path="/videos" component={Videos} />
+                            <Route exact path="/most_liked_videos" component={MostLikedVideos} />
+                            <Route exact path="/most_viewed_videos" component={MostViewedVideos} />
+                            
                             <Route exact path="/audios" component={Audios} />
+                            <Route exact path="/most_liked_audios" component={MostLikedAudios} />
+                            <Route exact path="/most_viewed_audios" component={MostViewedAudios} />
+
                             <Route exact path="/search" component={SearchView} />
                             <Route exact path="/posts/:post_id" component={SinglePost} />
+                            <Route exact path="/about" component={About} />
                             <PrivateRoute exact path="/users/:author_id" component={AuthorDetails} />
                             <PrivateRoute exact path="/profile" component={Profile} />
                             <PrivateRoute exact path="/editprofile" component={EditProfile} />

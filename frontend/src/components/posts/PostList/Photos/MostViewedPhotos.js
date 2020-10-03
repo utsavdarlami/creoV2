@@ -1,27 +1,40 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-// import PostListNavbar from "./PostListNavbar";
+import PhotosDropDown from "./PhotosDropDown";
 
 
-class Photos extends Component {
+class MostViewedPhotos extends Component {
     static propTypes = {
         posts: PropTypes.array.isRequired,
     }
     
     render() {
+            const vieworderedPosts = this.props.posts.slice().sort((a,b) => a.view_count < b.view_count)
             return (
-                <div>
-                    <p 
-                style={{marginLeft: "3em",
-                 marginTop: "3%",
-                  fontFamily: "'Josefin Sans', sans-serif", fontSize: "1.3em"}}>Check out creators' photos</p>
+                <Fragment>
+                    <div>
+
+                    <div style={{ 
+                            display: "flex", 
+                            justifyContent: "space-between",
+                            margin: "2% 5% 0 5%"}}>
+                            
+                            <p 
+                            style={{
+                            fontFamily: "'Josefin Sans', sans-serif", 
+                            fontSize: "1.3em"}}>Check out creators' photos.</p>
+
+                            <PhotosDropDown style={{width: "25%"}} />
+                            
+                        </div>
+                
                 <div className="content-area">
                     {/* <PostListNavbar /> */}
                     <main className="main-content-area" style={{paddingTop: "1em"}}>
                         <section className="posts">
-                            {this.props.posts.map(post => (
+                            {vieworderedPosts.map(post => (
                                 post.post_type === "I" ? 
                                 (
                                 <article className="post post-one-third" key={post.id}>
@@ -42,6 +55,7 @@ class Photos extends Component {
                     </main>
                 </div>
                 </div>
+                </Fragment>
             )
     }
 }
@@ -50,4 +64,4 @@ const mapStateToProps = state => ({
     posts: state.posts.posts
 });
 
-export default connect(mapStateToProps)(Photos);
+export default connect(mapStateToProps)(MostViewedPhotos);

@@ -10,7 +10,8 @@ import {
   USER_DETAILS,
   UPDATE_USER_INFO, GET_POST_AUTHOR, GET_AUTHOR_DETAILS,
   SEARCH_USER,
-  SEARCH_POST
+  SEARCH_POST,
+    LOADER,
   // LIKE_POST,
   // UNLIKE_POST
 } from '../actions/types';
@@ -19,6 +20,7 @@ const initialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: null,
   isLoading: true,
+  userLoading : true,
   user: null,
   user_details: null,
   likes: [],
@@ -35,12 +37,18 @@ export default function(state = initialState, action) {
         ...state,
         isLoading: true,
       };
+    case LOADER:
+      return {
+        ...state,
+        userLoading : true,
+      };
     case USER_LOADED:
       return {
         ...state,
         isAuthenticated: true,
+        user: action.payload,
         isLoading: false,
-        user: action.payload
+        //userLoading : false,
       };
     case GET_POST_AUTHOR:
       return {
@@ -55,12 +63,16 @@ export default function(state = initialState, action) {
     case USER_DETAILS:
       return {
         ...state,
-        user_details: action.payload
+        user_details: action.payload,
+        //isLoading: false,
+        userLoading : false,
       }
     case GET_AUTHOR_DETAILS:
       return {
         ...state,
-        author_details: action.payload
+        author_details: action.payload,
+        userLoading : false,
+        //isLoading: false,
       }
     case UPDATE_USER_INFO:
       return {
@@ -87,6 +99,7 @@ export default function(state = initialState, action) {
         token: null,
         user: null,
         isAuthenticated: false,
+        userLoading : false,
         isLoading: false,
         user_details: null,
         author_details: null

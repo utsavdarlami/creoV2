@@ -7,12 +7,15 @@ import { getAuthorPost } from '../../actions/posts';
 // import AudioLogo from "../posts/PostList/audio_image.jpg"
 import AudioLogo from "../posts/PostList/audio_image3.png"
 
+import Spinner from '../layout/Spinner';
+
 class AuthorDetails extends Component {
 
     static propTypes = {
         author_posts: PropTypes.array.isRequired,
         getAuthorPost: PropTypes.func.isRequired,
-        getAuthorDetails: PropTypes.func.isRequired
+        getAuthorDetails: PropTypes.func.isRequired,
+        userLoading : PropTypes.bool.isRequired,
     }
 
     componentDidMount(){
@@ -110,6 +113,10 @@ class AuthorDetails extends Component {
           </main>
       </div>
 
+    if (this.props.userLoading) {
+        return <Spinner/> 
+    }
+
         return (
             <div className="oprofile-wrapper">
                 {author}
@@ -124,7 +131,8 @@ class AuthorDetails extends Component {
 
 const mapStateToProps = state => ({
     author_details: state.auth.author_details,
-    author_posts: state.posts.author_posts
+    author_posts: state.posts.author_posts,
+    userLoading : state.auth.userLoading,
 })
 
 export default connect(mapStateToProps,

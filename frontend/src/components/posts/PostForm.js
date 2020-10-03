@@ -143,7 +143,7 @@ class PostForm extends Component {
           
           <Button variant="success"
            onClick={this.handleSubmit}
-           style={{width: "25%", backgroundColor: "#f45702", borderColor: "#f45702" }}
+           style={{width: "25%", backgroundColor: " #68527c", borderColor: "#68527c" }}
            >Submit</Button>
         </form>
       </div>

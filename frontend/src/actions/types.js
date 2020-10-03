@@ -15,7 +15,7 @@ export const GET_SAVED_CONTENT = "GET_SAVED_CONTENT";
 export const ADD_COMMENT = "ADD_COMMENT";
 export const ADD_COMMENT_FAIL = "ADD_COMMENT_FAIL";
 export const GET_COMMENTS = "GET_COMMENTS";
-
+export const POST_LOADING = "POST_LOADING";
 
 export const GET_SINGLE_POST = "GET_SINGLE_POST";
 
@@ -46,4 +46,6 @@ export const LIKE_FAIL = "LIKE_FAIL";
 
 export const DELETE_COMMENT = "DELETE_COMMENT";
 export const SEARCH_USER = "SEARCH_USER";
-export const SEARCH_POST= "SEARCH_POST";
+export const SEARCH_POST = "SEARCH_POST";
+
+export const LOADER = "LOADER";
