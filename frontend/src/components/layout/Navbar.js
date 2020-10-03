@@ -197,7 +197,7 @@ class Navbar extends Component {
               name="search"
               onChange={this.searchChange}
               type="text"
-              placeholder="Search creator"
+              placeholder="Search..."
               className="mr-sm-2"
               // style={{ width: "100%" }}
             />
