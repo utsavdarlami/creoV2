@@ -96,7 +96,7 @@ class ChangePassword(generics.UpdateAPIView):
 
 
 
-#  Get User API - gives the user detail
+#  Get User API - gives the user id, firstname, lastname, email, and username
 # api/auth/user
 class UserAPI(generics.RetrieveAPIView):
 
@@ -131,6 +131,7 @@ class UserProfileInfoViewSet(viewsets.ModelViewSet):
             raise PermissionDenied()
         # return self.request.user.publisher.all()
         return UserProfileInfo.objects.filter(user=self.request.user)
+        
 
     def retrieve(self,request,*args,**kwargs):
         if UserProfileInfo.objects.filter(user = self.kwargs.get('pk')).exists():

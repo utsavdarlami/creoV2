@@ -120,20 +120,20 @@ class Navbar extends Component {
     );
 
     const guestLinks = (
-      <Nav className="ml-auto" style={{ width: "125px" }}>
+      <Nav className="ml-auto" style={{ width: "125px", display: "flex" }}>
         <NavLink
           to="/login"
-          style={{ paddingRight: "15px" }}
+          style={{ paddingRight: "15px", display: "flex" }}
           className="font-color"
         >
-          <span style={{ color: "white" }}>Sign In</span>
+          <span style={{ color: "white", width: "10vh" }}>Sign In</span>
         </NavLink>
         <NavLink
           to="/signup"
           className="font-color"
-          style={{ marginLeft: "2%" }}
+          style={{ marginLeft: "2%", display: "flex" }}
         >
-          <span style={{ color: "white" }}>Sign Up</span>
+          <span style={{ color: "white", width: "10vh" }}>Sign Up</span>
         </NavLink>
       </Nav>
     );
@@ -157,40 +157,52 @@ class Navbar extends Component {
               className="font-color"
               style={{ textDecoration: "none" }}
             >
-              <span style={{ color: "white" }}>Home</span>
+              <span style={{ color: "white" }} className="navbar-fields">
+                Home
+              </span>
             </NavLink>
             <NavLink
               to="/photos"
               className="font-color"
-              style={{ paddingLeft: "15px", textDecoration: "none"  }}
+              style={{ textDecoration: "none" }}
             >
-              <span style={{ color: "white" }}>Photos</span>
+              <span style={{ color: "white" }} className="navbar-fields">
+                Photos
+              </span>
             </NavLink>
             <NavLink
               to="/videos"
               className="font-color"
-              style={{ paddingLeft: "15px", textDecoration: "none"  }}
+              style={{ textDecoration: "none" }}
             >
-              <span style={{ color: "white" }}>Videos</span>
+              <span style={{ color: "white" }} className="navbar-fields">
+                Videos
+              </span>
             </NavLink>
             <NavLink
               to="/audios"
               className="font-color"
-              style={{ paddingLeft: "15px", textDecoration: "none"  }}
+              style={{ textDecoration: "none" }}
             >
-              <span style={{ color: "white" }}>Audios</span>
+              <span style={{ color: "white" }} className="navbar-fields">
+                Audios
+              </span>
             </NavLink>
           </Nav>
           <Form
             inline
-            style={{
-              // border: "2px solid blue",
-              marginLeft: "auto",
-              marginRight: "-245px",
-              display: "flex",
-              // width: "100%",
-              justifyContent: "space-between",
-            }}
+            className="navbar-search"
+            style={
+              {
+                // border: "2px solid blue",
+                // marginLeft: "auto",
+                // paddingLeft: "35vw",
+                // marginRight: "-250px",
+                // display: "block",
+                // width: "100%",
+                // justifyContent: "space-between",
+              }
+            }
           >
             <FormControl
               value={this.state.search}
@@ -198,14 +210,22 @@ class Navbar extends Component {
               onChange={this.searchChange}
               type="text"
               placeholder="Search..."
-              className="mr-sm-2"
-              // style={{ width: "100%" }}
+              className="mr-sm-2 navbar-search-field"
+              // style={{ border: "2px solid yellow" }}
+              // style={{ float: "right" }}
             />
             <Button
               onClick={this.handleSubmit}
               variant="outline-success"
-              style={{ width: "22%" }}
-            >Search
+              style={{
+                width: "22%",
+                paddingRight: "50px",
+                // border: "2px solid red",
+                display: "inline-flex",
+              }}
+              className="navbar-search-button"
+            >
+              Search
             </Button>
           </Form>
           {isAuthenticated ? authLinks : guestLinks}

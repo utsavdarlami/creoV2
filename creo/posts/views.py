@@ -17,6 +17,7 @@ from django.db.models import F
 POST_CHOICE_DIC = {'A': 'audio', 'V': 'video', 'I': 'image'}
 # Post ViewSet
 
+
 # api/posts - gives user only posts
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Posts.objects.all()
@@ -54,7 +55,7 @@ class PostViewSet(viewsets.ModelViewSet):
             }, status=status.HTTP_400_BAD_REQUEST)
         else:
             content_type = content.content_type
-            # print(content.content_type)
+            print(content.content_type)
             type_is = content_type.split("/")[0]
             if type_is == POST_CHOICE_DIC[user_assigned_type]:
                 self.perform_create(serializer)
@@ -104,6 +105,73 @@ class UsersPostView(viewsets.ReadOnlyModelViewSet):
             serializer = PostSerializer(posts, many=True)
             return Response(serializer.data)
         return Response([])
+
+
+
+# api/add_viewcount_post/<int:pk>
+@api_view(['GET'])
+def add_viewcount_post(request, pk=None):
+    current_post = get_object_or_404(Posts, pk=pk)
+    current_post.view_count= F('view_count') + 1
+    current_post.save()
+    return Response({"Success":"view count increased"},status = status.HTTP_200_OK)
+
+
+# api/search_post/?search=
+class PostSearchListApi(generics.ListAPIView):
+    # queryset = Posts.objects.all()
+    queryset = Posts.objects.all().order_by('-created_at')
+    serializer_class = PostSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['publisher__username','title','description']
+
+
+
+# api/save
+class SavePostViewset(viewsets.ModelViewSet):
+    """ Viewset related to saving a post and deleting saved post
+    Create -> add to db saved post
+        Destroy -> delete save object
+        api
+    """
+
+    queryset = Saves.objects.all()
+
+    permissions_classes = [
+        permissions.IsAuthenticated,
+    ]
+
+    serializer_class = SaveSerializer
+
+    def get_queryset(self):
+        return Saves.objects.filter(savedby=self.request.user)
+
+    def retrieve(self, request, *args, **kwargs):
+        if Saves.objects.filter(post=self.kwargs.get('pk'), savedby=self.request.user).exists():
+            save = Saves.objects.get(post=self.kwargs.get(
+                'pk'), savedby=self.request.user)
+            serializer = SaveSerializer(save)
+            return Response(serializer.data)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def create(self, request, *args, **kwargs):
+        data = request.data
+        # print(data)
+        data["savedby"] = self.request.user.id
+        data["saved"] = True
+        serializer = self.get_serializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        post, _ = serializer.save()
+        return Response({
+            "post": PostSerializer(post, context=self.get_serializer_context()).data,
+        })
+
+    def destroy(self, request, *args, **kwargs):
+        instance = Saves.objects.get(
+            post=self.kwargs.get('pk'), savedby=self.request.user)
+        self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 
 
@@ -157,6 +225,7 @@ class addLikeViewset(viewsets.ModelViewSet):
 
 
 
+
 # api/who_liked_in_post/<int:pk> -api view to see the list of users who liked the post
 @api_view(['GET'])
 def who_liked_the_post(request, pk=None):
@@ -167,53 +236,6 @@ def who_liked_the_post(request, pk=None):
             likes = Likes.objects.filter(post=pk)
             serializer = LikeUserSerializer(likes, many=True)
             return Response(serializer.data)
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-
-# api/save
-class SavePostViewset(viewsets.ModelViewSet):
-    """ Viewset related to saving a post and deleting saved post
-    Create -> add to db saved post
-        Destroy -> delete save object
-        api
-    """
-
-    queryset = Saves.objects.all()
-
-    permissions_classes = [
-        permissions.IsAuthenticated,
-    ]
-
-    serializer_class = SaveSerializer
-
-    def get_queryset(self):
-        return Saves.objects.filter(savedby=self.request.user)
-
-    def retrieve(self, request, *args, **kwargs):
-        if Saves.objects.filter(post=self.kwargs.get('pk'), savedby=self.request.user).exists():
-            save = Saves.objects.get(post=self.kwargs.get(
-                'pk'), savedby=self.request.user)
-            serializer = SaveSerializer(save)
-            return Response(serializer.data)
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-    def create(self, request, *args, **kwargs):
-        data = request.data
-        # print(data)
-        data["savedby"] = self.request.user.id
-        data["saved"] = True
-        serializer = self.get_serializer(data=data)
-        serializer.is_valid(raise_exception=True)
-        post, _ = serializer.save()
-        return Response({
-            "post": PostSerializer(post, context=self.get_serializer_context()).data,
-        })
-
-    def destroy(self, request, *args, **kwargs):
-        instance = Saves.objects.get(
-            post=self.kwargs.get('pk'), savedby=self.request.user)
-        self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
@@ -262,6 +284,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+
 # api/comments_on_post
 class UsernameCommentViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = CommentPost.objects.all().order_by("-pub_date")
@@ -281,19 +304,3 @@ class UsernameCommentViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 
-# api/add_viewcount_post/<int:pk>
-@api_view(['GET'])
-def add_viewcount_post(request, pk=None):
-    current_post = get_object_or_404(Posts, pk=pk)
-    current_post.view_count= F('view_count') + 1
-    current_post.save()
-    return Response({"Success":"view count increased"},status = status.HTTP_200_OK)
-
-
-# api/search_post/?search=
-class PostSearchListApi(generics.ListAPIView):
-    # queryset = Posts.objects.all()
-    queryset = Posts.objects.all().order_by('-created_at')
-    serializer_class = PostSerializer
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['publisher__username','title','description']

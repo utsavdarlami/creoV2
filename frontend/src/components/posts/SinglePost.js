@@ -18,9 +18,10 @@ import CommentList from "./CommentList";
 import PostAuthor from "./PostAuthor";
 // import AudioLogo from "./PostList/audio_image.jpg";
 import AudioLogo from "./PostList/audio_image3.png";
-import Button from "react-bootstrap/Button";
+import {Modal,Button} from "react-bootstrap";
 
 import Spinner from '../layout/Spinner';
+
 
 
 class SinglePost extends Component {
@@ -29,12 +30,15 @@ class SinglePost extends Component {
         this.state = {
             is_liked_by_user: null,
             is_saved_by_user: null,
+            showDeleteModal : false,
         };
         this.handleLike = this.handleLike.bind(this);
         this.handleUnlike = this.handleUnlike.bind(this);
         this.handleSave = this.handleSave.bind(this);
         this.handleUnSave = this.handleUnSave.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.handleDeleteModal = this.handleDeleteModal.bind(this);
+        this.handleModalClose = this.handleModalClose.bind(this);
     }
 
     static propTypes = {
@@ -120,6 +124,19 @@ class SinglePost extends Component {
         this.props.history.push("/");
     }
 
+    handleDeleteModal(){
+        console.log("delete confirm modal")
+        this.setState({
+            showDeleteModal : true,
+        });
+    }
+
+    handleModalClose(){
+        this.setState({
+            showDeleteModal : false,
+        });
+    }
+
     render() {
         const publisher = this.props.post ? this.props.post.publisher : null;
         const user_id = this.props.auth.user ? this.props.auth.user.id : null;
@@ -184,12 +201,24 @@ class SinglePost extends Component {
             </button>
         );
 
-        const deleteButton =
+        //const deleteButton =
+            //publisher === user_id ? (
+                //// <button onClick={this.handleDelete}>Delete</button>
+                    //<Button
+                        //variant="outline-danger"
+                        //onClick={this.handleDelete}
+                        //style={{ width: "100px" }}
+                    //>
+                        //Delete
+                    //</Button>
+            //) : null;
+
+        const deleteModalButton = 
             publisher === user_id ? (
                 // <button onClick={this.handleDelete}>Delete</button>
                     <Button
                         variant="outline-danger"
-                        onClick={this.handleDelete}
+                        onClick={this.handleDeleteModal}
                         style={{ width: "100px" }}
                     >
                         Delete
@@ -205,7 +234,7 @@ class SinglePost extends Component {
                 <div className="post-metadata">
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                         <p className="post-title">{this.props.post.title}</p>
-                        {deleteButton}
+                        {deleteModalButton}
                     </div>
                     <p className="post-createdat text-muted">Created at: {gmtDate} </p>
                 </div>
@@ -264,6 +293,22 @@ class SinglePost extends Component {
         }
         return (
             <div className="detail-wrapper">
+
+                <Modal show={this.state.showDeleteModal} centered onHide={this.handleModalClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Confirm Delete</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Are you sure you want to delete this post!</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={this.handleModalClose}>
+                            Cancel 
+                        </Button>
+                        <Button variant="danger" onClick={this.handleDelete}>
+                            Confirm Delete
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+
                 <div className="post card">
                     {post}
                     <div className="post-content" style={{ height: "50px" }}>
