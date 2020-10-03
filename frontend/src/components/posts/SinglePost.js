@@ -298,7 +298,7 @@ class SinglePost extends Component {
                     <Modal.Header closeButton>
                         <Modal.Title>Confirm Delete</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>Are you sure you want to delete this post!</Modal.Body>
+                    <Modal.Body>Are you sure you want to delete this post?</Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.handleModalClose}>
                             Cancel 

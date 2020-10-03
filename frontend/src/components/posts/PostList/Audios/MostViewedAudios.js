@@ -23,7 +23,7 @@ class MostViewedAudios extends Component {
                                     <p 
                                     style={{
                                     fontFamily: "'Josefin Sans', sans-serif", 
-                                    fontSize: "1.3em"}}>Check out the most viewed music.</p>
+                                    fontSize: "1.3em"}}>Check out the most viewed beats.</p>
 
                                     <AudiosDropDown style={{width: "25%"}} />
                                     

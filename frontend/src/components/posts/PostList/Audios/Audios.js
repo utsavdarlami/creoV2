@@ -27,7 +27,7 @@ class Audios extends Component {
                             <p 
                             style={{
                             fontFamily: "'Josefin Sans', sans-serif", 
-                            fontSize: "1.3em"}}>Check out creators' music.</p>
+                            fontSize: "1.3em"}}>Check out creators' beats.</p>
 
                             <AudiosDropDown style={{width: "25%"}} />
                             
