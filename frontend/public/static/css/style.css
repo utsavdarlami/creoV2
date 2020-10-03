@@ -228,7 +228,7 @@ a {
 }
 
 .post-form {
-  background-color: #f2f2f2;
+  background-color:#f7f5f5;
   border: 1px solid rgb(201, 198, 198);
   margin: 5% 8%;
   /* max-width: 70%; */
@@ -608,7 +608,7 @@ a {
 }
 
 .editcontainer {
-  background-color: #f2f2f2;
+  background-color: #f7f5f5;
   padding: 5px 20px 15px 20px;
   border: 1px solid lightgrey;
   border-radius: 3px;
@@ -1032,4 +1032,9 @@ h3 {
 .dropdown-span:hover{
   font-weight: bold;
   color: rgb(96, 143, 231)
+}
+
+.navbar-span:hover{
+  font-weight: bold;
+  cursor: pointer;
 }

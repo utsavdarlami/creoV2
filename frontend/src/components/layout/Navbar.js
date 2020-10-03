@@ -64,7 +64,7 @@ class Navbar extends Component {
         <NavLink
           to="/submitpost"
           className="font-color"
-          style={{ marginTop: "8px", paddingRight: "15px" }}
+          style={{ marginTop: "8px", paddingRight: "15px", textDecoration: "none" }}
         >
           <span style={{ color: "white" }}>Upload</span>
         </NavLink>
@@ -85,6 +85,7 @@ class Navbar extends Component {
               style={{
                 display: "block",
                 textAlign: "center",
+                textDecoration: "none"
                 // margin: "auto",
                 // width: "100%",
                 // border: "3px solid green",
@@ -94,46 +95,48 @@ class Navbar extends Component {
                 // backgroundColor: "yellow",
               }}
             >
-              <span style={{ color: "black" }}>View Profile</span>
+              <span style={{ color: "black" }} className="navbar-span">View Profile</span>
             </NavLink>
             <NavLink
               to="/editprofile"
               style={{
                 display: "block",
                 textAlign: "center",
+                textDecoration: "none"
                 // border: "1px solid black",
                 // padding: "0 15%",
                 // backgroundColor: "yellow",
               }}
             >
-              <span style={{ color: "black" }}>Edit Profile</span>
+              <span style={{ color: "black" }} className="navbar-span">Edit Profile</span>
             </NavLink>
-            <NavDropdown.Item
+            <div style={{display: "block",
+                textAlign: "center",
+                textDecoration: "none"}}
               onClick={this.handleLogOut}
-              style={{ textAlign: "center" }}
             >
-              Logout
-            </NavDropdown.Item>
+            <span className="navbar-span">Logout</span>  
+            </div>
           </NavDropdown>
         </Nav.Item>
       </Nav>
     );
 
     const guestLinks = (
-      <Nav className="ml-auto" style={{ width: "125px", display: "flex" }}>
+      <Nav className="ml-auto" style={{ width: "150px", display: "flex"}}>
         <NavLink
           to="/login"
-          style={{ paddingRight: "2%", display: "flex" }}
+          style={{ paddingRight: "2%", display: "flex", textDecoration: "none"  }}
           className="font-color"
         >
-          <span style={{ color: "white", width: "10vh" }}>Sign In</span>
+          <span style={{ color: "white", width: "9vh" }}>Sign In</span>
         </NavLink>
         <NavLink
           to="/signup"
           className="font-color"
-          style={{ marginLeft: "2%", display: "flex" }}
+          style={{ marginLeft: "2%", display: "flex", textDecoration: "none" }}
         >
-          <span style={{ color: "white", width: "10vh" }}>Sign Up</span>
+          <span style={{ color: "white", width: "9vh" }}>Sign Up</span>
         </NavLink>
       </Nav>
     );

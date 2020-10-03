@@ -67,10 +67,14 @@ class PostList extends Component {
                       case "A": 
                         return (
                           <div style={{border:"2px solid black", borderRadius: "2%"}}>
-                            <div style={{ height: "290px", backgroundColor: "white"}}>
-                              <img src={AudioLogo} alt="audio" style={{ marginTop: "1%",height: "84%", borderRadius: "none"}}  />
+                            <div style={{ height: "305px", backgroundColor: "white"}}>
+                              <img src={AudioLogo} alt="audio" 
+                                style={{ 
+                                  height: "100%", 
+                                  borderRadius: "0",
+                                  }}  />
                               </div>
-                                <audio controls style={{width:"100%", height: "52px"}}>
+                                <audio controls style={{width:"100%", height: "41px"}}>
                                   <source src={post.content} />
                                 </audio>
                             </div>

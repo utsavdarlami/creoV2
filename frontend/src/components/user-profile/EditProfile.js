@@ -129,7 +129,7 @@ class EditProfile extends Component {
 
         this.props.updateUserInfo(id,form_data);
 
-        //this.props.history.push("/profile")
+        this.props.history.push("/profile")
     }
 
     componentDidMount(){

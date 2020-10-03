@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 //import PostAuthor from "../posts/PostAuthor";
+import AudioLogo from "../posts/PostList/audio_image3.png"
 
 class SearchView extends Component {
   static propTypes = {
@@ -27,7 +28,7 @@ class SearchView extends Component {
         >
           Users:{" "}
         </p>
-        <div className="jumbotron small-jumbotron">
+        <div className="jumbotron small-jumbotron" style={{backgroundColor : "#f7f5f5"}}>
           {this.props.search_user.length !== 0 ? (
             <div className="search-user">
               {this.props.search_user.map((userdetails) => (
@@ -83,7 +84,7 @@ class SearchView extends Component {
         >
           Posts:{" "}
         </p>
-        <div className="jumbotron small-jumbotron">
+        <div className="jumbotron small-jumbotron" style={{ backgroundColor: "#f7f5f5"}}>
           {this.props.search_post.length !== 0 ? (
             <div className="search-user">
               {this.props.search_post.map((postdetails) => (
@@ -92,17 +93,54 @@ class SearchView extends Component {
                   <span style={{}}>
                     <div className="search-post-avatar">
                       <p key={postdetails.id}>
-                        <img
-                          key={postdetails.id}
-                          src={postdetails.content}
-                          alt="Avatar"
-                          className="post_n_avatar"
-                          style={{
-                            borderRadius: "5%",
-                            width: "200px",
-                            height: "200px",
-                          }}
-                        />
+                        {(() => {
+                          switch (postdetails.post_type) {
+                            case "I":
+                              return (
+                                <img
+                                key={postdetails.id}
+                                src={postdetails.content}
+                                alt="Avatar"
+                                className="post_n_avatar"
+                                style={{
+                                  borderRadius: "5%",
+                                  width: "200px",
+                                  height: "200px",
+                                }}
+                              />
+                              );
+                            case "V":
+                              return (
+                                <video key={postdetails.id} 
+                                  alt="Avatar"
+                                  className="post_n_avatar"
+                                  style={{
+                                    borderRadius: "5%",
+                                    width: "200px",
+                                    height: "200px",
+                                  }}>
+                                    <source src={postdetails.content} />
+                                  </video>
+                              )
+                            case "A":
+                              return (
+                                <div className="post_n_avatar"
+                                  style={{borderRadius: "5%",
+                                  width: "200px",
+                                  height: "200px"}}>
+                                    <img src={AudioLogo} alt="song pic" />
+                                    <audio key={postdetails.id}
+                                      alt="song"
+                                     style={{width: "inherit"}}
+                                     >
+                                      <source src={postdetails.content} />
+                                  </audio>
+                                </div>
+                              )
+                            default:
+                              return ""
+                          }
+                        })()}
                         {"  "}
                         {/* <Link
                           key={postdetails.id}

@@ -80,26 +80,42 @@ class AuthorDetails extends Component {
               {this.props.author_posts.map(post => (
                 <article className="post post-one-third" key={post.id}>
                   <Link to={`/posts/${post.id}`} style={{textDecoration: "none"}}>
-                      <div style={{backgroundColor: "black", borderRadius: "2%"}}>
                         {(() => {
                           switch (post.post_type){
                             case "I":
-                              return <img src={`${back_api}${post.content}`} alt="content" style={{borderRadius: "2%"}} />;
-                            case "V": 
-                              return  <video width="100%" height="100%" controls><source src={`${back_api}${post.content}`} /></video>;
-                            case "A": 
-                              return <div style={{ height: "84%", border: "1px solid black", borderRadius: "2%", backgroundColor: "white"}}>
-                                <img src={AudioLogo} alt="audio" style={{height: "100%"}}  />
+                              return (
                                 <div>
-                                  <audio controls style={{width:"100%", height: "52px"}}>
+                                  <img src={`${back_api}${post.content}`} alt="content" style={{borderRadius: "2%"}} />
+                                </div>
+                              )
+                            case "V": 
+                              return (
+                                <div>
+                                  <video width="100%" height="100%" 
+                                    controls 
+                                    style={{backgroundColor: "black"}}>
+                                      <source src={`${back_api}${post.content}`} />
+                                  </video>;
+                                </div>
+                              ) 
+                            case "A": 
+                              return (
+                                <div style={{border:"2px solid black", borderRadius: "2%"}}>
+                                  <div style={{ height: "305px", backgroundColor: "white"}}>
+                                    <img src={AudioLogo} alt="audio" style={{
+                                                    height: "100%", borderRadius: "0",
+}}  />
+                                  <div>
+                                  <audio controls style={{width:"100%", height: "41px"}}>
                                     <source src={`${back_api}${post.content}`} />
-                                    </audio>
+                                  </audio>
                                     </div>
                                     </div>
+                                </div>
+                              )
                             default: return ""
                             }
                       })()}
-                    </div>
 
                   <div className="post-content">
                     <span className="post-home-title">

@@ -17,7 +17,7 @@ import CommentForm from "./CommentForm";
 import CommentList from "./CommentList";
 import PostAuthor from "./PostAuthor";
 // import AudioLogo from "./PostList/audio_image.jpg";
-import AudioLogo from "./PostList/audio_image3.png";
+import AudioLogo from "./PostList/audio_image5.gif";
 import {Modal,Button} from "react-bootstrap";
 
 import Spinner from '../layout/Spinner';
@@ -246,8 +246,8 @@ class SinglePost extends Component {
                                 return <img src={this.props.post.content} alt="content" />;
                             case "V":
                                 return (
-                                    <video width="100%" height="100%" controls>
-                                        <source src={this.props.post.content} />
+                                    <video width="100%" height="100%" controls preload="metadata">
+                                        <source src= {this.props.post.content} />
                                     </video>
                                 );
                             case "A":
@@ -263,7 +263,7 @@ class SinglePost extends Component {
                                         <img
                                             src={AudioLogo}
                                             alt="audio"
-                                            style={{ height: "100%" }}
+                                            style={{ height: "100%", borderRadius: "0" }}
                                         />
                                         <div style={{backgroundColor: "#121211"}}>
                                             <audio controls style={{ width: "100%", height: "100%"}} >
