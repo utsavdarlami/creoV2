@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import PhotosDropDown from "./PhotosDropDown";
 
+import Spinner from '../../../layout/Spinner';
 
 class Photos extends Component {
     static propTypes = {
@@ -11,6 +12,10 @@ class Photos extends Component {
     }
     
     render() {
+        if (this.props.postLoading) {
+            return <Spinner/> 
+            //(<Spinner/>
+        }
             return (
                 <Fragment>
                 <div>
@@ -58,7 +63,8 @@ class Photos extends Component {
 }
 
 const mapStateToProps = state => ({
-    posts: state.posts.posts
+    posts: state.posts.posts,
+    postLoading : state.posts.isLoading,
 });
 
 export default connect(mapStateToProps)(Photos);

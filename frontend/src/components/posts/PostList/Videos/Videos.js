@@ -4,6 +4,10 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import VideosDropDown from "./VideosDropDown";
 
+//import Spinner from '../../layout/Spinner';
+import Spinner from '../../../layout/Spinner';
+
+// import { Link } from "react-router-dom";
 
 class Videos extends Component {
     static propTypes = {
@@ -11,6 +15,10 @@ class Videos extends Component {
     }
     
     render() {
+        if (this.props.postLoading) {
+            return <Spinner/> 
+            //(<Spinner/>
+        }
             return (
                 <Fragment>
                 <div>
@@ -63,7 +71,8 @@ class Videos extends Component {
 }
 
 const mapStateToProps = state => ({
-    posts: state.posts.posts
+    posts: state.posts.posts,
+    postLoading : state.posts.isLoading,
 });
 
 export default connect(mapStateToProps)(Videos);

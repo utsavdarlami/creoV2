@@ -5,12 +5,17 @@ import AudioLogo from "../audio_image3.png";
 import { Link } from "react-router-dom";
 import AudiosDropDown from "./AudiosDropDown";
 
+import Spinner from '../../../layout/Spinner';
 
 class Audios extends Component {
     static propTypes = {
         posts: PropTypes.array.isRequired,
     }
     render() {
+        if (this.props.postLoading) {
+            return <Spinner/> 
+            //(<Spinner/>
+        }
         return (
             <Fragment>
             <div>
@@ -64,7 +69,8 @@ class Audios extends Component {
 }
 
 const mapStateToProps = state => ({
-    posts: state.posts.posts
+    posts: state.posts.posts,
+    postLoading : state.posts.isLoading,
 });
 
 export default connect(mapStateToProps)(Audios);

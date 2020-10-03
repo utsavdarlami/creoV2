@@ -45,6 +45,7 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 posts: action.payload,
+                isLoading: false,
             };
         case GET_SINGLE_POST:
             return {
@@ -92,7 +93,7 @@ export default function(state = initialState, action) {
         case DELETE_COMMENT:
             return {
                 ...state,
-                post_comments: state.post_comments.filter((post_comment) => post_comment.id !== action.payload)
+                post_comments: state.post_comments.filter((post_comment) => post_comment.id !== action.payload),
             }
         case GET_COMMENTS:
             return {
@@ -102,7 +103,8 @@ export default function(state = initialState, action) {
         case DELETE_POST:
             return {
                 ...state,
-                posts: state.posts.filter((post) => post.id !== action.payload)
+                posts: state.posts.filter((post) => post.id !== action.payload),
+                isLoading: false,
             }
         case POST_UPLOAD_FAIL:
             return {
