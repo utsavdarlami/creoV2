@@ -162,21 +162,21 @@ class Navbar extends Component {
             <NavLink
               to="/photos"
               className="font-color"
-              style={{ paddingLeft: "15px" }}
+              style={{ paddingLeft: "15px", textDecoration: "none"  }}
             >
               <span style={{ color: "white" }}>Photos</span>
             </NavLink>
             <NavLink
               to="/videos"
               className="font-color"
-              style={{ paddingLeft: "15px" }}
+              style={{ paddingLeft: "15px", textDecoration: "none"  }}
             >
               <span style={{ color: "white" }}>Videos</span>
             </NavLink>
             <NavLink
               to="/audios"
               className="font-color"
-              style={{ paddingLeft: "15px" }}
+              style={{ paddingLeft: "15px", textDecoration: "none"  }}
             >
               <span style={{ color: "white" }}>Audios</span>
             </NavLink>

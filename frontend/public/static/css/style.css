@@ -372,7 +372,7 @@ a {
 --------------------------------------------------------------*/
 
 .main-content-area {
-  padding: 2em;
+  margin-left: 4%;
 }
 
 .post {
@@ -927,6 +927,7 @@ h3 {
   height: 100%;
   object-fit: cover;
 }
+
 
 @media screen and (min-width: 1120px) {
   .post-one-third {

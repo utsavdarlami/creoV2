@@ -32,7 +32,7 @@ class PostList extends Component {
     // }
 
     render() {
-        // const likeorderedPosts = this.props.posts.slice().sort((a,b) => a.like_count < b.like_count)
+        const likeorderedPosts = this.props.posts.slice().sort((a,b) => a.like_count < b.like_count)
         return (
             <div>
                 <p 
@@ -45,7 +45,7 @@ class PostList extends Component {
                 {/* <PostListNavbar /> */}
                 <main className="main-content-area" style={{paddingTop: "1em"}}>
                     <section className="posts">
-                        {this.props.posts.map(post => (                    
+                        {likeorderedPosts.map(post => (                    
                         <article className="post post-one-third" key={post.id}>
                             <Link to={`posts/${post.id}`} style={{textDecoration: "none"}}>
                                 <div style={{backgroundColor: "black", borderRadius: "2%"}}>
