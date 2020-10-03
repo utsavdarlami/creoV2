@@ -12,7 +12,6 @@ textarea {
   font-family: "Asap", sans-serif;
   font-size: 16px;
   line-height: 1.5;
- 
 }
 
 body {
@@ -36,6 +35,31 @@ a {
 .font-color {
   color: white;
   font-size: 2vh;
+}
+
+.navbar-fields {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.navbar-search {
+  display: flex;
+  flex-direction: row;
+  /* border: 2px solid green; */
+  /* padding: 20px; */
+  /* margin-left: 42%; */
+  /* width: 100%; */
+}
+
+.navbar-search-field {
+  display: inline-table;
+  width: 22%;
+  /* border: 2px solid yellow; */
+}
+
+.navbar-search-button {
+  /* display: block; */
+  /* border: 2px solid red; */
 }
 
 /* navbar styling */
@@ -879,7 +903,12 @@ span.price {
    make the two columns stack on top of each other instead of next to 
    each other (also change the direction - make the "cart" column go on top)
     */
+/* #abcdef */
 @media (max-width: 800px) {
+  .navbar-search {
+    /* margin-left: 42%; */
+    /* border: 2px solid */
+  }
   .editrow {
     flex-direction: column-reverse;
   }
@@ -928,21 +957,23 @@ h3 {
   object-fit: cover;
 }
 
-
 @media screen and (min-width: 1120px) {
+  .navbar-search {
+    margin-left: 42%;
+  }
   .post-one-third {
     flex-basis: 32%;
   }
 }
 
-.n_avatar{
+.n_avatar {
   vertical-align: middle;
   width: 60px;
   height: 60px;
   border-radius: 50%;
 }
 
-.post_n_avatar{
+.post_n_avatar {
   vertical-align: middle;
   width: 70px;
   height: 70px;
