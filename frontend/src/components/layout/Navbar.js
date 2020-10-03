@@ -120,20 +120,20 @@ class Navbar extends Component {
     );
 
     const guestLinks = (
-      <Nav className="ml-auto" style={{ width: "125px" }}>
+      <Nav className="ml-auto" style={{ width: "125px", display: "flex" }}>
         <NavLink
           to="/login"
-          style={{ paddingRight: "15px" }}
+          style={{ paddingRight: "15px", display: "flex" }}
           className="font-color"
         >
-          <span style={{ color: "white" }}>Sign In</span>
+          <span style={{ color: "white", width: "10vh" }}>Sign In</span>
         </NavLink>
         <NavLink
           to="/signup"
           className="font-color"
-          style={{ marginLeft: "2%" }}
+          style={{ marginLeft: "2%", display: "flex" }}
         >
-          <span style={{ color: "white" }}>Sign Up</span>
+          <span style={{ color: "white", width: "10vh" }}>Sign Up</span>
         </NavLink>
       </Nav>
     );
@@ -186,7 +186,8 @@ class Navbar extends Component {
             style={{
               // border: "2px solid blue",
               marginLeft: "auto",
-              marginRight: "-250px",
+              paddingLeft: "35vw",
+              // marginRight: "-250px",
               display: "flex",
               // width: "100%",
               justifyContent: "space-between",
@@ -199,7 +200,7 @@ class Navbar extends Component {
               type="text"
               placeholder="Search creator"
               className="mr-sm-2"
-              // style={{ width: "100%" }}
+              // style={{ paddingLeft: "20px" }}
             />
             <Button
               onClick={this.handleSubmit}
