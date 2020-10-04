@@ -78,7 +78,8 @@ export default function(state = initialState, action) {
       return {
         ...state,
         user: action.payload,
-        user_details: action.payload
+        user_details: action.payload,
+        userLoading : false,
       }
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:

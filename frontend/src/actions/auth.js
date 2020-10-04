@@ -152,6 +152,7 @@ export const register = ({
 
 //UPDATE USER INFO
 export const updateUserInfo = (id,form_data) => (dispatch, getState) => {
+    dispatch({ type: LOADER});
     axios.patch(`${back_api}/api/profile/${id}/`,form_data, tokenConfig2(getState))
         .then(res => {
             dispatch(createMessage({UpdateUserInfo:'Update Sucessful'}));

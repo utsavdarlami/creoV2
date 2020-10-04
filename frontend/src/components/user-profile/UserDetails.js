@@ -5,16 +5,24 @@ import { userDetails } from "../../actions/auth";
 import {NavLink} from 'react-router-dom';
 import { Button } from "react-bootstrap";
 
+import Spinner from '../layout/Spinner';
+
 class UserDetails extends Component { 
   static propTypes = {
     user_details: PropTypes.object,
-    userDetails: PropTypes.func.isRequired
+    userDetails: PropTypes.func.isRequired,
+    userLoading : PropTypes.bool.isRequired,
   }
 
   componentDidMount() {
     this.props.userDetails();
 }
   render() {
+
+    if (this.props.userLoading) {
+        return <Spinner/> 
+    }
+
     const user = this.props.user_details ? 
     (
       <div className="profile-row">
@@ -67,7 +75,8 @@ class UserDetails extends Component {
 }
 
 const mapStateToProps = state => ({
-  user_details: state.auth.user_details
+  user_details: state.auth.user_details,
+  userLoading : state.auth.userLoading,
 })
 
 export default connect(mapStateToProps, {userDetails})(UserDetails);
