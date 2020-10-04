@@ -97,7 +97,7 @@ class Navbar extends Component {
             >
               <span style={{ color: "black" }} className="navbar-span">View Profile</span>
             </NavLink>
-            <NavLink
+            {/* <NavLink
               to="/editprofile"
               style={{
                 display: "block",
@@ -109,7 +109,7 @@ class Navbar extends Component {
               }}
             >
               <span style={{ color: "black" }} className="navbar-span">Edit Profile</span>
-            </NavLink>
+            </NavLink> */}
             <div style={{display: "block",
                 textAlign: "center",
                 textDecoration: "none"}}
@@ -123,7 +123,7 @@ class Navbar extends Component {
     );
 
     const guestLinks = (
-      <Nav className="ml-auto" style={{ width: "150px", display: "flex"}}>
+      <Nav className="ml-auto">
         <NavLink
           to="/login"
           style={{ paddingRight: "2%", display: "flex", textDecoration: "none"  }}
@@ -134,7 +134,7 @@ class Navbar extends Component {
         <NavLink
           to="/signup"
           className="font-color"
-          style={{ marginLeft: "2%", display: "flex", textDecoration: "none" }}
+          style={{  display: "flex", textDecoration: "none" }}
         >
           <span style={{ color: "white", width: "9vh" }}>Sign Up</span>
         </NavLink>
