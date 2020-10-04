@@ -56,8 +56,8 @@ $ npm start
     - Created 5 models, 1 model i.e User was created default by django and  AuthToken model by django-rest-knox
     - model maps to a single database table. 
 - Why REST :
-    - Client–server – By separating the user interface concerns from the data storage concerns, we improve the portability of the user interface across multiple platforms and improve scalability by simplifying the server components.
-    - Stateless – Each request from client to server must contain all of the information necessary to understand the request, and cannot take advantage of any stored context on the server. Session state is therefore kept entirely on the client.
+    - **Client–server** – By separating the user interface concerns from the data storage concerns, we improve the portability of the user interface across multiple platforms and improve scalability by simplifying the server components.
+    - **Stateless** – Each request from client to server must contain all of the information necessary to understand the request, and cannot take advantage of any stored context on the server. Session state is therefore kept entirely on the client.
 - Token Authentication 
     - appropriate for client and server setups
     - For clients to authenticate, the token key should be included in the Authorization HTTP header. 
@@ -73,10 +73,10 @@ $ npm start
 ## Frontend - React
 
 - React is a JavaScript library for building user interfaces
-- Reducer :
+- used Reducer :
     - state management
     - View -> Action -> Reducer(s) -> Store -> View
-- Axios : 
+- used Axios : 
     - for calling urls/apis  
     - Promise based HTTP client 
 
