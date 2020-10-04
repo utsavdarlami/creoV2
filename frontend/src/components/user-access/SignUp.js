@@ -178,7 +178,7 @@ class SignUp extends Component {
                 Other
               </label>
             </div>
-            <Button variant="info" onClick={this.handleSubmit} style={{width: "25%", margin: "2% 1%"}}>Submit</Button>
+            <Button variant="info" onClick={this.handleSubmit} style={{width: "30%", margin: "2% 1%"}}>Submit</Button>
             {/* <button className="access-submit-button">Submit</button> */}
             <p style={{fontFamily: "'Josefin Sans', sans-serif"}}>
               Already have an account?
