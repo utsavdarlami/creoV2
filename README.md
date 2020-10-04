@@ -53,7 +53,7 @@ $ npm start
             - **[ json/raw data -> serialize -> model instance]** 
 - Models :
     - this provides an object-relational mapper (ORM) that automates the transfer of data stored in relational database tables into python objects 
-    - Created 5 models, 1 model i.e User was created default by django and  AuthToken model by django-rest-knox
+    - Created 5 models with extra 2 models , 1 model i.e User which is created default by django and AuthToken model by django-rest-knox
     - model maps to a single database table. 
 - Why REST :
     - **Client–server** – By separating the user interface concerns from the data storage concerns, we improve the portability of the user interface across multiple platforms and improve scalability by simplifying the server components.
