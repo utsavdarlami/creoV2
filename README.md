@@ -24,21 +24,6 @@ $ npm install
 $ npm start
 ```
 
-## BACKEND TODO 
-
-- [x] Like Part of The Post 
-- [x] Save the post 
-- [x] Comment on POst 
-- [x] Password Change 
-- [x] Add Video/Music
-- [x] Tags On Content
-
-## FRONTEND TODO
-
-- [x] Make a Plan
-- [ ] Search on Post
-- [ ] Confirmation of Action's
-
 # Overview
 
 ## Backend - Django 
